@@ -1,0 +1,16 @@
+If you got here, you copied the NDI API header files to this directory, and got curious on what is in this file.
+
+If you only want to work with Matlab and you don't want to add these header files to the C compiler's default search path,
+you need to edit the header files so the four files:
+-ndhost.h
+-ndpack.h
+-ndtypes.h
+-ndopto.h
+...will make the compiler look for the file in the same directory.
+
+i.e. change this: #include <header.h> to this: #include "header.h" for all header files in this directory
+
+Also, add the following to the top of ndopto.h:
+
+#include "ndtypes.h"
+#include "ndpack.h"

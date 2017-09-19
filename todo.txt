@@ -1,0 +1,44 @@
+-Virtual markers from rigid bodies (basically, translation from a rigid body center of mass to a point)
+    -[fail] Get the internal imaginary marker feature to work outside NDI's software
+    -[done, docs needed, one universal function for defined rigid bodies and group markers] Make custom virtual marker management scripts based on the rigid body
+-Virtual marker declaration and assignment WITHOUT rigid bodies
+    -[done, docs needed] Calculate translation and rotation of bunch of markers
+    -[done, docs needed] Define virtual markers
+-[done, testing and docs needed]Restore a virtual marker with a given definition
+-[done, for 6 markers] Volciclab universal rigid body for six markers, along with the rigid body file, 1mm tolerance
+-[done, docs needed] Calibration script (record and save raw data with rigid body)
+-[done, useless, docs needed] STATIC Multi-sensor alignment script (record and save raw data with rigid body, shove it to the C-code, get the camera file)
+-DYNAMIC multi-sensors alignment script
+-Center of mass displacement calculation? (where possible: centroid median distance?)
+
+
+-[fail] non-blocked real-time data (DataIsReady() corrupts comms between host and SCU)
+-[done] Add convenience script for stopping buffering (because the file with id=0 must be closed...)
+-[done] Add convenience script for loading a camera parameter file
+-[done] Get coordinates of marker
+-[done] Function that calculates the distance between two 3D points
+-[done] Boolean function that tells whether two coordinates are within proximity to each other (to an optionally specified tolerance)
+-[done] Boolean function that tells whether two markers are close to each other (to an optionally specified tolerance)
+-[done]Buffered data init (allocate memory, spool, etc.)
+    -[fail]method is: Initialise to capture raw data, spool it to the memory, and then convert it with the built-in C functions.
+    -[done] Good old FileIO method, saving raw data and then converting it semi-online
+-[done] Keep the naming convention of the convenience scripts consistent!
+-[done] Write docs to optotrak_is_a_coord_close_to_a_plane()
+-[done] Write docs to optotrak_is_a_marker_close_to_a_plane()
+-[done] Rigid body generator script
+    -[done] Make 3D marker holder as a rigid body (mostly to test the rigid body generator script)
+    -[fail] rigid body generator script error management
+-[done] Calibration: Create rigid body for the desk
+
+Limitations:
+-No direct raw data handling in Matlab
+-Raw to position3d conversion can only be done on a properly initialised system
+-Rigid body transforms are Euler only
+-non-blocking mode doesn't work (Request -> wait -> receive). Repeated call of DataIsReady seem to corrupt communication, leading to MessageSystem errors. Tested via Matlab's shared library, on 64-bit Windows.
+-ODAU features are not implemented yet. Probably needs some C code to handle data.
+-The system must be calibrated in metric. Otherwise, you have to re-define tolerance.
+-Not all scripts are completely foolproofed. While most scripts do have built-in error management, it's no substitute for regular sanity checks in your code. Make sure you debug your code, and check if results are as expected. 
+
+Add to docs:
+-[done] Why raw data files? Because you can convert later-on, and the calibration uses it with multiple sensors.
+-[done] Why do I have to initialise the Optotrak system just to convert a raw file?
