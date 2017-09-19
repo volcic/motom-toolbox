@@ -1,0 +1,30 @@
+# Zoltan's git ignore file. Unfortunately there are stuff here that must not be synced to the git repo, such as:
+
+# log files
+*.log
+
+# The Optotrak API files
+*.dll
+*.lib
+*.h
+
+# Compiled matlab binaries and Matlab-generated stuff
+*.mex
+*.mexw64
+*.manifest
+*.exp
+*.obj
+*.asv
+generated_binaries/api_prototypes.m
+
+# Optotrak camera and data files
+*.cam
+*.dat
+*.mat
+
+# Various Octave files
+octave-workspace
+*.octave
+
+# The file that tells the system which library to use
+use_64_bits
