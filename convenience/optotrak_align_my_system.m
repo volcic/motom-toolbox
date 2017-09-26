@@ -76,7 +76,7 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
 
         OptotrakActivateMarkers(); %Now we turn on the markers.
         fprintf('As you have more than one camera, you will need to register them together. This requires the rigid body to be moved about in a volume.\n')
-        fprintf('There will be a countdown in a dialogue box. When this dialogue box disapppears, the recording begins. When the dialog box re-appears, the recording has finished.\n')
+        fprintf('There will be a countdown in a dialogue box. When this dialogue box disappears, the recording begins. When the dialog box re-appears, the recording has finished.\n')
         fprintf('Press Enter in the command window to continue.\n');
         pause();
 
