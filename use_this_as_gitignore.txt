@@ -1,5 +1,5 @@
 # Zoltan's git ignore file. Unfortunately there are stuff here that must not be synced to the git repo, such as:
-
+# Also, when working from a different computer, don't forget to $git config --global user.email <uristen@menny.hu>
 # log files
 *.log
 
