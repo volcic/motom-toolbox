@@ -4,15 +4,15 @@ function [virtual_marker_definition] = optotrak_assign_virtual_marker(virtual_ma
 % WARNING: If you calculate the centroid and orientation without defining a rigid body in the system, it's your responsibility to make sure that the markers you used in the calculation are at a fixed distance from each other.
 % Input parameters are:
 %   -> virtual_marker_coords is an X-Y-Z triplet, and is the known location of the virtual marker you want to assign to
-%   -> centroid_coordinates is an X-Y-Z triplet which contains the locaiton of the rigid body
+%   -> centroid_coordinates is an X-Y-Z triplet which contains the location of the rigid body
 %   -> rotation is the roll-pitch-yaw triplet that determines the orientation of the rigid body.
 % virtual marker definition is a vector, which contains the following:
 %   x_offset, which is the coordinate difference between the centroid and the virtual marker coordinates
 %   y_offset, which is the coordinate difference between the centroid and the virtual marker coordinates
 %   z_offset, which is the coordinate difference between the centroid and the virtual marker coordinates
-%   roll, wich is the rotation along the X axis in radians of the rigid body at the time of declaration
-%   pitch, wich is the rotation along the X axis in radians of the rigid body at the time of declaration
-%   yaw, wich is the rotation along the X axis in radians of the rigid body at the time of declaration
+%   roll, which is the rotation along the X axis in radians of the rigid body at the time of declaration
+%   pitch, which is the rotation along the X axis in radians of the rigid body at the time of declaration
+%   yaw, which is the rotation along the X axis in radians of the rigid body at the time of declaration
 
     %First of all, do some sanity checks on the input parameters.
     [virtual_marker_frames, virtual_marker_triplet_length] = size(virtual_marker_coords);

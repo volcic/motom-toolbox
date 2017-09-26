@@ -1,7 +1,6 @@
-% This script generates a new camera file, where many cameras are present
-% and looking at the same volume.
-
-
+% This script generates a new camera file, which will hold the new
+% calibration data.
+%
 % Prerequisities:
 % -A working rigid body (file and markers)
 % -10 seconds of recording with static markers
@@ -16,10 +15,15 @@
 %Destroy everything.
 clear all;
 clc;
+%temporarily
+system('del *.log');
+system('del *.dat');
 
+
+%original_camera_file = 'Registered_2017-09-24_16-08-43'; %initially.
 original_camera_file = 'standard'; %initially.
 config_file = 'alignment_settings'; %I tailored this for my 10 marker setup. Change it to your own. Make sure all markers are visible and bright enough.
-recording_file = 'recording_used_for_alignment.dat'; %In this case, the local directory.
+recording_file = sprintf('recording_used_for_alignment_%s.dat', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %In this case, the local directory.
 rigid_body_file = 'asztal'; %This can be in C:\ngidital\rigid, or local. I chose local.
 new_camera_file = sprintf('Aligned_%s.cam', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
 logfile_name = sprintf('Aligned_%s.log', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
@@ -108,13 +112,10 @@ optotrak_kill;
 pause(3);
 
 %% Step 2.
-
 optotrak_load_lib; %This just loads the libraries, without touching the system.
 
-fprintf('Now starting the multi-camera alignment process. This is going to take a while...\n')
-
 % Call our helper function.
-[fail, rms_error] = optotrak_register_system_static(original_camera_file,recording_file,sprintf('%s.rig', rigid_body_file),new_camera_file,logfile_name);
+[fail, rms_error] = optotrak_align_coordinate_system(original_camera_file,recording_file,sprintf('%s.rig', rigid_body_file),new_camera_file,logfile_name);
 if(fail)
     optotrak_tell_me_what_went_wrong;
     optotrak_kill;
@@ -124,3 +125,5 @@ end
 fprintf('Error introduced by applying new coordinate system: %.3f mm.\n', rms_error)
 
 %Finito.
+
+

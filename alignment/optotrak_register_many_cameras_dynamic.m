@@ -1,6 +1,7 @@
-% This script generates a new camera file, which will hold the new
-% calibration data.
-%
+% This script generates a new camera file, where many cameras are present
+% and looking at the same volume.
+
+
 % Prerequisities:
 % -A working rigid body (file and markers)
 % -10 seconds of recording with static markers
@@ -15,17 +16,21 @@
 %Destroy everything.
 clear all;
 clc;
-%temporarily
-system('del *.log');
-system('del *.dat');
-system('del *.cam');
+
+if(isunix)
+    system('rm *.log');
+    system('rm *.dat');
+else
+    system('del *.log');
+    system('del *.dat');
+end
 
 original_camera_file = 'standard'; %initially.
-config_file = 'alignment_settings'; %I tailored this for my 10 marker setup. Change it to your own. Make sure all markers are visible and bright enough.
-recording_file = 'recording_used_for_alignment.dat'; %In this case, the local directory.
-rigid_body_file = 'asztal'; %This can be in C:\ngidital\rigid, or local. I chose local.
-new_camera_file = sprintf('Aligned_%s.cam', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
-logfile_name = sprintf('Aligned_%s.log', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
+config_file = 'this_works_with_the_ndi_cube'; %I tailored this for my 10 marker setup. Change it to your own. Make sure all markers are visible and bright enough.
+recording_file = sprintf('recording_used_for_registering_%s.dat', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %In this case, the local directory.
+rigid_body_file = 'ndi_cube.rig'; %This can be in C:\ngidital\rigid, or local. I chose local.
+new_camera_file = sprintf('Registered_%s.cam', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
+logfile_name = sprintf('Registered_%s.log', datestr(now, 'yyyy-mm-dd_HH-MM-SS')); %Genreate the new camera file
 
 
 %% Step 0. Initialise. Declare useful variables here so I can check what I am meddling with.
@@ -66,23 +71,31 @@ end
 
 %% Step 1.
 
+fprintf('Connect your rigid body to the system. Press space when ready!\n');
+pause()
+
+fprintf('\nRECORDING BEGINS IN...')
+pause(2);
+fprintf('3')
+pause(0.5);
+fprintf('...')
+pause(0.5);
+fprintf('2')
+pause(0.5);
+fprintf('...')
+pause(1);
+fprintf('NOW!\n')
+
+OptotrakActivateMarkers();
+
 [fail, ~] = DataBufferInitializeFile(0, recording_file);
 if(fail)
     optotrak_tell_me_what_went_wrong;
     error('Couldn''t open file. Have you got permissions?')
 end
 fprintf('Data buffer file created.\n')
-OptotrakActivateMarkers();
-%Do a countdown.
-fprintf('Waiting 5 seconds. Don''t move anything, and stay out of the way so the camera can see all the markers!\n')
-pause(2);
-fprintf('3\n')
-pause(1);
-fprintf('2\n')
-pause(1);
-fprintf('1\n')
-pause(1);
-fprintf('RECORDING NOW!\n')
+
+
 DataBufferStart(); %Begin recording
 %While recording, monitor coordinates. This is not going to be accurate at high frame rates.
 %It doesn't matter, it's for indication only.
@@ -98,31 +111,36 @@ end
 
 fprintf('\n')
 optotrak_stop_buffering_and_write_out; %save the buffer to the data file we allocated.
+fprintf('Data file written out and closed.\n')
 OptotrakDeActivateMarkers();
 
-% Now do some sanity check on the data.
-if(isnan(mean(mean(coordinates))))
-    %If there is an invisible marker, we need to let the world know
-    warning('The collected data has markers that are not visible during the recording. Make sure everything is visible all the time!')
-else
-    fprintf('All markers were visible throughout the recording.\n')
-end
+% % Now do some sanity check on the data.
+% if(isnan(mean(mean(coordinates))))
+%     %If there is an invisible marker, we need to let the world know
+%     warning('The collected data has markers that are not visible during the recording. Make sure everything is visible all the time!')
+% else
+%     fprintf('All markers were visible throughout the recording.\n')
+% end
+
 optotrak_kill;
 pause(3);
 
 %% Step 2.
-optotrak_load_lib; %This just loads the libraries, without touching the system.
+fprintf('Now re-loading libraries...\n')
+
+optotrak_startup;
+
+fprintf('Reloading libraries done!\n')
+fprintf('Now starting the multi-camera alignment process. This is going to take a while...\n')
 
 % Call our helper function.
-[fail, rms_error] = optotrak_align_system(original_camera_file,recording_file,sprintf('%s.rig', rigid_body_file),new_camera_file,logfile_name);
+[fail, rms_error] = optotrak_register_system_dynamic(original_camera_file,recording_file,sprintf('%s.rig', rigid_body_file),new_camera_file,logfile_name);
 if(fail)
     optotrak_tell_me_what_went_wrong;
     optotrak_kill;
-    error('Calibration failed.')
+    error('Registration failed.')
 end
 
 fprintf('Error introduced by applying new coordinate system: %.3f mm.\n', rms_error)
 
 %Finito.
-
-

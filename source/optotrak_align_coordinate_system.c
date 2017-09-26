@@ -1,8 +1,8 @@
 /*
-    This is is a helper program for the optotrak alignment with a single camera. The problem is that the AlignParametersStruct typedef is incorrectly read into Matlab.
+    This is a helper program for the optotrak alignment with a single camera. The problem is that the AlignParametersStruct typedef is incorrectly read into Matlab.
     So, I made this file, which accepts the structure fields as command-line arguments. Also I hard-coded verbosity.
     Matlab declaration is:
-    [fail, tolerance] = optotrak_align_system(old_camera_file_name, path_to_recording, path_to_rigid_body, new_camera_file_name, logfile_name)
+    [fail, tolerance] = optotrak_align_coordinate_system(old_camera_file_name, path_to_recording, path_to_rigid_body, new_camera_file_name, logfile_name)
 */
 //optotrak-specific headers
 #include "ndopto.h"

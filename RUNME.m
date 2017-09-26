@@ -117,7 +117,7 @@ msgbox('The toolbox has been set up, and it has been added to the path. To make 
 %% compile helper functions written in C.
 %Add the names of the C files you want to compile during toolbox set-up.
 fprintf('Now compiling the helper functions...\n')
-files_to_compile = {'DataGetLatest3D_as_array.c', 'DataGetNext3D_as_array.c', 'DataGetLatestTransforms2_as_array.c', 'DataGetNextTransforms2_as_array.c', 'RigidBodyAddFromFile_euler.c', 'optotrak_tell_me_what_went_wrong.c', 'optotrak_convert_raw_file_to_position3d_array.c', 'optotrak_convert_raw_file_to_rigid_euler_array.c', 'optotrak_align_system.c', 'optotrak_register_system_static.c'};
+files_to_compile = {'DataGetLatest3D_as_array.c', 'DataGetNext3D_as_array.c', 'DataGetLatestTransforms2_as_array.c', 'DataGetNextTransforms2_as_array.c', 'RigidBodyAddFromFile_euler.c', 'optotrak_tell_me_what_went_wrong.c', 'optotrak_convert_raw_file_to_position3d_array.c', 'optotrak_convert_raw_file_to_rigid_euler_array.c', 'optotrak_align_coordinate_system.c', 'optotrak_register_system_static.c', 'optotrak_register_system_dynamic.c'};
 cd generated_binaries
 for(i = 1:length(files_to_compile))
     fprintf('\nCompiling %s:\n', files_to_compile{i});

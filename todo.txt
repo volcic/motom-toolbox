@@ -1,14 +1,5 @@
--Virtual markers from rigid bodies (basically, translation from a rigid body center of mass to a point)
-    -[fail] Get the internal imaginary marker feature to work outside NDI's software
-    -[done, docs needed, one universal function for defined rigid bodies and group markers] Make custom virtual marker management scripts based on the rigid body
--Virtual marker declaration and assignment WITHOUT rigid bodies
-    -[done, docs needed] Calculate translation and rotation of bunch of markers
-    -[done, docs needed] Define virtual markers
--[done, testing and docs needed]Restore a virtual marker with a given definition
--[done, for 6 markers] Volciclab universal rigid body for six markers, along with the rigid body file, 1mm tolerance
--[done, docs needed] Calibration script (record and save raw data with rigid body)
--[done, useless, docs needed] STATIC Multi-sensor alignment script (record and save raw data with rigid body, shove it to the C-code, get the camera file)
--DYNAMIC multi-sensors alignment script
+-Add more (and working) examples
+-Add trial management functions (record n trials, etc.)
 -Center of mass displacement calculation? (where possible: centroid median distance?)
 
 
@@ -29,15 +20,30 @@
     -[done] Make 3D marker holder as a rigid body (mostly to test the rigid body generator script)
     -[fail] rigid body generator script error management
 -[done] Calibration: Create rigid body for the desk
+-[done] Virtual markers from rigid bodies (basically, translation from a rigid body center of mass to a point)
+    -[fail] Get the internal imaginary marker feature to work outside NDI's software
+    -[done] Make custom virtual marker management scripts based on the rigid body
+-Virtual marker declaration and assignment WITHOUT rigid bodies
+    -[done] Calculate translation and rotation of bunch of markers
+    -[done, made a unified one instead] Define virtual markers
+-[done, fails] STATIC Multi-sensor alignment script (record and save raw data with rigid body, shove it to the C-code, get the camera file)
+-[done, for 6 markers] Volciclab universal rigid body for six markers, along with the rigid body file, 1mm tolerance
+-[done] IMPORTANT: docs of wrapper functions, the calibration process, and rigid body creation
+-[done], testing needed]Restore a virtual marker with a given definition
+-[done] Calibration script (record and save raw data with rigid body)
+-[done] DYNAMIC multi-sensors alignment script
+-[done] Adaptive multi-sensor registration and alignment script: detect how many cameras we have, and execute the necessary functions.
 
 Limitations:
 -No direct raw data handling in Matlab
--Raw to position3d conversion can only be done on a properly initialised system
+-Raw file to position3d conversion can only be done on a properly initialised system
 -Rigid body transforms are Euler only
 -non-blocking mode doesn't work (Request -> wait -> receive). Repeated call of DataIsReady seem to corrupt communication, leading to MessageSystem errors. Tested via Matlab's shared library, on 64-bit Windows.
 -ODAU features are not implemented yet. Probably needs some C code to handle data.
--The system must be calibrated in metric. Otherwise, you have to re-define tolerance.
+-The system must be calibrated in metric.
 -Not all scripts are completely foolproofed. While most scripts do have built-in error management, it's no substitute for regular sanity checks in your code. Make sure you debug your code, and check if results are as expected. 
+-nOptotrakCalibrigSystem() fails.
+
 
 Add to docs:
 -[done] Why raw data files? Because you can convert later-on, and the calibration uses it with multiple sensors.

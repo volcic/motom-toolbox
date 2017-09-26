@@ -30,10 +30,10 @@ function [ fail ] = optotrak_startup()
         end
     else
         fprintf('OAPI library is already loaded.\n')
-        % Just in case, re-initialise the system. In order to prevent error messages, shut down the system first.
-        TransputerShutdownSystem;
     end
     %% Initialise the Optotrak system.
+    % Just in case, re-initialise the system. In order to prevent error messages, shut down the system first.
+    TransputerShutdownSystem;
     %let's see if we are connected.
     if(TransputerDetermineSystemCfg('transputer_discovery.log')) %You must give this a file name, despite what's written in the manual.
         error('TransputerDetermineSystemCfg failed. Make sure that the Optotrak system is connected to the computer, and is turned on.')
@@ -49,12 +49,12 @@ function [ fail ] = optotrak_startup()
 
     pause(1); % need to wait.
 
-    loglevel = 2; %Adjust this from quiet (0) to super talkative (2) opto.err
+    loglevel = 87; %This is to set the followng flags: OPTO_LOG_ERRORS_FLAG, OPTO_LOG_STATUS_FLAG, OPTO_LOG_WARNINGS_FLAG, OPTO_SECONDARY_HOST_FLAG, OPTO_ASCII_RESPONSE_FLAG
     if(TransputerInitializeSystem(loglevel))
         %Sorry about this, but had to do it :) You should never get here
         %anyway.
         optotrak_tell_me_what_went_wrong;
-        error('TransputerInitializeSystem failed. Don''t know why.')
+        error('TransputerInitializeSystem failed. Something must have gone very wrong with the initialisation.')
     end
     
     pause(3); % need to wait.

@@ -1,6 +1,6 @@
 function [uDataId, pszFileName] = DataBufferInitializeFile(uDataId, pszFileName)
 %DataBufferInitializeFile is the function that opens the file where the
-%data will be saved.
+%data will be saved. Contrary to what is written in the API manual, make sure that the file doesn't exist before calling this function. Otherwise, the system will hang at optotrak_stop_buffering_and_write_out().
 %   -> uDataId is the device identifier, as follows:
 %       0: OPTOTRAK
 %       1: DATA_PROPRIETOR, but this wasn't in the manual
