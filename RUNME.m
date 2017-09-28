@@ -110,6 +110,7 @@ addpath(sprintf('%s/bin', toolbox_path)); %This is where the binaries are
 addpath(sprintf('%s/api_functions', toolbox_path)); %This allows you to conveniently all the functions as described in NDI's manual
 addpath(sprintf('%s/convenience', toolbox_path)); %This is where some pre-made convenience functions are located.
 addpath(sprintf('%s/generated_binaries', toolbox_path)); %This is only required for the function prototypes
+addpath(sprintf('%s/plotting', toolbox_path)); %Added some plotting scripts
 msgbox('The toolbox has been set up, and it has been added to the path. To make this permanent, click ''yes'' at the next prompt if it pops up.', 'Toolbox setup successful');
 
 

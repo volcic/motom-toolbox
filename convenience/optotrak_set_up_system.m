@@ -20,12 +20,19 @@ function [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisiti
         
     pause(2); % need to wait.
         
-    %Adjust the config file at will. If you do something wrong, it will crash.
+    
+    %Check if the config file actually exists. If not, fail.
+    if(~exist(data_acquisition_config_file))
+        fprintf('Config file to use: %s\n', data_acquisition_config_file)
+        error('The config file doesn''t exist or it can''t be read. Have you got permissions?');
+    end
+    %Adjust the config file at will. If you do something wrong, it will crash.  
     if(OptotrakSetupCollectionFromFile(data_acquisition_config_file))
         %If we got here, then something went wrong.
         optotrak_tell_me_what_went_wrong;
         error('OptotrakSetupCollectionFromFile() failed. Check opto.err for details.')
     end
 
+    pause(2); % need to wait.
     fail = 0; % return value, just in case.
 end
