@@ -1,5 +1,4 @@
 -Add more (and working) examples
--Add trial management functions (record n trials, etc.)
 -Center of mass displacement calculation? (where possible: centroid median distance?)
 
 
@@ -33,6 +32,8 @@
 -[done] Calibration script (record and save raw data with rigid body)
 -[done] DYNAMIC multi-sensors alignment script
 -[done] Adaptive multi-sensor registration and alignment script: detect how many cameras we have, and execute the necessary functions.
+-[nope, will do in expt code] Add trial management functions (record n trials, etc.)
+-[done] add primitive plotting and marker visibility functions
 
 Limitations:
 -No direct raw data handling in Matlab
