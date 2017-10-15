@@ -6,7 +6,7 @@ function [ markers_are_close ] = optotrak_are_two_markers_close( marker_number_1
 % Input arguments are:
 %   -> marker_number_1 is the NUMBER of the marker in the Optotrak system.
 %   -> marker_number_2 is the NUMBER of the marker in the Optotrak system.
-%   -> optionally, tolerance, which is a number is millimetres.
+%   -> optionally, tolerance, which is a number is millimetres. If not specified, then the distance is set to 25 mm.
 % You can specify any marker, and the function will fail if you are out of
 % bounds.
 % Output argument is:

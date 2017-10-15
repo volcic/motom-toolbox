@@ -5,7 +5,7 @@ function [ proximity_alert ] = optotrak_are_two_points_close( coord_triplet_1, c
 % Input arguments are:
 %   -> coord_triplet_1 is the X-Y-Z coordinate triplet of the first point
 %   -> coord_triplet_2 is the X-Y-Z coordinate triplet of the second point
-%   -> optionally, tolerance which is in millimetres
+%   -> optionally, tolerance which is in millimetres. If not specified, then the distance is set to 25 mm.
 % Output argument is:
 %   1: if the coordinates are close to each other
 %   0: if the coordinates are further away from each other

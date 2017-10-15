@@ -7,6 +7,10 @@ function [ distance ] = optotrak_get_distance( coord_triplet_1, coord_triplet_2 
 % Output arguments are:
 % -distance is the distance between the two points.
 
+    if( (length(coord_triplet_1) ~= 3) || (length(coord_triplet_2) ~= 3) )
+        error('This function only works with X-Y-Z coordinate triplets.')
+    end
+
     distance = sqrt( ((coord_triplet_1(1) - coord_triplet_2(1))^2) +  ((coord_triplet_1(2) - coord_triplet_2(2))^2) + ((coord_triplet_1(3) - coord_triplet_2(3))^2) );
     
 
