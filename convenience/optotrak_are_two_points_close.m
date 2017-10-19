@@ -1,5 +1,7 @@
 function [ proximity_alert ] = optotrak_are_two_points_close( coord_triplet_1, coord_triplet_2, varargin )
-%OPTOTRAK_ARE_TWO_POINTS_CLOSE This function tells you whether two points are close in a form of a boolean.
+%OPTOTRAK_ARE_TWO_POINTS_CLOSE
+% [ proximity_alert ] = optotrak_are_two_points_close( coord_triplet_1, coord_triplet_2, varargin )
+% This function tells you whether two points are close in a form of a boolean.
 %   By default, the tolerance is 25mm. You can change this by tossing a third
 %   argument, in millimetres.
 % Input arguments are:

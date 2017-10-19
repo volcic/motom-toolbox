@@ -1,5 +1,7 @@
 function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, filename, coordinate_tolerance, normal_vector_coordinates, varargin)
-%OPTOTRAK_GENERATE_RIGID_BODY_FILE This function creates a rigid body file, so you can use it with RigidBodyAddFromFile().
+%OPTOTRAK_GENERATE_RIGID_BODY_FILE
+% [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, filename, coordinate_tolerance, normal_vector_coordinates, varargin)
+% This function creates a rigid body file, so you can use it with RigidBodyAddFromFile().
 % NOTE: IF you use this for calibration, please Please PLEASE make sure you use millimetres! The toolbox relies on the metric system.
 % The function has two uses:
 %   -For calibrating a system, you can specify a marker which will be the origin.

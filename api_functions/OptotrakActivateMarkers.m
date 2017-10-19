@@ -1,5 +1,7 @@
 function [ fail ] = OptotrakActivateMarkers()
-%OPTOTRAKACTIVATEMARKERS Turns on the IR leds so tracking them could be
+%OPTOTRAKACTIVATEMARKERS
+% [ fail ] = OptotrakActivateMarkers()
+% Turns on the IR leds so tracking them could be
 %started. There is some delay between calling the function and the markers
 %being switched on. This can create some missing data at the beginning of
 %acquisition.

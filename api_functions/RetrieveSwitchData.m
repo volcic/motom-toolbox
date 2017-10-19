@@ -1,5 +1,7 @@
 function [ fail, nNumSwitches, pbSwtichData ] = RetrieveSwitchData( nNumSwitches, pbSwtichData )
-%RETRIEVESWITCHDATA This is the function that allows you to get the states of the switches.
+%RETRIEVESWITCHDATA
+% [ fail, nNumSwitches, pbSwtichData ] = RetrieveSwitchData( nNumSwitches, pbSwtichData )
+% This is the function that allows you to get the states of the switches.
 % Note that the switches are being monitored even after the data acquisition stopped. If you want to reset the switches,
 % you will have to re-initialise the system.
 %   -> nNumSwitches is the number of switches 

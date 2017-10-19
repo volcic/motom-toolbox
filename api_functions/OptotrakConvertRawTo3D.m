@@ -1,5 +1,7 @@
 function [ fail, puElements, pSensorReadings, pdt3DPositions ] = OptotrakConvertRawTo3D( puElements, pSensorReadings, pdt3DPositions )
-%OPTOTRAKCONVERTRAWTO3D Converts the camera's raw data to actual 3D
+%OPTOTRAKCONVERTRAWTO3D
+% [ fail, pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d ] = OptotrakConvertFullRawTo6D( pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d )
+% Converts the camera's raw data to actual 3D
 %coordinates.
 %   -> puElements is the number of converted markers
 %   -> pSensorReadings is the frame of the raw data

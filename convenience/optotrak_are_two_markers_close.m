@@ -1,5 +1,7 @@
 function [ markers_are_close ] = optotrak_are_two_markers_close( marker_number_1, marker_number_2, varargin )
-%OPTOTRAK_ARE_TWO_MARKERS_CLOSE This function tells you whether two markers are close to
+%OPTOTRAK_ARE_TWO_MARKERS_CLOSE
+% [ markers_are_close ] = optotrak_are_two_markers_close( marker_number_1, marker_number_2, varargin )
+% This function tells you whether two markers are close to
 %each other.
 %   By default, the tolerance is 25mm. You can change this by tossing a third
 %   argument, in millimetres.

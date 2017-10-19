@@ -1,5 +1,7 @@
 function [ fail, uDataId, pMemory ] = DataBufferInitializeMem( uDataId, pMemory )
-%DATABUFFERINITIALIZEMEM This function reserves memory for the data buffer to be downloaded.
+%DATABUFFERINITIALIZEMEM
+% [ fail, uDataId, pMemory ] = DataBufferInitializeMem( uDataId, pMemory )
+% This function reserves memory for the data buffer to be downloaded.
 %   -> uDataId is the device identifier, as follows:
 %       0: OPTOTRAK
 %       1: DATA_PROPRIETOR, but this wasn't in the manual

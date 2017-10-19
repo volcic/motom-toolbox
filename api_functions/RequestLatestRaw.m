@@ -1,5 +1,7 @@
 function [ fail ] = RequestLatestRaw(  )
-%REQUESTLATESTRAW This function tells the Optotrak system to prepare to send the freshest full raw data available.
+%REQUESTLATESTRAW
+% [ fail ] = RequestLatestRaw(  )
+% This function tells the Optotrak system to prepare to send the freshest full raw data available.
 % Make sure you wait until DataIsReady() says so, and then you can call DataReceiveLatestRaw().
 % Also make sure that you have only one request running at the time, otherwise you will corrupt data.
 %   fail is the return value of the function. The API docs don't go into details on what this does.

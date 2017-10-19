@@ -1,5 +1,7 @@
 function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrcFloat, pDataSrcChar, pDataSrcInt, pDataSrcDouble ] = FileWriteAll( uFileId, lnStartFrame, uNumberofFrames, pDataSrcFloat, pDataSrcChar, pDataSrcInt, pDataSrcDouble )
-%FILEWRITEALL This function writes out every type of data to the specified file
+%FILEWRITEALL
+% [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrcFloat, pDataSrcChar, pDataSrcInt, pDataSrcDouble ] = FileWriteAll( uFileId, lnStartFrame, uNumberofFrames, pDataSrcFloat, pDataSrcChar, pDataSrcInt, pDataSrcDouble )
+% This function writes out every type of data to the specified file
 %   -> uFileId is the file indentifier you assigned when you opened the file with either FileOpen() or FileOpenAll()
 %   -> lnStartFrame is a frame offset. If you want to write out from the beginning your data, set this to 0.
 %   -> uNumberofFrames tells the function how many frames are to be written out. You should already know how many frames are there in your data.

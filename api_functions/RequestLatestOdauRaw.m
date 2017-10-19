@@ -1,5 +1,7 @@
 function [ fail ] = RequestLatestOdauRaw( nOdauId )
-%REQUESTLATESTODAURAW This function tells the Optotrak system to prepare to send the freshest data avilable from a selected ODAU.
+%REQUESTLATESTODAURAW
+% [ fail ] = RequestLatestOdauRaw( nOdauId )
+% This function tells the Optotrak system to prepare to send the freshest data avilable from a selected ODAU.
 % Make sure you wait until DataIsReady() says so, and then you can call DataReceiveLatestOdauRaw().
 % Also make sure that you have only one request running at the time, otherwise you will corrupt data.
 %   -> nOdauId is the ODAU selected, as follows:

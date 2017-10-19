@@ -1,5 +1,7 @@
 function [ fail, pFlags ] = OptotrakGetProcessingFlags( pFlags )
-%OPTOTRAKGETPROCESSINGFLAGS Fetches current processing flags from the system.
+%OPTOTRAKGETPROCESSINGFLAGS
+% [ fail, pFlags ] = OptotrakGetProcessingFlags( pFlags )
+% Fetches current processing flags from the system.
 % The flags are binary, and you'll have to decompose them to binary in order to interpret this. Here's how:
 %   -> pFlags
 %       0 (0x00000000): Clear all flags

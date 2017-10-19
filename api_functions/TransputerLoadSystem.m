@@ -1,5 +1,7 @@
 function [ fail, pszNifFile ] = TransputerLoadSystem( pszNifFile )
-%TRANSPUTERLOADSYSTEM Loads system configuration. When loading the .nif
+%TRANSPUTERLOADSYSTEM
+% [ fail, pszNifFile ] = TransputerLoadSystem( pszNifFile )
+% Loads system configuration. When loading the .nif
 %files, make sure that the extension is missed off. i.e.
 %TransputerLoadSystem('blabla') is loading blabla.nif.
 %Make sure you add about 2 seconds delay after the function so the

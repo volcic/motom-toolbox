@@ -1,6 +1,7 @@
 function [fail, pszInputLogFile] = TransputerDetermineSystemCfg(pszInputLogFile)
-%TRANSPUTERDETERMINESYSTEMCFG Whatever you did to the device, this needs to
-%be called first.
+%TRANSPUTERDETERMINESYSTEMCFG
+% fail, pszInputLogFile] = TransputerDetermineSystemCfg(pszInputLogFile)
+% Whatever you did to the device, this needs to be called first.
 %   pszInputLogFile is the path for the log
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.

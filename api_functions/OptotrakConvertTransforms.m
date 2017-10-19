@@ -1,5 +1,7 @@
 function [ fail, puElements, pDataDest6D, pDataDest3D ] = OptotrakConvertTransforms( puElements, pDataDest6D, pDataDest3D )
-%OPTOTRAKCONVERTTRANSFORMS Converts a frame of 3D data to a 6D data, using the currently loaded rigid body file.
+%OPTOTRAKCONVERTTRANSFORMS
+% [ fail, puElements, pDataDest6D, pDataDest3D ] = OptotrakConvertTransforms( puElements, pDataDest6D, pDataDest3D )
+% Converts a frame of 3D data to a 6D data, using the currently loaded rigid body file.
 %   -> puElements is the number of rigid bodies used in the transformation
 %   -> pDataDest6D is where your freshly generated data will go
 %   -> pDataDest3D is the 3D coordinate array you want to do the transform on.

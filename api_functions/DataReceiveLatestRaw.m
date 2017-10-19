@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestRaw( puFrameNumber, puElements, puFlags, pDataDest )
-%DATARECEIVELATESTRAW This function gets you the previously requested (using RequestLatestRaw()) latest raw data
+%DATARECEIVELATESTRAW
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestRaw( puFrameNumber, puElements, puFlags, pDataDest )
+% This function gets you the previously requested (using RequestLatestRaw()) latest raw data
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame

@@ -1,5 +1,7 @@
 function [ fail, pnCurrentMarkerType, pnCurrentMarkerWaveLength, pnCurrentModelType, szStatus, nStatusLength ] = OptotrakGetCameraParameterStatus( pnCurrentMarkerType, pnCurrentMarkerWaveLength, pnCurrentModelType, szStatus, nStatusLength )
-%OPTOTRAKGETCAMERAPARAMETERSTATUS This function tells you how your cameras
+%OPTOTRAKGETCAMERAPARAMETERSTATUS
+% [ fail, pnCurrentMarkerType, pnCurrentMarkerWaveLength, pnCurrentModelType, szStatus, nStatusLength ] = OptotrakGetCameraParameterStatus( pnCurrentMarkerType, pnCurrentMarkerWaveLength, pnCurrentModelType, szStatus, nStatusLength )
+% This function tells you how your cameras
 %are set up, including marker info. The API manual is not very helpful with
 %this.
 %   -> pnCurrentMarkerType is the marker type according to the manual.

@@ -1,6 +1,7 @@
 function [ proximity_alert ] = optotrak_is_a_coord_close_to_a_plane( coord_triplet, plane, varargin )
-%OPTOTRAK_IS_A_COORD_CLOSE_TO_A_PLANE This function returns 1 if a
-%coordinate is close to a selected plane, and 0 if it isn't.
+%OPTOTRAK_IS_A_COORD_CLOSE_TO_A_PLANE
+% [ proximity_alert ] = optotrak_is_a_coord_close_to_a_plane( coord_triplet, plane, varargin )
+% This function returns 1 if a coordinate is close to a selected plane, and 0 if it isn't.
 % Input arguments are:
 %   -> coord_triplet is a 1-by-3 array, with the X-Y-Z coordinates 
 %   -> plane is the X, Y, or Z plane you want to test for.

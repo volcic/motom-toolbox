@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetNext3D( puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETNEXT3D This function fetches the next frame of 3D positions of the markers.
+%DATAGETNEXT3D
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetNext3D( puFrameNumber, puElements, puFlags, pDataDest )
+% This function fetches the next frame of 3D positions of the markers.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame
 %   -> puFlags is a status indiator of the Optotrak system. It's a binary mask, so if multiple flags are set, you have to de-compose the number:

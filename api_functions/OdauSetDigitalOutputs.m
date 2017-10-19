@@ -1,5 +1,7 @@
 function [ fail, nOdauId, puDigitalOut, uUpdateMask ] = OdauSetDigitalOutputs( nOdauId, puDigitalOut, uUpdateMask )
-%ODAUSETDIGITALOUTPUTS This function allows you to se the digital outputs on the ODAU box.
+%ODAUSETDIGITALOUTPUTS
+% [ fail, nOdauId, puDigitalOut, uUpdateMask ] = OdauSetDigitalOutputs( nOdauId, puDigitalOut, uUpdateMask )
+% This function allows you to se the digital outputs on the ODAU box.
 % The two ports are controlled in a single 8-bit word. The four most significant bits are PORTB, and the four least significant bits are PORTA
 % However, note that when you actually get data from the ODAU, this byte will be in the most significant half of a 16-bit word.
 %   -> nOdauId is the ODAU selected, as follows:

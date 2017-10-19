@@ -1,8 +1,8 @@
 % optotrak_convert_raw_file_to_position3d_array.m optotrak_convert_raw_file_to_position3d_array.mex* optotrak_convert_raw_file_to_position3d_array.c
-% OPTOTRAK_CONVERT_RAW_FILE_TO_RIGID_EULER_ARRAY This function reads the raw data, and executes rigid body transforms.
+% OPTOTRAK_CONVERT_RAW_FILE_TO_RIGID_EULER_ARRAY
+% % [fail, position3d_array, translation_array, rotation_array] = optotrak_convert_raw_file_to_rigid_euler_array(input_file_name)
+% This function reads the raw data, and executes rigid body transforms.
 % Note that you must have the system properly initialised and your rigid bodies loaded/defined if you want this function to work.
-%
-% [fail, position3d_array, translation_array, rotation_array] = optotrak_convert_raw_file_to_rigid_euler_array(input_file_name)
 %
 % Input arguments are:
 %   -> input_file_name is the name and path to the raw data you want to process.

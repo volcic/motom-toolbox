@@ -1,5 +1,7 @@
 function [ proximity_alert ] = optotrak_is_a_marker_close_to_a_plane( marker_number, plane, varargin )
-%OPTOTRAK_IS_A_MARKER_CLOSE_TO_A_PLANE This function tells whether a
+%OPTOTRAK_IS_A_MARKER_CLOSE_TO_A_PLANE
+% [ proximity_alert ] = optotrak_is_a_marker_close_to_a_plane( marker_number, plane, varargin )
+% This function tells whether a
 %properly initialised Optotrak marker is close to a plane or not. 
 % Input arguments are:
 %   -> marker_number is the marker in the Optotrak system.

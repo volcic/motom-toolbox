@@ -1,5 +1,7 @@
 function [ fail, pElems3d, pSourceCent, pSourceStatus, pdtDataDest3D ] = OptotrakConvertCentroidAndStatusTo3D( pElems3d, pSourceCent, pSourceStatus, pdtDataDest3D )
-%OPTOTRAKCONVERTCENTROIDANDSTATUSTO3D This function converts centroid data to 3D data.
+%OPTOTRAKCONVERTCENTROIDANDSTATUSTO3D
+% [ fail, pElems3d, pSourceCent, pSourceStatus, pdtDataDest3D ] = OptotrakConvertCentroidAndStatusTo3D( pElems3d, pSourceCent, pSourceStatus, pdtDataDest3D )
+% This function converts centroid data to 3D data.
 %   Operation is pretty much the same as OptotrakConvertFullRawTo3d( ... ), but with centroids instead of raw data.
 %   -> pElems3d is the number of markers that were converted
 %   -> pSourceCent is where the centroids are located

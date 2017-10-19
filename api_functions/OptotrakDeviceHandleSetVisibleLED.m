@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId, nLED, uState ] = OptotrakDeviceHandleSetVisibleLED( nDeviceHandleId, nLED, uState )
-%OPTOTRAKDEVICEHANDLESETVISIBLELED This function allows you to touch the LED in the selected device.
+%OPTOTRAKDEVICEHANDLESETVISIBLELED
+% [ fail, nDeviceHandleId, nLED, uState ] = OptotrakDeviceHandleSetVisibleLED( nDeviceHandleId, nLED, uState )
+% This function allows you to touch the LED in the selected device.
 %   -> nDeviceHandleId is the device handle which tells which device we are adjusting
 %   -> nLED is the led's number to be used. The first LED (nLED=1) is 'reserved', and this will throw an error when you adjust it.
 %   -> uState is a binary mask, defined as follows:

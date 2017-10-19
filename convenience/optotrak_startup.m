@@ -1,5 +1,7 @@
 function [ fail ] = optotrak_startup()
-%OPTOTRAK_STARTUP This function loads the Optotrak library, and
+%OPTOTRAK_STARTUP
+% [ fail ] = optotrak_startup()
+% This function loads the Optotrak library, and
 %initialises the system. It also sets up data collection with it.
     %Check if the first step is done.
     if(exist('api_prototypes.m', 'file') ~= 2)

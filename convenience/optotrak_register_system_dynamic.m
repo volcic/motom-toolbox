@@ -1,10 +1,10 @@
 %optotrak_register_system_dynamic.m optotrak_register_system_dynamic.mex* optotrak_register_system_dynamic.c
-%OPTOTRAK_REGISTER_SYSTEM_DYNAMIC This is a C wrapper function for nOptotrakRegistergSystem(). It alllows the registration of many cameras together into a common coordinate system.
+%OPTOTRAK_REGISTER_SYSTEM_DYNAMIC
+% [fail, tolerance] = optotrak_align_system(old_camera_file_name, path_to_recording, path_to_rigid_body, new_camera_file_name, logfile_name)
+% This is a C wrapper function for nOptotrakRegistergSystem(). It alllows the registration of many cameras together into a common coordinate system.
 % This function supposed to handle rigid bodies that move about in the recordings.
 % The problem is that the RegisterParametersStruct typedef is incorrectly read into Matlab.
 % So, I made this file, which accepts the structure fields as command-line arguments. Also I hard-coded verbosity.
-% Matlab declaration is:
-% [fail, tolerance] = optotrak_align_system(old_camera_file_name, path_to_recording, path_to_rigid_body, new_camera_file_name, logfile_name)
 % Input arguments are:
 %   -> old_camera_file_name is the camera parameter file the raw data was recorded with. Usually, it's 'standard'.
 %   -> path_to_recording is where the raw data file is

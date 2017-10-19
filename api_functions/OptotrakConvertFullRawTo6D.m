@@ -1,5 +1,7 @@
 function [ fail, pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d ] = OptotrakConvertFullRawTo6D( pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d )
-%OPTOTRAKCONVERTFULLRAWTO6D This function converts a previously captured full raw data frame into 3D and 6D positions, using the ridid body definitions
+%OPTOTRAKCONVERTFULLRAWTO6D
+% [ fail, pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d ] = OptotrakConvertFullRawTo6D( pElems3d, pElems6d, pSrcFullRaw, pDst3d, pdtDataDest6d )
+% This function converts a previously captured full raw data frame into 3D and 6D positions, using the ridid body definitions
 %   -> pElems3d is the number of markers that were converted
 %   -> pElems6d is the number of rigid bodies that were converted
 %   -> pSrcFullRaw is the source of a single frame's worth of full raw data

@@ -1,5 +1,7 @@
 function [ fail, pElems3d, pElems6d, pSourceCent, pSourceStatus, pdtDataDest3d, pdtDataDest6d ] = OptotrakConvertCentroidAndStatusTo6D( pElems3d, pElems6d, pSourceCent, pSourceStatus, pdtDataDest3d, pdtDataDest6d )
-%OPTOTRAKCONVERTCENTROIDANDSTATUSTO6D This function converts a previously captured centroid data frame into 3D and 6D positions, using the ridid body definitions
+%OPTOTRAKCONVERTCENTROIDANDSTATUSTO6D
+% [ fail, pElems3d, pElems6d, pSourceCent, pSourceStatus, pdtDataDest3d, pdtDataDest6d ] = OptotrakConvertCentroidAndStatusTo6D( pElems3d, pElems6d, pSourceCent, pSourceStatus, pdtDataDest3d, pdtDataDest6d )
+% This function converts a previously captured centroid data frame into 3D and 6D positions, using the ridid body definitions
 %   -> pElems3d is the number of markers used in the caputre.
 %   -> pElems6d is the number of rigid bodies used in the conversion
 %   -> pSourceCent is the source centroids in the previously caputred frame.

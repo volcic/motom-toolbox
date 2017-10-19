@@ -1,5 +1,7 @@
 function [ fail, pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtTransformedPositionPtr ] = TransformPoint( pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtTransformedPositionPtr )
-%TRANSFORMPOINT This function calculates the 3D x-y-z point of a point, after it has been manipulated by translation and rotation.
+%TRANSFORMPOINT
+% [ fail, pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtTransformedPositionPtr ] = TransformPoint( pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtTransformedPositionPtr )
+% This function calculates the 3D x-y-z point of a point, after it has been manipulated by translation and rotation.
 %   -> pdtRotationMatrix is the 3-by-3 matrix that contains the rotation data
 %   -> pdtTranslation has the translation structure
 %   -> pdtOriginalPositionPtr is your point's X-Y-Z data

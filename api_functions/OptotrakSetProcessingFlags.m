@@ -1,5 +1,7 @@
 function [ fail, uFlags ] = OptotrakSetProcessingFlags( uFlags )
-%OPTOTRAKSETPROCESSINGFLAGS Set or clear some processing flags from the API.
+%OPTOTRAKSETPROCESSINGFLAGS
+% [ fail, uFlags ] = OptotrakSetProcessingFlags( uFlags )
+% Set or clear some processing flags from the API.
 % You also can change these at optotrak.ini. But, should you need this, here it is:
 % These are initalised in binary, so you'll need to add these numbers if you want to set muliple flags.
 % You'll need to call TransputerInitializeSystem('') after this, carefully avoiding using a config file.

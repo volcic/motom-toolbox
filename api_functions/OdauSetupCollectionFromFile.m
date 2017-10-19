@@ -1,5 +1,7 @@
 function [ fail, pszCollectFile ] = OdauSetupCollectionFromFile( pszCollectFile )
-%ODAUSETUPCOLLECTIONFROMFILE This function allows you to configure your ODAU from a specified config file.
+%ODAUSETUPCOLLECTIONFROMFILE
+% [ fail, pszCollectFile ] = OdauSetupCollectionFromFile( pszCollectFile )
+% This function allows you to configure your ODAU from a specified config file.
 %   —> pszCollectFile is the file's name. Please don't use the extension. Standard Windows .ini systax applies:
 %       [ODAU 01]
 %       Parameter = value

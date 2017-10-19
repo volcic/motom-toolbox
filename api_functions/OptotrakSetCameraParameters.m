@@ -1,5 +1,7 @@
 function [ fail, nMarkerType, nWaveLength, nModelType ] = OptotrakSetCameraParameters( nMarkerType, nWaveLength, nModelType )
-%OPTOTRAKSETCAMERAPARAMETERS This function allows you to change the marker type, its wavelength, and the camera lens model.
+%OPTOTRAKSETCAMERAPARAMETERS
+% [ fail, nMarkerType, nWaveLength, nModelType ] = OptotrakSetCameraParameters( nMarkerType, nWaveLength, nModelType )
+% This function allows you to change the marker type, its wavelength, and the camera lens model.
 %   -> nMarkerType:
 %       1: Metal markers (default)
 %       2: Ceramic markers

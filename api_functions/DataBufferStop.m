@@ -1,5 +1,7 @@
 function [ fail ] = DataBufferStop(  )
-%DATABUFFERSTOP Stops the transfer of data from the Optotrak device to the computer.
+%DATABUFFERSTOP
+% [ fail ] = DataBufferStop(  )
+% ... stops the transfer of data from the Optotrak device to the computer.
 % This function is useful when you want to stop transferring the data prematurely for some reason.
 % You still have to wait until DataBufferWriteData() says so.
 %   fail is the return value of the function. The API docs don't go into details on what this does.

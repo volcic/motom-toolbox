@@ -34,5 +34,8 @@ function [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisiti
     end
 
     pause(2); % need to wait.
+
+    %Feature request: turn on markers after initialising the system.
+    OptotrakActivateMarkers;
     fail = 0; % return value, just in case.
 end

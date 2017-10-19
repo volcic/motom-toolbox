@@ -1,5 +1,7 @@
 function [fail, there_is_data, spool_complete, spool_status, frames_buffered] = optotrak_stop_buffering_and_write_out()
-%OPTOTRAK_STOP_BUFFERING_AND_WRITE_OUT This function finishes off the spooling process, and writes the buffer contents to a previously initialised file
+%OPTOTRAK_STOP_BUFFERING_AND_WRITE_OUT
+% [fail, there_is_data, spool_complete, spool_status, frames_buffered] = optotrak_stop_buffering_and_write_out()
+% This function finishes off the spooling process, and writes the buffer contents to a previously initialised file
 % There are no input arguments.
 % fail is 0 on success, and the function crashes when something went wrong.
 % As for the other return arguments, check DataBufferWriteData()

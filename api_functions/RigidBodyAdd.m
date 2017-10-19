@@ -1,5 +1,7 @@
 function [ fail, nRigidBodyId, nStartMarkers, nNumMarkers, pRigidCoordinates, pNormalCoordinates, nFlags ] = RigidBodyAdd( nRigidBodyId, nStartMarkers, nNumMarkers, pRigidCoordinates, pNormalCoordinates, nFlags )
-%RIGIDBODYADD This function adds a rigid body definition for the Optotrak system to track.
+%RIGIDBODYADD
+% [ fail, nRigidBodyId, nStartMarkers, nNumMarkers, pRigidCoordinates, pNormalCoordinates, nFlags ] = RigidBodyAdd( nRigidBodyId, nStartMarkers, nNumMarkers, pRigidCoordinates, pNormalCoordinates, nFlags )
+% This function adds a rigid body definition for the Optotrak system to track.
 %   -> nRigidBodyId is specified by you, depending on what number you want to give it
 %   -> nStartMarkers tells the Optotrak system which marker is the rigid body's first marker
 %   -> nNumMarkers specifies the number of markers in the rigid body

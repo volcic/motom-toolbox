@@ -1,5 +1,7 @@
 function [ fail ] = TransputerInitializeSystem( uFlags )
-%TRANSPUTERINITIALIZESYSTEM Checks if the hardware is compatible with this
+%TRANSPUTERINITIALIZESYSTEM
+% [ fail ] = TransputerInitializeSystem( uFlags )
+% ... checks if the hardware is compatible with this
 %API, and then initialises the system.
 %   uFlags is a binary mask, you would normally have defines for this in the C API, but here:
 %   -> 0 for no logging

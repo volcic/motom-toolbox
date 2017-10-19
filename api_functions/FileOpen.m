@@ -1,5 +1,7 @@
 function [ fail, pszFileName, uFileId, uFileMode, pnItems, pnSubItems, plnFrames, pfFrequency, pszComments, pFileHeader ] = FileOpen( pszFileName, uFileId, uFileMode, pnItems, pnSubItems, plnFrames, pfFrequency, pszComments, pFileHeader )
-%FILEOPEN This function opens an NDI floating point file, and reads its header.
+%FILEOPEN
+% [ fail, pszFileName, uFileId, uFileMode, pnItems, pnSubItems, plnFrames, pfFrequency, pszComments, pFileHeader ] = FileOpen( pszFileName, uFileId, uFileMode, pnItems, pnSubItems, plnFrames, pfFrequency, pszComments, pFileHeader )
+% This function opens an NDI floating point file, and reads its header.
 %   -> pszFileName is the file's name to be opened
 %   -> uFileId is a number you assign to the open file.
 %   -> uFileMode can be the following:

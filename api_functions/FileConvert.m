@@ -1,5 +1,7 @@
 function [ fail, pszInputFileName, pszOutputFileName, uFileType ] = FileConvert( pszInputFileName, pszOutputFileName, uFileType )
-%FILECONVERT This function converts raw data to the NDI file format, as follows:
+%FILECONVERT
+% [ fail, pszInputFileName, pszOutputFileName, uFileType ] = FileConvert( pszInputFileName, pszOutputFileName, uFileType )
+% This function converts raw data to the NDI file format, as follows:
 % Optotrak raw data will be converted to 3D positions.
 % ODAU raw data will be converted to voltages.
 % Make sure that the file is not being opened by anything else at the same time.

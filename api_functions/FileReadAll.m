@@ -1,5 +1,7 @@
 function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataDestFloat, pDataDestChar, pDataDestInt, pDataDestDouble ] = FileReadAll( uFileId, lnStartFrame, uNumberofFrames, pDataDestFloat, pDataDestChar, pDataDestInt, pDataDestDouble )
-%FILEREADALL This function reads every type of data from the specified file
+%FILEREADALL
+% [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataDestFloat, pDataDestChar, pDataDestInt, pDataDestDouble ] = FileReadAll( uFileId, lnStartFrame, uNumberofFrames, pDataDestFloat, pDataDestChar, pDataDestInt, pDataDestDouble )
+% This function reads every type of data from the specified file
 %   -> uFileId is the file indentifier you assigned when you opened the file with either FileOpen() or FileOpenAll()
 %   -> lnStartFrame is a frame offset. If you want to read from the beginning of the file, set this to 0.
 %   -> uNumberofFrames tells the function how many frames are to be read. You should know how long your file is, by calling FileOpen() or FileOpenAll()

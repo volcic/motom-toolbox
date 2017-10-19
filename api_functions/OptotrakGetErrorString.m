@@ -1,5 +1,7 @@
 function [ fail, szErrorString, nBufferSize ] = OptotrakGetErrorString( szErrorString, nBufferSize )
-%OPTOTRAKGETERRORSTRING If something failed, you have a chance of reading
+%OPTOTRAKGETERRORSTRING
+% [ fail, szErrorString, nBufferSize ] = OptotrakGetErrorString( szErrorString, nBufferSize )
+% If something failed, you have a chance of reading
 %the error message here.
 %   -> szErrorString is the variable the string will be written to
 %   -> nBufferSize is the length of the string, just in case.

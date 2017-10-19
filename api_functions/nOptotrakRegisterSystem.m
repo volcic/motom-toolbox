@@ -1,5 +1,7 @@
 function [ fail, dtRegisterParms, pfRMSError ] = nOptotrakRegisterSystem( dtRegisterParms, pfRMSError )
-%NOPTOTRAKREGISTERSYSTEM If you use more than one sensor, you'll need to generate camera parameter files.
+%NOPTOTRAKREGISTERSYSTEM
+% [ fail, dtRegisterParms, pfRMSError ] = nOptotrakRegisterSystem( dtRegisterParms, pfRMSError )
+% If you use more than one sensor, you'll need to generate camera parameter files.
 % The pre-requisite is that you need to record a moving pre-defined rigid body with the un-aligned cameras.
 %   -> dtRegisterParms is a stucture, initialised as follows:
 %       char szRawDataFile is the file name of the raw data file you previously recorded with the unaligned camera settings

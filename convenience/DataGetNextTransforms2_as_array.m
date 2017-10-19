@@ -1,5 +1,7 @@
 % DataGetNextTransforms2_as_array.m DataGetNextTransforms2_as_array.mex* DataGetNextTransforms2_as_array.c
-% DATAGETLATESTTRANSFORMS2_AS_ARRAY This function is written in C, and makes the Opotrak system capture a frame, and then it returns the converted position of all the rigid bodies in the system
+% DATAGETLATESTTRANSFORMS2_AS_ARRAY
+% [fail, framecounter, translation, rotation, positions] = DataGetNextTransforms2_as_array( number_of_markers )
+% This function is written in C, and makes the Opotrak system capture a frame, and then it returns the converted position of all the rigid bodies in the system
 % It also can return the marker position data as X-Y-Z triplets for each sensor, provided you specify how many markers you want to extract.
 % If the markers are not visible, or the rigid body couldn't be transformed, it returns a NaN.
 % Note that this only works with Euler angles, the other transform types are not supported.

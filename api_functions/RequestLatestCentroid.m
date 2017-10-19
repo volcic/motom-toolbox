@@ -1,5 +1,7 @@
 function [ fail ] = RequestLatestCentroid(  )
-%REQUESTLATESTCENTROID This function tells the Optotrak system to prepare to send the freshest centroid data available.
+%REQUESTLATESTCENTROID
+% [ fail ] = RequestLatestCentroid(  )
+% This function tells the Optotrak system to prepare to send the freshest centroid data available.
 % Make sure you wait until DataIsReady() says so, and then you can call DataReceiveLatestCentroid().
 % Also make sure that you have only one request running at the time, otherwise you will corrupt data.
 %   fail is the return value of the function. The API docs don't go into details on what this does.

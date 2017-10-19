@@ -1,5 +1,7 @@
 function [ fail, nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags ] = OptotrakSetupCollection( nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags )
-%OPTOTRAKSETUPCOLLECTION This function configures the Optotrak system using the parameters you specify here.
+%OPTOTRAKSETUPCOLLECTION
+% [ fail, nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags ] = OptotrakSetupCollection( nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags )
+% This function configures the Optotrak system using the parameters you specify here.
 %   Sets up the Optotrak system for data collection.
 %   -> nMarkers is the number of markers to be used
 %   -> fFrameFrequency is the data acquisition frame rate (lowest is 1, max is 4600 / [<number of markers> + 2] )

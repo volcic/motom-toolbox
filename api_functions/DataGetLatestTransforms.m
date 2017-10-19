@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestTransforms( puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETLATESTTRANSFORMS This function gets you the latest acquired rigid body data
+%DATAGETLATESTTRANSFORMS
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestTransforms( puFrameNumber, puElements, puFlags, pDataDest )
+% This function gets you the latest acquired rigid body data
 % This function uses nested structures, so use DataGetLatestTransforms2, where the 3D and the 3D stuff is separated.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of ridid body transforms found in the frame

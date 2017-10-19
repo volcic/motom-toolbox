@@ -1,5 +1,7 @@
 function [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetNextOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETNEXTODAURAW Get the next frame of collected data from a specified ODAU.
+%DATAGETNEXTODAURAW
+% [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetNextOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
+% Get the next frame of collected data from a specified ODAU.
 %   -> nOdauId is the ODAU selected, as follows:
 %       2: ODAU1
 %       3: ODAU2

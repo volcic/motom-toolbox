@@ -1,5 +1,7 @@
 function [ fail ] = RequestNextOdauRaw( nOdauId )
-%REQUESTNEXTODAURAW This function tells the Optotrak system to wait until a new frame is captured and send the data from a selected ODAU.
+%REQUESTNEXTODAURAW
+% [ fail ] = RequestNextOdauRaw( nOdauId )
+% This function tells the Optotrak system to wait until a new frame is captured and send the data from a selected ODAU.
 % Make sure you wait until DataIsReady() says so, and then you can call DataReceiveNextOdauRaw().
 % Also make sure that you have only one request running at the time, otherwise you will corrupt data.
 %   -> nOdauId is the ODAU selected, as follows:

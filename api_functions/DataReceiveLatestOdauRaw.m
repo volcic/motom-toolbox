@@ -1,5 +1,7 @@
 function [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
-%DATARECEIVELATESTODAURAW Gets the previously requested (using RequestLatestOdauRaw()) latest collected data from a specified ODAU.
+%DATARECEIVELATESTODAURAW
+% [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
+% Gets the previously requested (using RequestLatestOdauRaw()) latest collected data from a specified ODAU.
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> nOdauId is the ODAU selected, as follows:
 %       2: ODAU1
@@ -17,7 +19,7 @@ function [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = Data
 %      32 (0x0020): OPTO_FRAME_DATA_MISSED_FLAG is undocumented, but one can guess what it means :)
 % If you don't use switches in your CERTUS system, don't set the OPTOTRAK_SWITCH_AND_CONFIG_FLAG during OptotrakSetupCollection(). This way, if
 % puFlags is non-zero, it can be used as a handy error indicator.
-%   -> pDataDest is where the X-Y-Z data will be written to.
+%   -> pDataDest is where the ODAU data will be written to.
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 

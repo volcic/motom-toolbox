@@ -1,5 +1,7 @@
 function [ fail, puSpoolStatus ] = DataBufferSpoolData( puSpoolStatus )
-%DATABUFFERSPOOLDATA This function downloads (or 'spools') data to the locations you have initialised previously.
+%DATABUFFERSPOOLDATA
+% [ fail, puSpoolStatus ] = DataBufferSpoolData( puSpoolStatus )
+% This function downloads (or 'spools') data to the locations you have initialised previously.
 % This operation downloads the contents of the buffer completely until the time the funciton was called at without you having to do anything.
 % Afterwards, it destroys the links to the destinations you specified, so you will have to re-initialise them
 %   -> puSpoolStatus is an error indicator telling you if something went wrong during the download. 0 for everything OK, non-zero values for an error.

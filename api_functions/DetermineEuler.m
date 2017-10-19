@@ -1,5 +1,7 @@
 function [ fail, pdtRotMatrix, pdtEulerRot ] = DetermineEuler( pdtRotMatrix, pdtEulerRot )
-%DETERMINEEULER This function calculates the Euler angles from the provided rotation matrix.
+%DETERMINEEULER
+% [ fail, pdtRotMatrix, pdtEulerRot ] = DetermineEuler( pdtRotMatrix, pdtEulerRot )
+% This function calculates the Euler angles from the provided rotation matrix.
 %   -> pdtRotMatrix is the input, a 3-by-3 element matrix
 %   -> pftEulerRot is the output
 %   fail is the return value of the function. Since Since the function is initialised as void type, I gave it a constant 0.

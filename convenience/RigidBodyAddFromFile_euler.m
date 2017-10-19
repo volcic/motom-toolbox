@@ -1,4 +1,6 @@
 % RigidBodyAddFromFile.m RigidBodyAddFromFile.mex* RigidBodyAddFromFile.c
+% RIGIDBODYADDFROMFILE_EULER
+% [fail] = RigidBodyAddFromFile_euler( rigid_body_id, start_marker, rigid_body_file )
 % This function is written in C, and it adds a pre-defined rigid body from a file for tracking.
 % Note that the initial position of the rigid body is the origin, so all rigid body movements are recorded with respect to this position.
 % Input arguments are:

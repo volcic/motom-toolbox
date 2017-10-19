@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId, uTime_ms ] = OptotrakDeviceHandleSetBeeper( nDeviceHandleId, uTime_ms )
-%OPTOTRAKDEVICEHANDLESETBEEPER This function makes the selected device go beep for a specified time.
+%OPTOTRAKDEVICEHANDLESETBEEPER
+% [ fail, nDeviceHandleId, uTime_ms ] = OptotrakDeviceHandleSetBeeper( nDeviceHandleId, uTime_ms )
+% This function makes the selected device go beep for a specified time.
 % Please exercise caution when using this function. The beeper can be very annoying.
 %   -> nDeviceHandleId is the device identifier
 %   -> uTime_ms is the time in milliseconds the beep is on

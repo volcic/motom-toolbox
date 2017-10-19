@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatest3D( puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETLATEST3D This function fetches the latest 3D position of the markers.
+%DATAGETLATEST3D
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatest3D( puFrameNumber, puElements, puFlags, pDataDest )
+% This function fetches the latest 3D position of the markers.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame
 %   -> puFlags is a status indiator of the Optotrak system. It's a binary mask, so if multiple flags are set, you have to de-compose the number:

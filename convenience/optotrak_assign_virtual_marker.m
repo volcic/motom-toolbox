@@ -1,5 +1,7 @@
 function [virtual_marker_definition] = optotrak_assign_virtual_marker(virtual_marker_coords, centroid_coordinates, rotation)
-%OPTOTRAK_ASSIGN_VIRTUAL_MARKER This function generates the association parameters of a given virtual marker and a known rigid body.
+%OPTOTRAK_ASSIGN_VIRTUAL_MARKER
+% [virtual_marker_definition] = optotrak_assign_virtual_marker(virtual_marker_coords, centroid_coordinates, rotation)
+% This function generates the association parameters of a given virtual marker and a known rigid body.
 % Ideally, only a single set of coordinates are required. You can use the output of this function to determine where the virtual marker is once the rigid body has moved away.
 % WARNING: If you calculate the centroid and orientation without defining a rigid body in the system, it's your responsibility to make sure that the markers you used in the calculation are at a fixed distance from each other.
 % Input parameters are:

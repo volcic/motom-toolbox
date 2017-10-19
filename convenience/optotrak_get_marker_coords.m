@@ -1,5 +1,7 @@
 function [fail, marker_coords] = optotrak_get_marker_coords(marker_number)
-%OPTOTRAK_GET_MARKER_COORDS This function returns the coordinates of a single marker.
+%OPTOTRAK_GET_MARKER_COORDS
+% [fail, marker_coords] = optotrak_get_marker_coords(marker_number)
+% This function returns the coordinates of a single marker.
 % Note that this script calls DataGetLatest3D_as_array, to minimise execution time.
 %Input arguments are:
 %   -> marker_number is the marker that you are querying

@@ -1,5 +1,7 @@
 function [ fail, uFileId ] = FileCloseAll( uFileId )
-%FILECLOSEALL This function closes the data files that has been previously opened by the API.
+%FILECLOSEALL
+% [ fail, uFileId ] = FileCloseAll( uFileId )
+% This function closes the data files that has been previously opened by the API.
 % Note that this function is only for things you opened with FileOpenAll().
 %   -> uFileId is the id FileOpenAll() gave the file you opened programmatically.
 %   fail is the return value of the function. The API docs don't go into details on what this does.

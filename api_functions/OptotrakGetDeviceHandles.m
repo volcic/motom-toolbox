@@ -1,5 +1,7 @@
 function [ fail, grdtDeviceHandles, nDeviceHandles, puFlags ] = OptotrakGetDeviceHandles( grdtDeviceHandles, nDeviceHandles, puFlags )
-%OPTOTRAKGETDEVICEHANDLES This function finds out what devices have been connected to the Optotrak SCU.
+%OPTOTRAKGETDEVICEHANDLES
+% [ fail, grdtDeviceHandles, nDeviceHandles, puFlags ] = OptotrakGetDeviceHandles( grdtDeviceHandles, nDeviceHandles, puFlags )
+% This function finds out what devices have been connected to the Optotrak SCU.
 % You need to know the EXACT number of devices connected before calling this function. You can find this out by calling OptotrakGetNumberDeviceHandles(...)
 %   -> grdtDeviceHandles is a structure array with all the different things discovered by the Optotrak SCU
 %   The statuses are as follows:

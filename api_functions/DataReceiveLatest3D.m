@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatest3D( puFrameNumber, puElements, puFlags, pDataDest )
-%DATARECEIVELATEST3D This function fetches the previously requested (using RequestLatest3D()) 3D position of the markers.
+%DATARECEIVELATEST3D
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatest3D( puFrameNumber, puElements, puFlags, pDataDest )
+% This function fetches the previously requested (using RequestLatest3D()) 3D position of the markers.
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame

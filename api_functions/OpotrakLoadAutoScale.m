@@ -1,5 +1,7 @@
 function [ fail, pszAutoScaleFile ] = OptotrakLoadAutoScale( pszAutoScaleFile )
-%OPTOTRAKLOADAUTOSCALE This function loads the auto scale data from the specified file into the system.
+%OPTOTRAKLOADAUTOSCALE
+% [ fail, pszAutoScaleFile ] = OptotrakLoadAutoScale( pszAutoScaleFile )
+% This function loads the auto scale data from the specified file into the system.
 %   -> pszAutoScaleFile is a file name. Do not use it with extensions, so the 'blablabla.nas' file should be called as OptotrakLoadAutoScale( 'blablabla' )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.

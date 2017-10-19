@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandlerId, pdtProperty, uPropertyId ] = OptotrakDeviceHandleGetProperty( nDeviceHandlerId, pdtProperty, uPropertyId )
-%OPTOTRAKDEVICEHANDLEGETPROPERTY This function fetches a selected property for a selected device.
+%OPTOTRAKDEVICEHANDLEGETPROPERTY
+% [ fail, nDeviceHandlerId, pdtProperty, uPropertyId ] = OptotrakDeviceHandleGetProperty( nDeviceHandlerId, pdtProperty, uPropertyId )
+% This function fetches a selected property for a selected device.
 % This is a bit cryptic this way, so let me elaborate here:
 %   -> nDeviceHandlerId is the device handle
 %   -> pdtProperty is where the property obtained by this function is being written into

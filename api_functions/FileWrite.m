@@ -1,5 +1,7 @@
 function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrc ] = FileWrite( uFileId, lnStartFrame, uNumberofFrames, pDataSrc )
-%FILEWRITE writes the floating point data data to the specified file
+%FILEWRITE
+% [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrc ] = FileWrite( uFileId, lnStartFrame, uNumberofFrames, pDataSrc )
+% writes the floating point data data to the specified file
 %   -> uFileId is the file indentifier you assigned when you opened the file with either FileOpen() or FileOpenAll()
 %   -> lnStartFrame is a frame offset. If you want to write your buffer out from the beginning of the file, set this to 0.
 %   -> uNumberofFrames tells the function how many frames are to be written out. You should know how long your file is.

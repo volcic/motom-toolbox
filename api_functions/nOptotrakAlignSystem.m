@@ -1,5 +1,7 @@
 function [ fail, dtAlignParams, pfRMSError ] = nOptotrakAlignSystem( dtAlignParams, pfRMSError )
-%NOPTOTRAKALIGNSYSTEM This function changes the Optotrak's coordinate system, and saves this to a specified camera parameter file.
+%NOPTOTRAKALIGNSYSTEM
+% [ fail, dtAlignParams, pfRMSError ] = nOptotrakAlignSystem( dtAlignParams, pfRMSError )
+% This function changes the Optotrak's coordinate system, and saves this to a specified camera parameter file.
 % Basically, you use a previous recording of a known rigid body to align the camera's coordinate system to the rigid body's corrodinate system.
 %   -> dtAlignParams is a parameter structure. It is initialised as follows:
 %       char szDataFile is a data file name with a recording of unaligned parameters

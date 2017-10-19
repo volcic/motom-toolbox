@@ -1,5 +1,7 @@
 function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body_file )
-%OPTOTRAK_ALIGN_MY_SYSTEM This function detects what hardware do you have,
+%OPTOTRAK_ALIGN_MY_SYSTEM
+% [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body_file )
+% This function detects what hardware do you have,
 %and it performs the necessary registration and alignment.
 % Input arguments are:
 %   -> config_file is the data acquisition settings .ini file.

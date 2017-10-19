@@ -1,5 +1,7 @@
 function [fail, pdtXfrm1, pdtXfrm2, pdtNewXfrm] = CombineXfrms(pdtXfrm1, pdtXfrm2, pdtNewXfrm)
-%COMBINEXFRMS Combine two Euler angle transformations into one.
+%COMBINEXFRMS 
+% fail, pdtXfrm1, pdtXfrm2, pdtNewXfrm] = CombineXfrms(pdtXfrm1, pdtXfrm2, pdtNewXfrm)
+% Combine two Euler angle transformations into one.
 %   —> pdtXfrm1 First Euler angle Transform
 %   -> pdtXfrm2 Second Euler angle transform
 %   —> pdtNewXfrm is where the result goes.

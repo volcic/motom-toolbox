@@ -1,5 +1,7 @@
 function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_marker_definition, translation, rotation)
-%OPTOTRAK_GET_VIRTUAL_MARKER_COORDS This is function that calculates the X-Y-Z coordinates of a virtual marker, using the given virtual marker definition and the translation and rotation matrices.
+%OPTOTRAK_GET_VIRTUAL_MARKER_COORDS
+% [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_marker_definition, translation, rotation)
+% This is function that calculates the X-Y-Z coordinates of a virtual marker, using the given virtual marker definition and the translation and rotation matrices.
 % WARNING: Nothing checks whether the rigid body the virtual marker definition was created with is actually the same as the input of this function.
 % This function is designed to get a single virtual marker's coordinates on a rigid body transform that can be many frames. So if you want many virtual markers for the same rigid body, simply execute this funciton with different virtual marker definitions.
 % Input arguments are:

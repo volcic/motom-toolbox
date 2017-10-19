@@ -1,5 +1,7 @@
 function [ fail, pszCollectFile ] = OptotrakSetupCollectionFromFile( pszCollectFile )
-%OPTOTRAKSETUPCOLLECTIONFROMFILE Configures and initialises the Optotrak system from a specified config file. I added a sample config file in the examples directory
+%OPTOTRAKSETUPCOLLECTIONFROMFILE
+% [ fail, pszCollectFile ] = OptotrakSetupCollectionFromFile( pszCollectFile )
+% Configures and initialises the Optotrak system from a specified config file. I added a sample config file in the examples directory
 %   -> pszCollectFile is a file name.
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.

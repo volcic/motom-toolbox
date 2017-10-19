@@ -1,5 +1,7 @@
 function [ fail, nRigidBodyId, nStartMarker, pszRigFile, nFlags ] = RigidBodyAddFromFile( nRigidBodyId, nStartMarker, pszRigFile, nFlags )
-%RIGIDBODYADDFROMFILE This function adds a rigid body to be tracked by the Optotrak system from a specified file.
+%RIGIDBODYADDFROMFILE
+% [ fail, nRigidBodyId, nStartMarker, pszRigFile, nFlags ] = RigidBodyAddFromFile( nRigidBodyId, nStartMarker, pszRigFile, nFlags )
+% This function adds a rigid body to be tracked by the Optotrak system from a specified file.
 %   -> nRigidBodyId is a number you can choose to identify the rigid body you are loading
 %   -> nStartMarker tells the Optotrak system which is the first infrared marker that belongs to the rigid body
 %   -> pszRigFile is the name of .rig file you want to load. Don't use the extension in this argument (i.e. call 'blabla', instead of 'blabla.rig')

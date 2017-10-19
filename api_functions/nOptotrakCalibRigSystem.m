@@ -1,5 +1,7 @@
 function [ fail, dtCalibRigParms, pfRMSError ] = nOptotrakCalibRigSystem( dtCalibRigParms, pfRMSError )
-%NOPTOTRAKCALIBRIGSYSTEM If you use more than one sensor, this is the function you need to use to align them together.
+%NOPTOTRAKCALIBRIGSYSTEM
+% [ fail, dtCalibRigParms, pfRMSError ] = nOptotrakCalibRigSystem( dtCalibRigParms, pfRMSError )
+% If you use more than one sensor, this is the function you need to use to align them together.
 %   -> dtCalibRigParms is a structure, defined as follows:
 %       char pszRawDataFile is the file name of a pre-collected raw data with the unaligned sensors
 %       char pszRigidBodyFile is the rigid body definition with which the data above was collected

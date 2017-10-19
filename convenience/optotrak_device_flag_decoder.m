@@ -1,6 +1,7 @@
 function [ text_flags ] = optotrak_device_flag_decoder( flag_number_as_decimal )
-%OPTOTRAK_DEVICE_FLAG_DECODER This function returns a cell array with the set
-%flags decoded as text. Use this function with OptotrakGetStatus().
+%OPTOTRAK_DEVICE_FLAG_DECODER
+% [ text_flags ] = optotrak_device_flag_decoder( flag_number_as_decimal )
+% This function returns a cell array with the set flags decoded as text. Use this function with OptotrakGetStatus().
 %   -> flag_number_as_decimal is a number which will get decomposed.
 %   text_flags is a cell array, with the text stuff added.
     

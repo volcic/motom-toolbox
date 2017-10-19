@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId, grdtProperties, nProperties ] = OptotrakDeviceHandleSetProperties( nDeviceHandleId, grdtProperties, nProperties )
-%OPTOTRAKDEVICEHANDLESETPROPERTIES This function allows you to save properties into the device. This is done via the property structure.
+%OPTOTRAKDEVICEHANDLESETPROPERTIES
+% [ fail, nDeviceHandleId, grdtProperties, nProperties ] = OptotrakDeviceHandleSetProperties( nDeviceHandleId, grdtProperties, nProperties )
+% This function allows you to save properties into the device. This is done via the property structure.
 % It is advisable to read the properties out with OptotrakDeviceHandleGetProperties(...), and then update it accordingly before writing its contents with this function.
 %   -> nDeviceHandleId is the handle of the selected device
 %   -> grdtProperties is the property structure to be written

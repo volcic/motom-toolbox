@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId, pnProperties ] = OptotrakDeviceHandleGetNumberProperties( nDeviceHandleId, pnProperties )
-%OPTOTRAKDEVICEHANDLEGETNUMBERPROPERTIES This function tells you how many properties have been assigned to this device.
+%OPTOTRAKDEVICEHANDLEGETNUMBERPROPERTIES
+% [ fail, nDeviceHandleId ] = OptotrakDeviceHandleFree( nDeviceHandleId )
+% This function tells you how many properties have been assigned to this device.
 % This is useful if you need to pre-allocate memory to store the device properties into.
 %   -> nDeviceHandleId is the device handle number
 %   -> pnProperties is where the number of properties go, and you can use optotrak_device_handle_property_decoder() to see what this is.

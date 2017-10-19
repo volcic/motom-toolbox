@@ -1,5 +1,7 @@
 function [ fail, pszInputCamFile, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, pszAlignedCamFile, pdt3dErrors, pfRmsError] = OptotrakChangeCameraFOR( pszInputCamFile, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, pszAlignedCamFile, pdt3dErrors, pfRmsError )
-%OPTOTRAKCHANGECAMERAFOR Alters the camera's coordinate system. Input
+%OPTOTRAKCHANGECAMERAFOR
+% [ fail, pszInputCamFile, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, pszAlignedCamFile, pdt3dErrors, pfRmsError] = OptotrakChangeCameraFOR( pszInputCamFile, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, pszAlignedCamFile, pdt3dErrors, pfRmsError )
+% Alters the camera's coordinate system. Input
 %arguments are:
 %   -> pszInputCamFile is the name of the camera file. If this is a zero
 %   length string, it will load 'standard.cam'.

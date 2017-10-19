@@ -1,5 +1,7 @@
 function [ fail, pszFileName, uFileId, uFileMode, pnItems, pnSubItems, pnCharSubItems, pnIntSubItems, pnDoubleSubItems, plnFrames, pfFrequency, pszComments, pFileHeader ] = FileOpenAll( pszFileName, uFileId, uFileMode, pnItems, pnSubItems, pnCharSubItems, pnIntSubItems, pnDoubleSubItems, plnFrames, pfFrequency, pszComments, pFileHeader )
-%FILEOPENALL This function opens an NDI floating point file, and gives access to the data.
+%FILEOPENALL
+% [ fail, pszFileName, uFileId, uFileMode, pnItems, pnSubItems, pnCharSubItems, pnIntSubItems, pnDoubleSubItems, plnFrames, pfFrequency, pszComments, pFileHeader ] = FileOpenAll( pszFileName, uFileId, uFileMode, pnItems, pnSubItems, pnCharSubItems, pnIntSubItems, pnDoubleSubItems, plnFrames, pfFrequency, pszComments, pFileHeader )
+% This function opens an NDI floating point file, and gives access to the data.
 %   -> pszFileName is the file's name to be opened
 %   -> uFileId is a number you assign to the open file.
 %   -> uFileMode can be the following:

@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId ] = OptotrakDeviceHandleEnable( nDeviceHandleId )
-%OPTOTRAKDEVICEHANDLEENABLE This function enables a device which has the handle specified in the argument
+%OPTOTRAKDEVICEHANDLEENABLE
+% [ fail, nDeviceHandleId ] = OptotrakDeviceHandleEnable( nDeviceHandleId )
+% This function enables a device which has the handle specified in the argument
 % If you want to capture data from a device, you'll need to enable it. A device can activate markers, LEDs, and TTL devices.
 %   -> nDeviceHandleId is the device handle you need to specify
 %   fail is the return value of the function. The API docs don't go into details on what this does.

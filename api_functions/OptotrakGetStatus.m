@@ -1,5 +1,7 @@
 function [ fail, pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameFrequency, pfMarkerFrequency, pnThreshold, pnMinimumGain, pnStreamData, pfDutyCycle, pfVoltage, pfCollectionTime, pfPreTriggerTime, pnFlags ] = OptotrakGetStatus( pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameFrequency, pfMarkerFrequency, pnThreshold, pnMinimumGain, pnStreamData, pfDutyCycle, pfVoltage, pfCollectionTime, pfPreTriggerTime, pnFlags )
-%OPTOTRAKGETSTATUS Queries the system for status.
+%OPTOTRAKGETSTATUS
+% [ fail, pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameFrequency, pfMarkerFrequency, pnThreshold, pnMinimumGain, pnStreamData, pfDutyCycle, pfVoltage, pfCollectionTime, pfPreTriggerTime, pnFlags ] = OptotrakGetStatus( pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameFrequency, pfMarkerFrequency, pnThreshold, pnMinimumGain, pnStreamData, pfDutyCycle, pfVoltage, pfCollectionTime, pfPreTriggerTime, pnFlags )
+% Queries the system for status.
 %   -> pnNumSensors is the number of sensors in use.
 %   -> pnNumOdaus is the number of ODAUs in the system
 %   -> pnNumRigidBodies is the number of rigid bodies in the system
@@ -45,7 +47,8 @@ function [ fail, pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameF
 %      134217728 (0x10000000): Undocumented (reserved)
 %      268435456 (0x20000000): Undocumented (reserved)
 %      536870912 (0x40000000): OPTOTRAK_CERTUS_FLAG and OPTOTRAK_REVISION_X22_FLAG (set by the Optotrak system itself)
-%     1076741824 (0x80000000): OPTOTRAK_3020_FLAG (set by the Optotrak system itself)%   fail is the return value of the function. The API docs don't go into details on what this does.
+%     1076741824 (0x80000000): OPTOTRAK_3020_FLAG (set by the Optotrak system itself)
+%   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
     % Prepare pointer inputs

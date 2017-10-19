@@ -1,5 +1,7 @@
 function [ distance ] = optotrak_get_distance( coord_triplet_1, coord_triplet_2 )
-%OPTOTRAK_GET_DISTANCE This function calculates the distance between two x-y-z
+%OPTOTRAK_GET_DISTANCE
+% [ distance ] = optotrak_get_distance( coord_triplet_1, coord_triplet_2 )
+% This function calculates the distance between two x-y-z
 %coordinates.
 % Input arguments are:
 %   -> coord_triplet_1 is the X-Y-Z coordinate triplet of the fist point

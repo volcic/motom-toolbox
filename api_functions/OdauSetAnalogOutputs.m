@@ -1,5 +1,7 @@
 function [ fail, nOdauId, pfVoltage1, pfVoltage2, uChangeMask ] = OdauSetAnalogOutputs( nOdauId, pfVoltage1, pfVoltage2, uChangeMask )
-%ODAUSETANALOGOUTPUTS this functions sets the voltages of the two analogue outputs of the ODAU.
+%ODAUSETANALOGOUTPUTS
+% [ fail, nOdauId, pfVoltage1, pfVoltage2, uChangeMask ] = OdauSetAnalogOutputs( nOdauId, pfVoltage1, pfVoltage2, uChangeMask )
+% this functions sets the voltages of the two analogue outputs of the ODAU.
 % The voltage range is between +5 and -5 Volts.
 %   -> nOdauId is the ODAU selected, as follows:
 %       2: ODAU1

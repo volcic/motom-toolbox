@@ -1,5 +1,7 @@
 function [ text_flags ] = optotrak_data_flag_decoder( flag_number_as_decimal )
-%OPTOTRAK_DATA_FLAG_DECODER This function returns a cell array with the set
+%OPTOTRAK_DATA_FLAG_DECODER
+% [ text_flags ] = optotrak_data_flag_decoder( flag_number_as_decimal )
+% This function returns a cell array with the set
 %flags decoded as text. Use this function with anything ODAU related
 %   -> flag_number_as_decimal is a number which will get decomposed.
 %   text_flags is a cell array, with the text stuff added.

@@ -1,5 +1,7 @@
 function [ fail, nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags ] = OdauSetupCollection( nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags )
-%ODAUSETUPCOLLECTION This function configures the ODAU for data acquisition.
+%ODAUSETUPCOLLECTION
+% [ fail, nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags ] = OdauSetupCollection( nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags )
+% This function configures the ODAU for data acquisition.
 %   -> nOdauId is the ODAU selected, as follows:
 %       2: ODAU1
 %       3: ODAU2

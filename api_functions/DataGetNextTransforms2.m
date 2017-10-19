@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d ] = DataGetNextTransforms2( puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d )
-%DATAGETNEXTTRANSFORMS2 This function obtains both the 3D and 6D rigid body transforms that will be captured in the next frame.
+%DATAGETNEXTTRANSFORMS2
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d ] = DataGetNextTransforms2( puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d )
+% This function obtains both the 3D and 6D rigid body transforms that will be captured in the next frame.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of ridid body transforms found in the frame
 %   -> puFlags is a status indiator of the Optotrak system. It's a binary mask, so if multiple flags are set, you have to de-compose the number:

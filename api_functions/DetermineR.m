@@ -1,5 +1,7 @@
 function [ fail, pdtEulerRot, pdtRotMatrix ] = DetermineR( pdtEulerRot, pdtRotMatrix )
-%DETERMINER This function calulates the rotations from Euler angles.
+%DETERMINER
+% [ fail, pdtEulerRot, pdtRotMatrix ] = DetermineR( pdtEulerRot, pdtRotMatrix )
+% This function calulates the rotations from Euler angles.
 %   -> pdtEulerRot is the input Euler angles
 %   -> pdtRotMatrix is the output 3-by-3 rotation matrix
 %   fail is the return value of the function. Since the function is initialised as void type, I gave it a constant 0.

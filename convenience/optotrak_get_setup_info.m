@@ -1,8 +1,7 @@
 function [ setup_info_struct ] = optotrak_get_setup_info(  )
-%OPTOTRAK_GET_SETUP_INFO This function determines how the Optotrak system
-%is configured. Essentially, it calls OptotrakGetStatus(), but it does all
-%the variable declarations for you. You can get all the information with
-%just a single line, which is extremely convenient.
+%OPTOTRAK_GET_SETUP_INFO
+% [ setup_info_struct ] = optotrak_get_setup_info(  )
+% This function determines how the Optotrak system is configured. Essentially, it calls OptotrakGetStatus(), but it does all the variable declarations for you. You can get all the information with just a single line, which is extremely convenient.
 %   -> There are no input arguments.
 % -Output argument is a structure, with all the parameters conveniently
 %  named in the fields.

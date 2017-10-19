@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d ] = DataReceiveLatestTransforms2( puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d )
-%DATARECEIVELATESTTRANSFORMS2 This function obtains both the 3D and 6D rigid body transforms that has been requested with RequestLatestTransforms()
+%DATARECEIVELATESTTRANSFORMS2
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d ] = DataReceiveLatestTransforms2( puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d )
+% This function obtains both the 3D and 6D rigid body transforms that has been requested with RequestLatestTransforms()
 %(hint: no '2' at the end, becaus this function really just receives the same stuff in two separate buffers).
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> puFrameNumber is a counter of frames since data acquisition began

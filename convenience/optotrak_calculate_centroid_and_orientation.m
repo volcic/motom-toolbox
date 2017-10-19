@@ -1,5 +1,7 @@
 function [translation_array, rotation_array] = optotrak_calculate_centroid_and_orientation(marker_coordinates, varargin)
-%OPTOTRAK_CALCULATE_CENTROID_AND_ORIENTATION This function calculates the centroid of a bunch of markers. The orientation is calculated using a single marker.
+%OPTOTRAK_CALCULATE_CENTROID_AND_ORIENTATION
+% [translation_array, rotation_array] = optotrak_calculate_centroid_and_orientation(marker_coordinates, varargin)
+% This function calculates the centroid of a bunch of markers. The orientation is calculated using a single marker.
 % PLEASE NOTE: There is no sanity check on the marker locations. This script works for basic stuff, but if you want to have something fancier, I suggest the use of rigid bodies.
 % To avoid confusion and disappointment, use as many markers as possible
 % Input arugments are:

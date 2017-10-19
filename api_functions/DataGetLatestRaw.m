@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestRaw( puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETLATESTRAW This function gets you the latest acquired raw data
+%DATAGETLATESTRAW
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestRaw( puFrameNumber, puElements, puFlags, pDataDest )
+% This function gets you the latest acquired raw data
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame
 %   -> puFlags is a status indiator of the Optotrak system. It's a binary mask, so if multiple flags are set, you have to de-compose the number:

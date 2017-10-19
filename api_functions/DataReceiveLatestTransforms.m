@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestTransforms( puFrameNumber, puElements, puFlags, pDataDest )
-%DATARECEIVELATESTTRANSFORMS This function gets you the previously requested (using RequestLatestTransforms) latest acquired rigid body data
+%DATARECEIVELATESTTRANSFORMS
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestTransforms( puFrameNumber, puElements, puFlags, pDataDest )
+% This function gets you the previously requested (using RequestLatestTransforms) latest acquired rigid body data
 % This function probably doesn't work with Matlab, because it is uses nested structures. Try calling DataReceiveLatestTransforms2().
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> puFrameNumber is a counter of frames since data acquisition began

@@ -1,5 +1,7 @@
 function [ fail, pnDeviceHandles ] = OptotrakGetNumberDeviceHandles( pnDeviceHandles )
-%OPTOTRAKGETNUMBERDEVICEHANDLES This function tells you how many devices the Optotrak SCU has detected.
+%OPTOTRAKGETNUMBERDEVICEHANDLES
+% [ fail, pnDeviceHandles ] = OptotrakGetNumberDeviceHandles( pnDeviceHandles )
+% This function tells you how many devices the Optotrak SCU has detected.
 %You'll need this to call OptotrakGetDeviceHandles(...).
 %   -> pnDeviceHandles is the variable the number of devices will be stored into.
 %   fail is the return value of the function. The API docs don't go into details on what this does.

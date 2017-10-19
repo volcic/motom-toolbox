@@ -1,5 +1,7 @@
 function [ fail, pdtQuatRot, pdtRotMatrix ] = CvtRotationMatrixToQuat( pdtQuatRot, pdtRotMatrix )
-%CVTROTATIONMATRIXTOQUAT This function converts a rotation matrix to quaternion format
+%CVTROTATIONMATRIXTOQUAT
+% [ fail, pdtQuatRot, pdtRotMatrix ] = CvtRotationMatrixToQuat( pdtQuatRot, pdtRotMatrix )
+% This function converts a rotation matrix to quaternion format
 % Do not use structure arrays in this, execute for each marker!
 %   -> pdtQuatRot is where the results will go in quaternion format
 %   -> pdtRotMatrix is the input rotation matrix data, 3-by-3 elements.

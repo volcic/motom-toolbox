@@ -1,5 +1,7 @@
 function [ fail, pdtXfrm, pdtInverseXfrm ] = InverseXfrm( pdtXfrm, pdtInverseXfrm )
-%INVERSEXFRM This function calculates the inverse Euler angles.
+%INVERSEXFRM
+% [ fail, pdtXfrm, pdtInverseXfrm ] = InverseXfrm( pdtXfrm, pdtInverseXfrm )
+% This function calculates the inverse Euler angles.
 %   -> pdtXfrm is the input
 %   -> pdtInverseXfrm is the output
 %   fail is the return value of the function. Since the function is initialised as void type, I gave it a constant 0.

@@ -1,5 +1,7 @@
 function [ fail, nRigidBodyId, nRotationMethod ] = RigidBodyChangeFOR( nRigidBodyId, nRotationMethod )
-%RIGIDBODYCHANGEFOR This function changes the coordinate systm in which the rigid body positions are calculated.
+%RIGIDBODYCHANGEFOR
+% [ fail, nRigidBodyId, nRotationMethod ] = RigidBodyChangeFOR( nRigidBodyId, nRotationMethod )
+% This function changes the coordinate systm in which the rigid body positions are calculated.
 %   -> nRigidBodyId is the identifier of the rigid body you specified when added/loaded it
 %   -> nRotationMethod can be two values:
 %       4 (0x0004): OPTOTRAK_STATIC_RIGID_FLAG tells the system to use the rigid body's current position and orientation as the origin of its local cooridnate system

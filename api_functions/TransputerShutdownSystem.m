@@ -1,6 +1,7 @@
 function [ fail ] = TransputerShutdownSystem()
-%TRANSPUTERSHUTDOWNSYSTEM If you couldn't guess what this function does
-%from its name, let me explain.
+%TRANSPUTERSHUTDOWNSYSTEM
+% [ fail ] = TransputerShutdownSystem()
+% If you couldn't guess what this function does from its name, let me explain.
 % If this was a nuclear reactor, this would be the equivalent of the SCRAM
 % (Safety Rope-Cutting Axe-man) process, which gradually slows down and
 % kills off the sustained chain reaction in the reactor core, which in turn

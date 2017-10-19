@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandle, nFlags ] = RigidBodyAddFromDeviceHandle( nDeviceHandle, nFlags )
-%RIGIDBODYADDFROMDEVICEHANDLE This function adds a rigid body from a device to be tracked by the Optotrak system.
+%RIGIDBODYADDFROMDEVICEHANDLE
+% [ fail, nDeviceHandle, nFlags ] = RigidBodyAddFromDeviceHandle( nDeviceHandle, nFlags )
+% This function adds a rigid body from a device to be tracked by the Optotrak system.
 %   -> nDeviceHandle is the device you want to get the rigid body from
 %   -> nFlags is a binary mask, for the rigid body settings. If you want to set multiple flags, you'll need to add these numbers:
 %       1 (0x0001): OPTOTRAK_UNDETERMINED_FLAG is undocumented.

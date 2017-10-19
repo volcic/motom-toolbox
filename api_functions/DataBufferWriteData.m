@@ -1,5 +1,7 @@
 function [ fail, puRealTimeData, puSpoolComplete, puSpoolStatus, pulFramesBuffered ] = DataBufferWriteData( puRealTimeData, puSpoolComplete, puSpoolStatus, pulFramesBuffered )
-%DATABUFFERWRITEDATA This is the function that 'catches' data from the Optotrak,
+%DATABUFFERWRITEDATA
+% [ fail, puRealTimeData, puSpoolComplete, puSpoolStatus, pulFramesBuffered ] = DataBufferWriteData( puRealTimeData, puSpoolComplete, puSpoolStatus, pulFramesBuffered )
+% This is the function that 'catches' data from the Optotrak,
 % and it puts it to the correct destinations, which you have previously initialised using DataBufferInitializeFile() or DataBufferInitializeMem()
 % WARNING: This function will toss data away if you don't initialise destinations!
 %   -> puRealTimeData tells you if there is some real-time data to be received

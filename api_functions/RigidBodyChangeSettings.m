@@ -1,5 +1,7 @@
 function [ fail, nRigidBodyId, nMinMarkers, nMaxMarkerAngle, fMax3dError, fMaxSensorError, fMax3dRmsError, fMaxSensorRmsError, nFlags ] = RigidBodyChangeSettings( nRigidBodyId, nMinMarkers, nMaxMarkerAngle, fMax3dError, fMaxSensorError, fMax3dRmsError, fMaxSensorRmsError, nFlags )
-%rigidbodychangesettings This function enables you to change the rigid body definition in the Optotrak system.
+%RIGIDBODYCHANGESETTINGS
+% [ fail, nRigidBodyId, nMinMarkers, nMaxMarkerAngle, fMax3dError, fMaxSensorError, fMax3dRmsError, fMaxSensorRmsError, nFlags ] = RigidBodyChangeSettings( nRigidBodyId, nMinMarkers, nMaxMarkerAngle, fMax3dError, fMaxSensorError, fMax3dRmsError, fMaxSensorRmsError, nFlags )
+% This function enables you to change the rigid body definition in the Optotrak system.
 %   -> nRigidBodyId is the identifier of the previously added rigid body which you want to change
 %   -> nMinMarkers is the minimum number of visible markers to be able to do a rigid body transformation
 %   -> nMaxMarkerAngle is the maximum angle which a marker can rotate with. This also requires the normal vectors of the markers to be loaded as well.

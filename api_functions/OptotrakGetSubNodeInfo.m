@@ -1,5 +1,7 @@
 function [ fail, nNodeId, nSubNodeId, pdtNodeInfo ] = OptotrakGetSubNodeInfo( nNodeId, nSubNodeId, pdtNodeInfo )
-%OPTOTRAKGETSUBNODEINFO This function gets information from sub-nodes into the system.
+%OPTOTRAKGETSUBNODEINFO
+% [ fail, nNodeId, nSubNodeId, pdtNodeInfo ] = OptotrakGetSubNodeInfo( nNodeId, nSubNodeId, pdtNodeInfo )
+% This function gets information from sub-nodes into the system.
 % Since NDI is obsessed with this weird transputer architecture, here is some explanation on what happens:
 % Back in the day, the idea was that the 'control box' was a node, and the connected sensors and strobers to it was a 'sub-node'.
 % However, just like any other company, they just bolted-on extra features to the old stuff to sell it as more expensive new stuff,

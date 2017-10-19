@@ -1,6 +1,7 @@
 function [ fail, nNodeId, pdtNodeInfo ] = OptotrakGetNodeInfo( nNodeId, pdtNodeInfo )
-%OPTOTRAKGETNODEINFO Returns information of any node determined by the
-%nNodeId in the system
+%OPTOTRAKGETNODEINFO
+% [ fail, nNodeId, pdtNodeInfo ] = OptotrakGetNodeInfo( nNodeId, pdtNodeInfo )
+% Returns information of any node determined by the nNodeId in the system
 %   -> nNodeId can be six values, listed below
 %   -> pdtNodeInfo is the structure the data is being written into
 %   fail is the return value of the function. The API docs don't go into details on what this does.

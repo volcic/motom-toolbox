@@ -1,5 +1,7 @@
 function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestCentroid( puFrameNumber, puElements, puFlags, pDataDest )
-%DATARECEIVELATESTCENTROID This function receives the previously requested (using RequestLatestCentroid()) latest centroid data
+%DATARECEIVELATESTCENTROID
+% [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLatestCentroid( puFrameNumber, puElements, puFlags, pDataDest )
+% This function receives the previously requested (using RequestLatestCentroid()) latest centroid data
 % Make sure you poll this with DataIsReady(), otherwise you will corrupt data.
 %   -> puFrameNumber is a counter of frames since data acquisition began
 %   -> puElements is the number of markers found in the frame

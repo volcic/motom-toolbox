@@ -1,5 +1,7 @@
 function [ fail, nPort1, nPort2, nPort3, nPort4 ] = OptotrakSetStroberPortTable( nPort1, nPort2, nPort3, nPort4 )
-%OPTOTRAKSETSTROBERTABLE This function configures how many markers have you got on each port.
+%OPTOTRAKSETSTROBERTABLE
+% [ fail, nPort1, nPort2, nPort3, nPort4 ] = OptotrakSetStroberPortTable( nPort1, nPort2, nPort3, nPort4 )
+% This function configures how many markers have you got on each port.
 %   -> nPort1: The number of markers on Port 1.
 %   -> nPort2: The number of markers on Port 2.
 %   -> nPort3: The number of markers on Port 3.

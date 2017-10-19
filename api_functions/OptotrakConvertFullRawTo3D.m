@@ -1,5 +1,7 @@
 function [ fail, pElems3d, pDataSourceFullRaw, pdtDataDest3d ] = OptotrakConvertFullRawTo3D( pElems3d, pDataSourceFullRaw, pdtDataDest3d )
-%OPTOTRAKCONVERTFULLRAWTO3D This functions converts a previously captured single frame's full raw data to 3D positions.
+%OPTOTRAKCONVERTFULLRAWTO3D
+% [ fail, pElems3d, pDataSourceFullRaw, pdtDataDest3d ] = OptotrakConvertFullRawTo3D( pElems3d, pDataSourceFullRaw, pdtDataDest3d )
+% This functions converts a previously captured single frame's full raw data to 3D positions.
 %   -> pElems3d is the number of markers that were converted.
 %   -> pDataSourceFullRaw is the source of the single frame full raw data
 %   -> pdtDataDest3d is the destination Position3D structure the positions are being written into

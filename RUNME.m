@@ -74,7 +74,7 @@ for(i = 1:4)
     if(exist(sprintf('bin/%s', binary_file_list{i}), 'file') == 2)
         fprintf('%s found.\n', binary_file_list{i})
     else
-        fprintf('Missing file! -? bin/%s\n', binary_file_list{i})
+        fprintf('Missing file! -> bin/%s\n', binary_file_list{i})
         error('There is a missing binary file. Make sure you copy them to the bin directory!')
     end
 end
@@ -128,7 +128,7 @@ for(i = 1:length(files_to_compile))
     if(new_or_old)
         mex(file_string, '../bin/oapi64.lib');
     else
-        mex(file_string, '../bin/oapi64.lib');
+        mex(file_string, '../bin/oapi.lib');
     end
     pause(0.5); %wait for the compilation process to finish.
 end

@@ -1,8 +1,10 @@
 -Add more (and working) examples
     -[done] Simple experiment streaming data
     -[done] Buffered experiment, with File IO (record raw data, store raw data to disk, and then re-load them to convert the raw data to 3D array)
+    -Add example when you stream data to the buffer and monitor data real-time as well
 -DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function (once the pointer problem is solved)
 -Center of mass displacement calculation? (where possible: centroid median distance?)
+-Docs: Make a list of what API functions work, and when is recommended to use wrapper functions
 
 
 -[fail] non-blocked real-time data (DataIsReady() corrupts comms between host and SCU)
@@ -37,6 +39,8 @@
 -[done] Adaptive multi-sensor registration and alignment script: detect how many cameras we have, and execute the necessary functions.
 -[nope, will do in expt code] Add trial management functions (record n trials, etc.)
 -[done] add primitive plotting and marker visibility functions
+-[done] Turn on markers at the end of optotrak_set_up_system
+
 
 Limitations:
 -No direct raw data handling in Matlab
@@ -52,3 +56,6 @@ Limitations:
 Add to docs:
 -[done] Why raw data files? Because you can convert later-on, and the calibration uses it with multiple sensors.
 -[done] Why do I have to initialise the Optotrak system just to convert a raw file?
+-[done] Docs: Explain what's in the config file
+-[done] Docs: Add function declarations to EVERY function comment
+-[done] Docs: Update wrapper function helper documentation

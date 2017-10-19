@@ -1,5 +1,7 @@
 function [ recovered_structure ] = recover_structure_array( pointer, length )
-%RECOVER_STRUCTURE_ARRAY This function reads a structure array from the
+%RECOVER_STRUCTURE_ARRAY
+% [ recovered_structure ] = recover_structure_array( pointer, length )
+% This function reads a structure array from the
 %memory, provided that you give it a pointer and tell it how many elements
 %are there in the array.
 %   -> pointer is a C-pointer

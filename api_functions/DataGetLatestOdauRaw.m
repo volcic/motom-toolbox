@@ -1,5 +1,7 @@
 function [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
-%DATAGETLATESTODAURAW Get the latest collected data from a specified ODAU.
+%DATAGETLATESTODAURAW
+% [ fail, nOdauId, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatestOdauRaw( nOdauId, puFrameNumber, puElements, puFlags, pDataDest )
+% Get the latest collected data from a specified ODAU.
 %   -> nOdauId is the ODAU selected, as follows:
 %       2: ODAU1
 %       3: ODAU2

@@ -1,5 +1,7 @@
 function [ fail, nMarkers, nSensors, pDataSourceFullRaw, pCentroids, pSensorsStatus ] = OptotrakSplitFullRaw( nMarkers, nSensors, pDataSourceFullRaw, pCentroids, pSensorsStatus )
-%OPTOTRAKSPLITFULLRAW This function splits the full raw data to centroids and statuses.
+%OPTOTRAKSPLITFULLRAW
+% [ fail, nMarkers, nSensors, pDataSourceFullRaw, pCentroids, pSensorsStatus ] = OptotrakSplitFullRaw( nMarkers, nSensors, pDataSourceFullRaw, pCentroids, pSensorsStatus )
+% This function splits the full raw data to centroids and statuses.
 %   -> nMarkers is the number of markers found in the raw data
 %   -> nSensors is the number of sensors used to capture the raw data
 %   -> pDataSourceFullRaw is one frame of full raw data to be processed

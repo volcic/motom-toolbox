@@ -1,5 +1,7 @@
 function [ fail, nOdauId, pnChannels, pnGain, pnDigitalMode, pfFrameFrequency, pfScanFrequency, pnStreamData, pfCollectionTime, pfPreTriggerTime, puCollFlags, pnFlags ] = OdauGetStatus( nOdauId, pnChannels, pnGain, pnDigitalMode, pfFrameFrequency, pfScanFrequency, pnStreamData, pfCollectionTime, pfPreTriggerTime, puCollFlags, pnFlags )
-%ODAUGETSTATUS This function gets all the information available for a selected ODAU device.
+%ODAUGETSTATUS
+% [ fail, nOdauId, pnChannels, pnGain, pnDigitalMode, pfFrameFrequency, pfScanFrequency, pnStreamData, pfCollectionTime, pfPreTriggerTime, puCollFlags, pnFlags ] = OdauGetStatus( nOdauId, pnChannels, pnGain, pnDigitalMode, pfFrameFrequency, pfScanFrequency, pnStreamData, pfCollectionTime, pfPreTriggerTime, puCollFlags, pnFlags )
+% This function gets all the information available for a selected ODAU device.
 % You can adjust these settings with OdauSetupCollection(...) and/or OdauSetupCollectionFromFile(...)
 %   -> nOdauId select which ODAU is being queried. It's a binary mask, and the decimal values correspond to:
 %       2: ODAU1

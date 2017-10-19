@@ -1,5 +1,7 @@
 function [ fail, nDeviceHandleId, grdtProperties, nProperties ] = OptotrakDeviceHandleGetProperties( nDeviceHandleId, grdtProperties, nProperties )
-%OPTOTRAKDEVICEHANDLEGETPROPERTIES This function returns the property structure for a device that is specified with the handle.
+%OPTOTRAKDEVICEHANDLEGETPROPERTIES
+% [ fail, nDeviceHandleId ] = OptotrakDeviceHandleFree( nDeviceHandleId )
+% This function returns the property structure for a device that is specified with the handle.
 % This can include the number of switches, location, etc.
 %   -> nDeviceHandleId is the device handle that selects which device is being read.
 %   -> grdtProperties is the data structure the function will write things to
