@@ -1,5 +1,7 @@
 function [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisition_config_file)
-%OPTOTRAK_SET_UP_SYSTEM This function loads the specified camera calibration file, loads the camera parameters, and then it sets up data acquisition from a specified ini file.
+%OPTOTRAK_SET_UP_SYSTEM
+% [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisition_config_file)
+% This function loads the specified camera calibration file, loads the camera parameters, and then it sets up data acquisition from a specified ini file.
 % Input arguments are:
 %   -> camera_calibration_file is a file in your ndigital directory by default. Don't use the extension, just the name
 %   -> data_acquisition_config_file is the ini file you edited/generated.

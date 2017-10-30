@@ -20,8 +20,6 @@ number_of_frames_per_trial = 50;
 optotrak_startup;
 optotrak_set_up_system(camera_file, config_file);
 
-%% Begin collecting data.
-OptotrakActivateMarkers;
 
 fprintf('Welcome to the simple experiment!\nThis code collects data in %d trials, and the trials contain %d frames of data.\n', number_of_trials, number_of_frames_per_trial);
 

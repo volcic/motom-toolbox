@@ -54,6 +54,9 @@ void mexFunction(int nlhs, mxArray *plhs[],
 
     //Declare the structure for the function. But we only want this to exist here.
     RegisterParms alignment_structure;
+    //debug.
+    //mexPrintf("Alignment structure created.\n");
+    //mexEvalString("drawnow;");
 
     //now fill the structure in. But since the string were copied using pointers, I have to copy them using strcpy.
     strcpy(alignment_structure.szRawDataFile, path_to_recording);
@@ -73,10 +76,12 @@ void mexFunction(int nlhs, mxArray *plhs[],
 
     alignment_structure.nLogFileLevel = 2; // This is the most talkative
     alignment_structure.bVerbose = 1; // Yes please.
+    alignment_structure.bCheckCalibration = 0; // Create a new camera file.
     //Now, we can execute the function.
     
     //This is for debug. Normally you won't need to print this.
     //mexPrintf("Structure fields are:\n\tszDataFile: %s\n\tszRigidBodyFile: %s\n\tszInputCamFile: %s\n\tszOutputCamFile: %s\n\tszLogFileName: %s\n", alignment_structure.szDataFile, alignment_structure.szRigidBodyFile, alignment_structure.szInputCamFile, alignment_structure.szOutputCamFile, alignment_structure.szLogFileName);
+    //mexEvalString("drawnow;"); //This outputs the mexPrintf immediately.
     fail = nOptotrakRegisterSystem(alignment_structure, &tolerance);
 
 

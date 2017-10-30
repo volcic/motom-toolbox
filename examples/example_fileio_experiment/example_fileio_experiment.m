@@ -59,7 +59,6 @@ number_of_trials = 5;
 
 optotrak_startup;
 optotrak_set_up_system(camera_file, config_file);
-OptotrakActivateMarkers; %Turn on the markers here.
 
 %% Experimental loop.
 for(i = 1:number_of_trials)
@@ -84,7 +83,6 @@ for(i = 1:number_of_trials)
     fprintf('Done!')
 end
 fprintf('Experiment finished.\n')
-OptotrakDeActivateMarkers; %Turn off the markers.
 
 %% OPTIONAL: Re-set the system. This shows that files can be read.
 optotrak_kill;

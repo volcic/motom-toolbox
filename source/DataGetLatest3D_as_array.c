@@ -36,6 +36,7 @@ void mexFunction(int nlhs, mxArray *plhs[],
     unsigned int number_of_markers = 0; //this will tell us how many markers should we expect
     unsigned int flags = 0; //I will just return this without doing anything with it.
     double nan_value = mxGetNaN(); //this will be used for invisible markers.
+    double frame_counter_as_double = 0; //this is tackling a bug, and will contain frame_counter, cast as double.
     // At this time, we don't know how many markers we have, so initialise everything for the worst case.
     static Position3d data_structure[512];
 
@@ -53,7 +54,10 @@ void mexFunction(int nlhs, mxArray *plhs[],
     mexPrintf("Number of markers: %d\n", number_of_markers); //debug
     */
 
-    plhs[1] = mxCreateDoubleScalar(frame_counter); //toss back the frame counter too.
+    // cast frame_counter as double.
+    frame_counter_as_double = (double) frame_counter;
+    //plhs[1] = mxCreateDoubleScalar(frame_counter); //toss back the frame counter too.
+    plhs[1] = mxCreateDoubleScalar(frame_counter_as_double); //toss back the frame counter too, this time pre-cast as double
 
     //now we need to generate the output array.
     plhs[2] = mxCreateDoubleMatrix(1, number_of_markers * 3, mxREAL); //this is a pointer for the array I created here.

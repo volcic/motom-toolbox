@@ -26,6 +26,23 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
     alignment_rms_error = 0; %There will be an error when you re-align the coordinate system.
     total_rms_error = 0; %...and there will be a total error, which will be the two combined.
 
+    %% Clean up. As of API version 3.15, the API functions generate a ton of different files.
+    
+    if(isunix)
+        system('rm *.dat');
+        system('rm *.XPT');
+        system('rm *.XWK');
+        system('rm *.WRK');
+        system('rm *.log');
+    else
+        system('del /F /q *.dat');
+        system('del /F /q *.XPT');
+        system('del /F /q *.XWK');
+        system('del /F /q *.WRK');
+        system('del /F /q *.log');
+    end
+    
+    
 
     %% Breathe some life into the system and initialise it properly.
 
