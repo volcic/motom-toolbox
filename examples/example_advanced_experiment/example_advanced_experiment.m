@@ -46,10 +46,6 @@ optotrak_set_up_system(camera_file, config_file); %This loads the coordinate sys
 % The markers are now on, and the data can be collected.
 fprintf('Optotrak system initialised.\n')
 
-% Prior to starting any data collection, it's useful to call a real-time
-% data function.
-[fail, framecounter, single_frame_position3d, flags] = DataGetNext3D_as_array;
-clear fail framecounter single_frame_position3d flags;
 
 %Load the data collection settings in a structure.
 data_acquisition_settings = optotrak_get_setup_info;
@@ -66,6 +62,12 @@ for(i = 1:number_of_trials)
     fprintf('Trial %d begins, ', i)
     DataBufferInitializeFile(0, temp_data_file); % 0 means we are collecting data from the Optotrak
     fprintf('data buffer now initialised.\n')
+    % Prior to starting any data collection, it's useful to call a real-time
+    % data function.
+    [~, ~, ~, ~] = DataGetNext3D_as_array;
+
+    
+    
     DataBufferStart; %This starts the actual recording
     fprintf('RECORDING NOW! This will take %d seconds.\n', data_acquisition_settings.collection_time);
     %While we are buffering, we can have access to the real-time data.
