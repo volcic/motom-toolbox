@@ -2,7 +2,8 @@
     -[done] Simple experiment streaming data
     -[done] Buffered experiment, with File IO (record raw data, store raw data to disk, and then re-load them to convert the raw data to 3D array)
     -[done] Add example when you stream data to the buffer and monitor data real-time as well
-    -Virtual marker simple example
+    -[done] Real-time rigid body example
+    -[done] Virtual marker simple example
     -Virtual marker drawing script0
 -DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function (once the pointer problem is solved)
 -Center of mass displacement calculation? (where possible: centroid median distance?)
