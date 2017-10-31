@@ -32,7 +32,7 @@ config_file = 'example_advanced_experiment.ini';
 
 %% Initialise the system.
 % file names, length, etc.
-number_of_trials = 5000;
+number_of_trials = 20;
 temp_data_file = 'data/temp.dat'; % This will contain the raw data for a single trial
 buffered_data = struct; %this will hold the recorded buffered data
 real_time_data = struct; %This will hold the recorded real-time data
@@ -135,12 +135,12 @@ end
 
 %% Finito.
 
-save('data/real_time.mat', 'real_time_data')
-save('data/buffered.mat', 'buffered_data')
+save('data/real_time.mat', 'real_time_data', '-v7.3'); %The last argument is to make sure large files can be saved.
+save('data/buffered.mat', 'buffered_data', '-v7.3'); %The last argument is to make sure large files can be saved.
 
 fprintf('Experiment finished. Data is in the real_time and buffered_data structures, which are saved in the data directory.\nHowever, there is more to this, so please read the comments and the additional documentation!\n')
 
-optotrak_kill; %This unloads the librries and shuts down the Optotrak system.
+optotrak_kill; %This unloads the libraries and shuts down the Optotrak system.
 
 
 %% Diagnostics.
@@ -176,4 +176,3 @@ title('execution time for DataGetLatest3D()');
 xlabel('frames in the trial')
 ylabel('execution time [ms]')
 end
-
