@@ -4,7 +4,9 @@
     -[done] Add example when you stream data to the buffer and monitor data real-time as well
     -[done] Real-time rigid body example
     -[done] Virtual marker simple example
-    -Virtual marker drawing script0
+    -[done] Buffered rigid body with real-time access too
+    -Virtual markers WITHOUT rigid body definition
+    -Virtual marker drawing script
 -DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function (once the pointer problem is solved)
 -Center of mass displacement calculation? (where possible: centroid median distance?)
 -Docs: Make a list of what API functions work, and when is recommended to use wrapper functions
