@@ -1,77 +1,71 @@
-% Adcanced experiment. We are collecting data with the buffer, and taking a
-% look at the real-time data while we are recording. This is useful when
-% the experiment uses position data in the trial.
+%This script shows how to handle a rigid body via buffering. For the sake
+%of simplicity, we will use the same NDI cube the coordinate system was
+%aligned with.
 
-% NOTE: Miscellaneous stuff such as random inteleaving, subject data and
-% others are not included. This example shows how to drive the Optotrak
-% system, and nothing more. It is your responsilibity to to make sure your
-% experiment works correctly!
+%   -Initialisation
+%   -Load the rigid body
+%   -We record some raw data (experimental and real-time loops)
+%   -Convert raw data to rigid body transforms and positions
 
-%make sure we are working with a clean environment.
 clear all;
 clc;
 
-%% Coordinate system alignemnt
-% NOTE: Use your own calibration/alignemnt file, or create your own by uncommenting these lines.
+%% Alignemnt.
 
-% cd alignment;
-% 
-% %Plug the NDI cube in to Port 1 of the SCU. Of course, you can use your
-% %own device as well, change the rigid body file accordingly.
-% optotrak_align_my_system('this_works_with_the_ndi_cube.ini', 'ndi_cube.rig');
-% 
-% cd ..;
+%If you haven't already done so, please align your coordinate system, by
+%executing this line below.
+%optotrak_align_my_system('this_works_with_the_ndi_cube.ini', 'ndi_cube.rig');
 
 
+%% Initialisation
 
-% Use these files here.
+config_file = 'example_rigid_body_handling_with_buffer.ini';
+%camera_file = 'standard'; %if you want, you can use the default coordinate system.
+camera_file = 'Aligned_2017-10-30_12-31.cam'; %my custom camera file. Generate yours!
 
-%camera_file = 'standard'; %This is the factory-supplied camera file.
-camera_file = 'alignment/Aligned_2017-10-30_12-31.cam';
-config_file = 'example_advanced_experiment.ini';
+temp_data_file = 'data/temp_raw.dat'; %This will be the raw data.
 
-%% Initialise the system.
-% file names, length, etc.
-number_of_trials = 100;
-temp_data_file = 'data/temp.dat'; % This will contain the raw data for a single trial
-buffered_data = struct; %this will hold the recorded buffered data
-real_time_data = struct; %This will hold the recorded real-time data
-trial_frame_pointer = 1; %This is the number of real-time frames recorded within a trial
+number_of_trials = 10;
 
-
-
-% Touch the Optotrak system.
-optotrak_startup; %this loads the library and wakes up the Optotrak system
-optotrak_set_up_system(camera_file, config_file); %This loads the coordinate system alignent data, and loads the config file by which the system should operate.
-% The markers are now on, and the data can be collected.
-fprintf('Optotrak system initialised.\n')
-
+optotrak_startup;
+optotrak_set_up_system(camera_file, config_file);
 
 %Load the data collection settings in a structure.
 data_acquisition_settings = optotrak_get_setup_info;
 %Normally you won't need this, but this is a useful tool to verify whether
 %the settings you specified in the config file correctly loads into the system.
 
-%For example, we can calculate the number of frames per trial:
-number_of_frames_per_trial = data_acquisition_settings.frame_rate_in_fps * data_acquisition_settings.collection_time; %This should always be a round number.
+%Now the system is initialised, and is ready to go.
 
-%% Begin the experiment
- 
-for(i = 1:number_of_trials)
-    %Experimental loop
-    fprintf('Trial %d begins, ', i)
-    DataBufferInitializeFile(0, temp_data_file); % 0 means we are collecting data from the Optotrak
-    fprintf('data buffer now initialised.\n')
-    
+number_of_frames_per_trial = data_acquisition_settings.frame_rate_in_fps * data_acquisition_settings.collection_time;
 
+fprintf('Optotrak system initialised.\n');
+%% Load the rigid body
 
-    
+fail = RigidBodyAddFromFile_euler(0, 1, 'ndi_cube.rig'); %0 is the rigid body ID, 1 is the first marker of the rigid body
+
+%error management. Optional, but can help occasionally.
+if(fail)
+    optotrak_tell_me_what_went_wrong;
+    error('Couldn''t add rigid body. Check opto.err for details.')
+end
+
+fprintf('Rigid body file loaded.\n')
+%% Experimental loop
+
+for(i=1:number_of_trials)
+    fprintf('Trial %d/%d:\n', i, number_of_trials)
+    DataBufferInitializeFile(0, temp_data_file); %0 means that we are recording Optotrak data
+    fprintf('Buffer file initalised, ');
     
     DataBufferStart; %This starts the actual recording
     %Bounce up the framecounter before going to the real-time loop.
-    [~, ~, ~, ~] = DataGetNext3D_as_array;
+    [~, ~, ~, ~, ~] = DataGetNextTransforms2_as_array(0); %0 means that we don't want any position data.
+    
     fprintf('RECORDING NOW! This will take %d seconds.\n', data_acquisition_settings.collection_time);
     %While we are buffering, we can have access to the real-time data.
+    
+    
     recording_trial = 1; %This is a flag for the real-time loop to execute
     trial_frame_pointer = 1; %This variable is used to fill-in the arrays
     while(recording_trial)
@@ -94,12 +88,9 @@ for(i = 1:number_of_trials)
         
         %Within this loop, you can handle real-time data. 
         tic; %measure time as well.
-        
-        %If this loop executes slower slower than the frame rate, use this:
-        [fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer, :), ~ ] = DataGetLatest3D_as_array;
+        [fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).translation(trial_frame_pointer, :), real_time_data.(sprintf('trial_%d', i)).rotation(trial_frame_pointer, :), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer, :)] = DataGetLatestTransforms2_as_array(data_acquisition_settings.number_of_markers); %The number of markers are not required, but then you won't get the position data back.
         %If this loop executes faster than the frame rate, use this:
-        %[fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer, :), ~ ] = DataGetNext3D_as_array;
-        
+        %[fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).translation(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).rotation(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer)] = DataGetNextTransforms2_as_array(data_acquisition_settings.number_of_markers); %The number of markers are not required, but then you won't get the position data back.
         real_time_data.(sprintf('trial_%d', i)).execution_time(trial_frame_pointer) = toc; %This is for perfomance checking. You won't need this.
 
         %Calculate how many frames are we skipping
@@ -116,26 +107,31 @@ for(i = 1:number_of_trials)
         
             trial_frame_pointer = trial_frame_pointer + 1; %Offset this pointer by one.
         end
-        
-    end
     
+    end
     %Once the buffer finished, we can 'spool' the data from the buffer into
     %the temporary file.
     optotrak_stop_buffering_and_write_out;
     fprintf('Recording ended.\n')
-    % Now we need to convert the raw data to positions. We also save it to
-    % a structure, nice and neat.
-    [ fail, buffered_data.(sprintf('Trial_%d', i)) ] = optotrak_convert_raw_file_to_position3d_array(temp_data_file);
+    
+    %This next line fetches the marker positions, and the rigid body
+    %tranforms as well. Note that it only works with a properly initialised
+    %system.
+    [ fail, buffered_data.(sprintf('Trial_%d', i)).positions, buffered_data.(sprintf('Trial_%d', i)).translation, buffered_data.(sprintf('Trial_%d', i)).rotation] = optotrak_convert_raw_file_to_rigid_euler_array(temp_data_file);
     if(fail)
         %Assuming the file is intact, you should never get here.
         optotrak_tell_me_what_went_wrong; %This writes out the last error message from the system
-        error('Couldn''t convert the raw data file to positions.')
+        error('Couldn''t convert the raw data file to positions and rigid body transforms.')
     end
+   
+    fprintf('Rigid body conversion was finished.\n')
     
     %fprintf('Press Enter in the command window to start the next trial.')
     pause(0.5); %Press a key for the next trial.
+   
+    
+    
 end
-
 %% Finito.
 
 save('data/real_time.mat', 'real_time_data', '-v7.3'); %The last argument is to make sure large files can be saved.
@@ -175,7 +171,9 @@ figure;
 for(i=1:number_of_trials)
 plot(real_time_data.(sprintf('trial_%d', i)).execution_time(:) * 1000)
 hold on;
-title('execution time for DataGetLatest3D()');
+title('execution time for DataGetLatestTransforms2()');
 xlabel('frames in the trial')
 ylabel('execution time [ms]')
 end
+
+    
