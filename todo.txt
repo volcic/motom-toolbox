@@ -64,3 +64,4 @@ Add to docs:
 -[done] Docs: Explain what's in the config file
 -[done] Docs: Add function declarations to EVERY function comment
 -[done] Docs: Update wrapper function helper documentation
+-[done] Docs: Virtual markers
