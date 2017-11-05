@@ -19,7 +19,7 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
 %       It specifies how much the rigid body conversion error can be before the system decides that it wouldn't return a transformation.
 %       Valid range is 0.05...10mm
 %   -> normal_vector_coordinates is a 1-by-N array. The normal vectors are perpendicular to the marker's plane.
-%       Note that you have to specify a normal vector for EVERY rigid body marker you use.
+%       If unsure, just give it a bunch of zeros.
 %       For simple rigid bodies, all normal vectors can point to the same direction
 %       Also, since this is a normal vector the length of the vector must be 1.
 % Optional input argument is:
@@ -109,6 +109,14 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
         normals(i, 3) = normal_vector_coordinates(((i-1)*3) + 3);
     end
 
+    % If the normal vectors are not given, they shoudl all be zeros.
+    if(max(abs(normals)) == 0)
+        %if we got here, the normal vectors are all zeros.
+        add_normal_vectors = 0; %Do not include normal vectors in the rigid body file.
+    else
+        add_normal_vectors = 1; %Add the normal vectors in the rigid body file.
+    end
+
     if(origin_marker)
         %Need to select which marker is the origin. This coordinate will be [0, 0, 0], and all the other coordinates will be translated accordingly.
         origin_marker_coords = markers(origin_marker, :);
@@ -136,13 +144,17 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
         fprintf(file_pointer, '%d       %.4f       %.4f       %.4f       1\n', i, rigid_body_coords(i, 1), rigid_body_coords(i, 2), rigid_body_coords(i, 3) );
     end
 
-    fprintf(file_pointer, '\nNormals\n\nMarker       X       Y       Z\n');
-    if(number_of_normals)
-        % Normal vector coordinates go here, if any...
-        for(i = 1:number_of_normals)
-            fprintf(file_pointer, '       %.4f       %.4f       %.4f\n', normals(i, 1), normals(i, 2), normals(i, 3));
+    if(add_normal_vectors)
+        % When the normal vectors are not a bunch of zeros, include them in the file.
+        fprintf(file_pointer, '\nNormals\n\nMarker       X       Y       Z\n');
+        if(number_of_normals)
+            % Normal vector coordinates go here, if any...
+            for(i = 1:number_of_normals)
+                fprintf(file_pointer, '       %.4f       %.4f       %.4f\n', normals(i, 1), normals(i, 2), normals(i, 3));
+            end
         end
     end
+
     %Now that we got these, generate the error criteria. I am using the same
     %number everywhere.
     fprintf(file_pointer, 'MaxSensorError\n%.2f\n\n', coordinate_tolerance);
