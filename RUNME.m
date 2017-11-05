@@ -123,12 +123,15 @@ cd generated_binaries
 for(i = 1:length(files_to_compile))
     fprintf('\nCompiling %s:\n', files_to_compile{i});
     file_string = sprintf('../source/%s', files_to_compile{i});
+    
     % if we made it this far, the rest of the stuff compiled, and
     % everything is set up for the platform it will run on.
     if(new_or_old)
-        mex(file_string, '../bin/oapi64.lib');
+        compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS /O2 -Wall" %s -l../bin/oapi64.lib', file_string);
+        eval(compiler_string);
     else
-        mex(file_string, '../bin/oapi.lib');
+       compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS /O2 -Wall" %s -l../bin/oapi.lib', file_string);
+        eval(compiler_string);
     end
     pause(0.5); %wait for the compilation process to finish.
 end

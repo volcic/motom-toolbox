@@ -32,7 +32,7 @@ config_file = 'example_advanced_experiment.ini';
 
 %% Initialise the system.
 % file names, length, etc.
-number_of_trials = 100;
+number_of_trials = 50;
 temp_data_file = 'data/temp.dat'; % This will contain the raw data for a single trial
 buffered_data = struct; %this will hold the recorded buffered data
 real_time_data = struct; %This will hold the recorded real-time data
