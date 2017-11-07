@@ -27,7 +27,7 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
     total_rms_error = 0; %...and there will be a total error, which will be the two combined.
 
     %% Clean up. As of API version 3.15, the API functions generate a ton of different files.
-    
+    fprintf('Cleaning up temporary files, if any...\n')
     if(isunix)
         system('rm *.dat');
         system('rm *.XPT');
@@ -41,7 +41,7 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
         system('del /F /q *.WRK');
         system('del /F /q *.log');
     end
-    
+    fprintf('Cleaning up temporary files done! The warnings above, should they appear, are safe to ignore.\n')
     
 
     %% Breathe some life into the system and initialise it properly.

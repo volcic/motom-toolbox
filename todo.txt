@@ -8,7 +8,9 @@
     -Virtual markers WITHOUT rigid body definition
     -Virtual marker drawing script
 -DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function (once the pointer problem is solved)
--Center of mass displacement calculation? (where possible: centroid median distance?)
+-Center of mass displacement calculation:
+    -optotrak_calculate_body_warp
+    -optotrak_calculate_centroid_marker_distance
 -Docs: Make a list of what API functions work, and when is recommended to use wrapper functions
 
 

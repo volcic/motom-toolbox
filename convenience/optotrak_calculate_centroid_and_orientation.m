@@ -27,7 +27,7 @@ function [translation_array, rotation_array] = optotrak_calculate_centroid_and_o
     end
 
     %Are there enough markers? We need at least 2 markers for centroid calculation
-    if(number_of_markers > 2)
+    if(number_of_markers < 2)
         error('There aren''t enough markers to calculate the centroid from!')
     end
 
