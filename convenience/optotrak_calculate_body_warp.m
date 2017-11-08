@@ -8,7 +8,7 @@ function [mean_distance_difference] = optotrak_calculate_body_warp( body_positio
 %   -body_position3d_array1, is an f-by(N*3) array, with f frames and N markers
 %   -body_position3d_array2, is an f-by(N*3) array, with f frames and N markers
 % Returns:
-% mean_distance_difference, between the two centroids and markers.
+% mean_distance_difference, between the two centroids and markers, in millimetres.
 
 
     %% Sanity check

@@ -7,11 +7,9 @@
     -[done] Buffered rigid body with real-time access too
     -Virtual markers WITHOUT rigid body definition
     -Virtual marker drawing script
--DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function (once the pointer problem is solved)
--Center of mass displacement calculation:
-    -optotrak_calculate_body_warp
-    -optotrak_calculate_centroid_marker_distance
--Docs: Make a list of what API functions work, and when is recommended to use wrapper functions
+-DataBufferInitializeMem-based optotrak_record_a_trial() C wrapper function
+
+
 
 
 -[fail] non-blocked real-time data (DataIsReady() corrupts comms between host and SCU)
@@ -47,6 +45,11 @@
 -[nope, will do in expt code] Add trial management functions (record n trials, etc.)
 -[done] add primitive plotting and marker visibility functions
 -[done] Turn on markers at the end of optotrak_set_up_system
+-[done] Center of mass displacement calculation:
+    -[done] optotrak_calculate_body_warp
+    -[done] optotrak_calculate_centroid_marker_distance
+-[done] (optional) DataReceiveLatest3D_as_array
+-[done] (optional) DataReceiveLatestTransforms2_as_array
 
 
 Limitations:
@@ -67,3 +70,4 @@ Add to docs:
 -[done] Docs: Add function declarations to EVERY function comment
 -[done] Docs: Update wrapper function helper documentation
 -[done] Docs: Virtual markers
+-[done] Docs: Make a list of what API functions work, and when is recommended to use wrapper functions

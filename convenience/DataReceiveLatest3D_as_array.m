@@ -1,6 +1,6 @@
-% DataGetLatest3D_as_array.m DataGetLatest3D_as_array.mex* DataGetLatest3D_as_array.c
-% DATAGETLATEST3D_AS_ARRAY
-% [fail, framecounter, position3d_array, flags] = DataGetLatest3D_as_array()
+% DataReceiveLatest3D_as_array.m DataReceiveLatest3D_as_array.mex* DataReceiveLatest3D_as_array.c
+% DATARECEIVELATEST3D_AS_ARRAY
+% [fail, framecounter, position3d_array, flags] = DataReceiveLatest3D_as_array()
 % This function is written in C, and returns 3D marker data as an x-y-z array.
 % If a marker is not visible, it will return a NaN for the corresponding markers' coordinates.
 % The Optotrak system will send the frame it just captured. If there is no new frame available, it will send the one it sent previously.

@@ -1,6 +1,6 @@
-% DataGetLatestTransforms2_as_array.m DataGetLatestTransforms2_as_array.mex* DataGetLatestTransforms2_as_array.c
-% DATAGETLATESTTRANSFORMS2_AS_ARRAY
-% [fail, framecounter, translation, rotation, positions] = DataGetLatestTransforms2_as_array( number_of_markers )
+% DataReceiveLatestTransforms2_as_array.m DataReceiveLatestTransforms2_as_array.mex* DataReceiveLatestTransforms2_as_array.c
+% DATARECEIVELATESTTRANSFORMS2_AS_ARRAY
+% [fail, framecounter, translation, rotation, positions] = DataReceiveLatestTransforms2_as_array( number_of_markers )
 % This function is written in C, and it converts the position of all the rigid bodies in the system that has already been captured.
 % It also can return the marker position data as X-Y-Z triplets for each sensor, provided you specify how many markers you want to extract.
 % If the markers are not visible, or the rigid body couldn't be transformed, it returns a NaN.

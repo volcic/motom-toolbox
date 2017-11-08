@@ -1,6 +1,6 @@
 % DataGetNext3d.m DataGetNext3d.mex* DataGetNext3d.c
 % DATAGETNEXT3D_AS_ARRAY
-% % [fail, framecounter, position3d_array, fags] = DataGetNext3D_as_array()
+% % [fail, framecounter, position3d_array, flags] = DataGetNext3D_as_array()
 % This function is written in C, and returns 3D marker data as an x-y-z array.
 % The Optotrak system will wait until the next frame is captured, and then it sends you the coordinates.
 % If a marker is not visible, it will return a NaN for the corresponding markers' coordinates.
