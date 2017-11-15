@@ -14,16 +14,22 @@ Works on Windows (and Linux, but not thoroughly tested), and you don't need NDI'
     
 64-bit systems are recommended, but most functions should work with 32-bit systems too.
 
+Fetch the toolbox cloning this git repository:
+$ git clone https://github.com/ha5dzs/zoltans-optotrak-toolbox.git
+
+This creates the optotrakToolbox directory.  
+
 In order to start using the toolbox, you'll need the proprietary files you bought from NDI. These are included in the installation directory.
 
 1. Copy 'oapi64.dll', 'oapi64.lib', 'oapi.dll' and 'oapi.lib' to the 'bin' directory.
 2. Copy 'ndhost.h', 'ndoapi.h', 'ndopto.h', and 'ndtypes.h' to the 'source' directory.
-3. Execute 'RUNME.m' in Matlab, and follow the instructions.
+3. Edit the freshly copied header files:  
+`#include <header_file.h>` -> `#include "header_file.h"` where you see the includes for the header files listed above
+4. Execute 'RUNME.m' in Matlab, and follow the instructions.
 
-If the compilation fails because the header files couldn't be loaded, try changing the way the header file is being called:
-#include <header_file.h> -> #include "header_file.h" to ensure the local files are used.
 
-During compilation, there will be some warnings about some variable types, these are safe to ignore.
+
+During compilation and library loading, there will be some warnings about some variable types, these are safe to ignore.
 
 Once the script is finished, you will have all the functions described in the API manual available in Matlab.
 There are commonly used scripts in the 'convenience' directory, and some examples are included too.
