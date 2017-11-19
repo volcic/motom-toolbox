@@ -64,6 +64,7 @@ function [ ] = optotrak_indicate_marker_positions( position3d_as_array )
 
             end
         end
+        legend(legend_strings);
     else
         %Many frames: plot3.
         
@@ -80,9 +81,11 @@ function [ ] = optotrak_indicate_marker_positions( position3d_as_array )
             text(x_coordinates(end) + text_offset, y_coordinates(end) + text_offset, z_coordinates(end) + text_offset, sprintf('%d', i), 'FontSize', 25, 'HorizontalAlignment', 'center');
             %Genreate legends. Both for the dots and the lines.
             legend_strings{i} = sprintf('Marker %d', i);
+            %legend(plot_handle(:), legend_strings);
         end
+        legend(plot_handle(:), legend_strings);
     end
-    legend(plot_handle(:), legend_strings);
+    
     drawnow();
 end
 

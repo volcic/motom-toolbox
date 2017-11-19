@@ -26,16 +26,29 @@ function [ setup_info_struct ] = optotrak_get_setup_info(  )
     setup_info_struct.pretrigger_time = 0;
     setup_info_struct.flags = 0;
 
-
     [fail, setup_info_struct.number_of_sensors, setup_info_struct.number_of_odaus, setup_info_struct.number_of_loaded_rigid_bodies, setup_info_struct.number_of_markers, setup_info_struct.frame_rate_in_fps, setup_info_struct.marker_frequency_in_hz, setup_info_struct.image_threshold_value_in_pixels, setup_info_struct.sensor_gain, setup_info_struct.are_we_streaming, setup_info_struct.marker_power_duty_cycle, setup_info_struct.marker_voltage, setup_info_struct.collection_time, setup_info_struct.pretrigger_time, setup_info_struct.flags] = OptotrakGetStatus(setup_info_struct.number_of_sensors, setup_info_struct.number_of_odaus, setup_info_struct.number_of_loaded_rigid_bodies, setup_info_struct.number_of_markers, setup_info_struct.frame_rate_in_fps, setup_info_struct.marker_frequency_in_hz, setup_info_struct.image_threshold_value_in_pixels, setup_info_struct.sensor_gain, setup_info_struct.are_we_streaming, setup_info_struct.marker_power_duty_cycle, setup_info_struct.marker_voltage, setup_info_struct.collection_time, setup_info_struct.pretrigger_time, setup_info_struct.flags);
 
+       
     if(fail)
         error('OptotrakGetStatus() failed. Is your system initialised at all? Did you lose communication to it perhaps?')
     end
 
     %Alternatively, you can use this one-liner here:
     setup_info_struct.decoded_flags = optotrak_device_flag_decoder(setup_info_struct.flags);
+    
+    %Now we need to convert some variables to double.
 
-
+    setup_info_struct.number_of_sensors = double(setup_info_struct.number_of_sensors);
+    setup_info_struct.number_of_odaus = double(setup_info_struct.number_of_odaus);
+    setup_info_struct.number_of_loaded_rigid_bodies = double(setup_info_struct.number_of_loaded_rigid_bodies);
+    setup_info_struct.number_of_markers = double(setup_info_struct.number_of_markers);
+    setup_info_struct.frame_rate_in_fps = double(setup_info_struct.frame_rate_in_fps);
+    setup_info_struct.image_threshold_value_in_pixels = double(setup_info_struct.image_threshold_value_in_pixels);
+    setup_info_struct.sensor_gain = double(setup_info_struct.sensor_gain);
+    setup_info_struct.are_we_streaming = double(setup_info_struct.are_we_streaming);
+    setup_info_struct.marker_power_duty_cycle = double(setup_info_struct.marker_power_duty_cycle);
+    setup_info_struct.marker_voltage = double(setup_info_struct.marker_voltage);
+    setup_info_struct.collection_time = double(setup_info_struct.collection_time);
+    setup_info_struct.pretrigger_time = double(setup_info_struct.pretrigger_time);
 end
 
