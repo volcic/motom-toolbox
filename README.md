@@ -1,23 +1,21 @@
-# Zoltan's Optotrak toolbox
+# MOTOM toolbox: MOtion Tracking with Optotrak and Matlab
 
 ## ~ allows you to use the NDI Optotrak device programmatically from Matlab.
 Works on Windows (and Linux, but not thoroughly tested), and you don't need NDI's First Principles configure your hardware and collect data!
-
-### [WARNING]: I am still developing this, there is no guarantee for it to be stable or work at all!
 
 **Requirements:**
 * Successfully installed drivers and bought the C API
 * Matlab
 * A supported compiler for Matlab:
     * windows: Visual Studio Community, with C++ installed
-    * Debian/Ubuntu users: sudo apt-get install build-essential
+    * Debian/Ubuntu users: sudo apt-get install gcc-4.9
     
 64-bit systems are recommended, but most functions should work with 32-bit systems too.
 
 Fetch the toolbox cloning this git repository:
 $ git clone https://github.com/ha5dzs/zoltans-optotrak-toolbox.git
 
-This creates the optotrakToolbox directory.  
+This creates the motom-toolbox directory.  
 
 In order to start using the toolbox, you'll need the proprietary files you bought from NDI. These are included in the installation directory.
 
@@ -26,7 +24,6 @@ In order to start using the toolbox, you'll need the proprietary files you bough
 3. Edit the freshly copied header files:  
 `#include <header_file.h>` -> `#include "header_file.h"` where you see the includes for the header files listed above
 4. Execute 'RUNME.m' in Matlab, and follow the instructions.
-
 
 
 During compilation and library loading, there will be some warnings about some variable types, these are safe to ignore.
