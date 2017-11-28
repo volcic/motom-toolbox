@@ -43,7 +43,7 @@ compiler_info = mex.getCompilerConfigurations('C++', 'selected');
 %This is hard-coded to this version. Not sure if this works with the newer
 %version. Change it as/when necessary.
 if( ~strcmp(compiler_info.Name, 'Microsoft Visual C++ 2015 Professional') && ...
-        ~strcmp(compiler_info.Name, 'gcc 4.9.3'))
+        ~strcmp(compiler_info.Name, 'g++'))
     fprintf('It seems that your system doesn''t have a supported C++ compiler installed and/or registered in Matlab.\n')
     fprintf('Type:\n\nmex -setup C++\n to see what you have.\n')
     fprintf('If running Windows, you need to install Visual Studio Community 2015, WITH C++ SUPPORT ENABLED.\n')
@@ -86,7 +86,7 @@ cd generated_binaries;
 % This step shouldn't fail. If it does, you'll need to look at the
 % compiler's output of the file concerned.
 if(isunix)
-    [~, warnings] = loadlibrary('../bin/oapi64.lib', '../source/ndopto.h', 'addheader', '../source/ndtypes.h', 'addheader', '../source/ndhost.h', 'addheader', '../source/ndpack.h', 'mfilename','api_prototypes');
+    [~, warnings] = loadlibrary('../bin/liboapi.so', '../source/ndopto.h', 'addheader', '../source/ndtypes.h', 'addheader', '../source/ndhost.h', 'addheader', '../source/ndpack.h', 'mfilename','api_prototypes');
 else
     %Windows can also have a 32-bit version, which we have to worry about
     %If you want to see the compiler warning output, remove the semicolon
@@ -118,7 +118,7 @@ msgbox('The toolbox has been set up, and it has been added to the path. To make 
 %% compile helper functions written in C.
 %Add the names of the C files you want to compile during toolbox set-up.
 fprintf('Now compiling the helper functions...\n')
-files_to_compile = {'DataGetLatest3D_as_array.c', 'DataGetNext3D_as_array.c', 'DataGetLatestTransforms2_as_array.c', 'DataGetNextTransforms2_as_array.c', 'RigidBodyAddFromFile_euler.c', 'optotrak_tell_me_what_went_wrong.c', 'optotrak_convert_raw_file_to_position3d_array.c', 'optotrak_convert_raw_file_to_rigid_euler_array.c', 'optotrak_align_coordinate_system.c', 'optotrak_register_system_static.c', 'optotrak_register_system_dynamic.c'};
+files_to_compile = {'DataGetLatest3D_as_array.c', 'DataGetNext3D_as_array.c', 'DataGetLatestTransforms2_as_array.c', 'DataGetNextTransforms2_as_array.c', 'RigidBodyAddFromFile_euler.c', 'optotrak_tell_me_what_went_wrong.c', 'optotrak_convert_raw_file_to_position3d_array.c', 'optotrak_convert_raw_file_to_rigid_euler_array.c', 'optotrak_align_coordinate_system.c', 'optotrak_register_system_static.c', 'optotrak_register_system_dynamic.c', 'DataReceiveLatest3D_as_array.c', 'DataReceiveLatestTransforms2_as_array.c'};
 cd generated_binaries
 for(i = 1:length(files_to_compile))
     fprintf('\nCompiling %s:\n', files_to_compile{i});

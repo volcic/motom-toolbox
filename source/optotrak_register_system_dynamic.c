@@ -15,8 +15,7 @@
 #include "matrix.h"
 
 // matlab's gateway function.
-void mexFunction(int nlhs, mxArray *plhs[],
-                int nrhs, mxArray *prhs[])
+void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
     int fail = -1; //this will be the return value of the function we are using
     float tolerance = 0;

@@ -32,8 +32,7 @@
 
 
 // matlab's gateway function.
-void mexFunction(int nlhs, mxArray *plhs[],
-                int nrhs, mxArray *prhs[])
+void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
     unsigned int fail = -1; //fail return variable
     int rigid_body_id = 0;
