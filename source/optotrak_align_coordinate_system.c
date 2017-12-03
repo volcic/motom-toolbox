@@ -67,7 +67,8 @@ void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     //Now, we can execute the function.
     
     //This is for debug. Normally you won't need to print this.
-    //mexPrintf("Structure fields are:\n\tszDataFile: %s\n\tszRigidBodyFile: %s\n\tszInputCamFile: %s\n\tszOutputCamFile: %s\n\tszLogFileName: %s\n", alignment_structure.szDataFile, alignment_structure.szRigidBodyFile, alignment_structure.szInputCamFile, alignment_structure.szOutputCamFile, alignment_structure.szLogFileName);
+    mexPrintf("Alignment structure fields are:\n\tszDataFile: %s\n\tszRigidBodyFile: %s\n\tszInputCamFile: %s\n\tszOutputCamFile: %s\n\tszLogFileName: %s\nNow calling nOpotrakAlignSystem()\n", alignment_structure.szDataFile, alignment_structure.szRigidBodyFile, alignment_structure.szInputCamFile, alignment_structure.szOutputCamFile, alignment_structure.szLogFileName);
+    mexEvalString("drawnow;"); //This outputs the mexPrintf immediately.
     fail = nOptotrakAlignSystem(alignment_structure, &tolerance);
 
 
