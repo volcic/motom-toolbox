@@ -10,10 +10,12 @@ Works on Windows (and Linux, but not thoroughly tested), and you don't need NDI'
     * windows: Visual Studio Community, with C++ installed
     * Debian/Ubuntu users: sudo apt-get install gcc-4.9
     
-64-bit systems are recommended, but most functions should work with 32-bit systems too.
+64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too.
 
 Fetch the toolbox cloning this git repository:
+```
 $ git clone https://github.com/ha5dzs/zoltans-optotrak-toolbox.git
+```
 
 This creates the motom-toolbox directory.  
 
