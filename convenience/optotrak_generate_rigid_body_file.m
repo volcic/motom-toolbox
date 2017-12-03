@@ -50,6 +50,9 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
     %sanity check on the minimum number of markers
     if(nargin == 6)
         minimum_visible_markers = varargin{1};
+        if(minimum_visible_markers < 3)
+            error('You must have at least 3 markers visible for a successful rigid body transform!')
+        end
     else
         %As a rule of thumb, you'll need 3 markers to be visible at all times to make a rigid body.
         %However, this depends on the definition of the rigid body.
@@ -57,7 +60,7 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
     end
     %Also, warn the user
     if(minimum_visible_markers ~= number_of_markers)
-        warning('The minimum amount of visible markers are less than how many markers you have. While this is not an immediate problem, it can cause erroneous transforms.')
+        warning('The minimum amount of visible markers are less than how many markers you have. While this is not an immediate problem, too loose constraints can cause erroneous transforms.')
     end
 
 
@@ -165,11 +168,12 @@ function [fail] = optotrak_generate_rigid_body_file(coordinates, origin_marker, 
     fprintf(file_pointer, 'SensorRmsError\n%.2f\n\n', coordinate_tolerance);
     fprintf(file_pointer, 'MinimumMarkers\n%d\n\n', minimum_visible_markers);
     
-    %Add spread too. This can be also set with tolerance. This is in sensor
-    %units, which I have no idea of what they are.
-    fprintf(file_pointer, 'MinSpread1\n%.2f\n\n', coordinate_tolerance*100);
-    fprintf(file_pointer, 'MinSpread2\n%.2f\n\n', coordinate_tolerance*100);
-    fprintf(file_pointer, 'MinSpread3\n%.2f\n\n', coordinate_tolerance*100);
+    %Add spread too. This can be also set with tolerance. This is in internal
+    %sensor units, which I have no idea of what they are. Also, all my
+    %rigid body definitions are initialising this as 0. So let them be 0!
+    fprintf(file_pointer, 'MinSpread1\n%.2f\n\n', 0);
+    fprintf(file_pointer, 'MinSpread2\n%.2f\n\n', 0);
+    fprintf(file_pointer, 'MinSpread3\n%.2f\n\n', 0);
     
 
     % Once everything is finished, close the file.
