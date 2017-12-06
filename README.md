@@ -15,10 +15,11 @@ Works on Windows (and Linux, but not thoroughly tested), now you can configure y
     
 64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too.
 
-Fetch the toolbox cloning this git repository:
+Get a copy of the toolbox
 ```
 $ git clone https://github.com/volcic/motom-toolbox.git
 ```
+(...or click 'Clone or download -> Download ZIP')
 
 This creates the motom-toolbox directory.  
 
