@@ -1,4 +1,4 @@
-![The MOTOM toolbox logo](./motom_logo.png =0.5x)
+<img src="motom_logo.png">
 # MOTOM toolbox: MOtion Tracking with Optotrak and Matlab
 
 ## ~ allows you to use the NDI Optotrak device programmatically from Matlab.
