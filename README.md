@@ -40,9 +40,8 @@ In order to start using the toolbox, you'll need the proprietary files you bough
     #include "ndhost.h"
 ```
 
-5. Execute 'RUNME.m' in Matlab, and follow the instructions.
+5. Execute 'RUNME.m' in Matlab, and follow the instructions.  
 
 During compilation and library loading, there will be some warnings about some variable types, these are safe to ignore.
-
 Once the script is finished, you will have all the functions described in the API manual available in Matlab.
 There are commonly used scripts in the 'convenience' directory, and some examples are included too.
