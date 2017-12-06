@@ -26,9 +26,7 @@ clc;
 
 % Use these files here.
 
-%camera_file = 'standard'; %This is the factory-supplied camera file.
-%camera_file = 'alignment/Aligned_2017-10-30_12-31.cam';
-camera_file = 'Aligned_2017-11-22_08-45.cam';
+camera_file = 'standard'; %This is the factory-supplied camera file.
 config_file = 'example_advanced_experiment.ini';
 
 %% Initialise the system.

@@ -24,8 +24,7 @@ clear all;
 clc;
 
 
-%camera_file = 'standard'; %Factory settings
-camera_file = 'Aligned_2017-10-30_12-31.cam'; %My custom dual-camera settings
+camera_file = 'standard'; %Factory settings
 config_file = 'example_virtual_marker_handling_with_rigid_body.ini';
 
 

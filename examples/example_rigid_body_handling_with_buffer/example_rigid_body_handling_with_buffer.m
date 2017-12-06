@@ -20,8 +20,7 @@ clc;
 %% Initialisation
 
 config_file = 'example_rigid_body_handling_with_buffer.ini';
-%camera_file = 'standard'; %if you want, you can use the default coordinate system.
-camera_file = 'Aligned_2017-10-30_12-31.cam'; %my custom camera file. Generate yours!
+camera_file = 'standard'; %if you want, you can use the default coordinate system.
 
 temp_data_file = 'data/temp_raw.dat'; %This will be the raw data.
 
