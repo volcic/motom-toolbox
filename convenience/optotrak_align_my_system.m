@@ -17,9 +17,9 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
     alignment_recording_file = sprintf('recording_used_for_alignment_%s.dat', datestr(now, 'yyyy-mm-dd_HH-MM')); %This is a raw data file, stored in this local directory.
     registration_recording_file = sprintf('recording_used_for_registration_%s.dat', datestr(now, 'yyyy-mm-dd_HH-MM')); %This is a raw data file, stored in this local directory.
     registration_camera_file = sprintf('Registered_%s.cam', datestr(now, 'yyyy-mm-dd_HH_MM')); %If you have many cameras, we will have to generate this file too.
-    registration_logfile_name = sprintf('Registered_%s.log', datestr(now, 'yyyy-mm-dd_HH_MM')); %If you have many cameras, we will have to generate this file too.
+    registration_logfile_name = sprintf('Registration_%s.log', datestr(now, 'yyyy-mm-dd_HH_MM')); %If you have many cameras, we will have to generate this file too.
     alignment_camera_file = sprintf('Aligned_%s.cam', datestr(now, 'yyyy-mm-dd_HH-MM')); %When everything is finished, this is what you will have to use.
-    alignment_logfile_name = sprintf('Aligned_%s.log', datestr(now, 'yyyy-mm-dd_HH-MM')); %This is a raw data file, stored in this local directory.
+    alignment_logfile_name = sprintf('Alignment_%s.log', datestr(now, 'yyyy-mm-dd_HH-MM')); %This is the alignment log file. You probably will never need this.
 
     %This will be the output of the function, otherwise just a bare fprintf.
     registration_rms_error = 0; %There will be an error when you register the two cameras together.

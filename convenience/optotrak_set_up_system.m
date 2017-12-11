@@ -69,6 +69,9 @@ function [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisiti
         end
     end
 
+    %Added sanity check: How many files do we have available with the same
+    %name?
+    [number_of_selected_files, ~] = size(file_info);
 
     %A camera file with a single camera is 3727 bytes long.
     %When two cameras are used, it's 7303 long.
@@ -83,12 +86,24 @@ function [fail] = optotrak_set_up_system(camera_calibration_file, data_acquisiti
     if(number_of_cameras > 2)
         warning('You seem to use more than two cameras. Please add to camera_calibration_file_sizes in optotrak_set_up_system(), and file MOTOM toolbox issue on github.')
     else
-        if(file_info.bytes ~= camera_calibration_file_sizes(number_of_cameras))
-            fprintf('Camera file name: %s\n', camera_calibration_file);
-            fprintf('Detected number of cameras: %d, expected file size is: %d bytes, actual file size is %d bytes.\n', number_of_cameras, camera_calibration_file_sizes(number_of_cameras), file_info.bytes)
-            error('ERROR: Incorrect camera file loaded!')
+        %if we have a single camera, we can proceed. But only if we can check
+        %a single file!
+        if(number_of_selected_files == 1)
+            %We have only one file with the same name
+            if(file_info.bytes ~= camera_calibration_file_sizes(number_of_cameras))
+                %If we got here, things went wrong.
+                OptotrakDeActivateMarkers; %This prevents the LEDs from being baked.
+                fprintf('Camera file name: %s\n', camera_calibration_file);
+                fprintf('Detected number of cameras: %d, expected file size is: %d bytes, actual file size is %d bytes.\n', number_of_cameras, camera_calibration_file_sizes(number_of_cameras), file_info.bytes)
+                error('ERROR: Incorrect camera file loaded!')
+            end
+            fprintf('The camera file seems to be correct.\n')
+        else
+            %We have more than one file selected with dir() that has the same
+            %name
+            fprintf('Camera file name, as it was specified: %s\n', camera_calibration_file)
+            warning('Multiple files exist with the same name. Can not reliably check camera parameter file validity!')
         end
-        %If we got here, all is well. Proceed.
     end
     
     
