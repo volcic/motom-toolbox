@@ -7,7 +7,7 @@
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
 **Requirements:**
-* Successfully installed drivers and bought the C API
+* Successfully installed drivers and the Optotrak API purchased from NDI
 * Matlab
 * A supported compiler for Matlab:
     * windows: Visual Studio Community, with C++ installed
@@ -15,13 +15,18 @@ Works on Windows (and Linux, but not thoroughly tested), now you can configure y
     
 64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too.
 
-Get a copy of the toolbox
+Get a release version of the toolbox
 ```
 $ git clone https://github.com/volcic/motom-toolbox.git
 ```
 (...or click 'Clone or download -> Download ZIP')
 
-This creates the motom-toolbox directory.  
+Alternatively, if you are feeling adventurous, try the development version:
+```
+$ git clone https://github.com/ha5dzs/motom-toolbox.git
+```
+
+This creates the motom-toolbox directory.
 
 In order to start using the toolbox, you'll need the proprietary files you bought from NDI. These are included in the installation directory.
 
