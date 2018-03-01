@@ -4,9 +4,9 @@ Here are a few 3D-printable objects.
 
 ## How to get these rigid bodies to work with my system
 
-1. Print the `.stl' file
+1. Print the `.stl` file
 2. Assemble the markers as shown on the photos with the same file name
-3. Connect the markers to the strober, and load the `.rig' file using `RigidBodyAddFromFile_euler()`.
+3. Connect the markers to the strober, and load the `.rig` file using `RigidBodyAddFromFile_euler()`.
 
 Hope you can find a use for these.
 
