@@ -32,7 +32,7 @@ In order to start using the toolbox, you'll need the proprietary files you bough
 
 # Consult the [wiki](../../wiki) for details!
 
-...or, if you really just want to dive in:
+...or, if you really just want to dive in, and once you got the Optotrak API files:
 1. Copy 'oapi64.dll', 'oapi64.lib', 'oapi.dll' and 'oapi.lib' to the 'bin' directory.
 2. Copy 'ndhost.h', 'ndoapi.h', 'ndopto.h', and 'ndtypes.h' to the 'source' directory.
 3. Edit the freshly copied header files so the compiler would use the local copies:  

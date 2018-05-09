@@ -119,7 +119,7 @@ function [ total_rms_error ] = optotrak_align_my_system( config_file, rigid_body
         pause(2); %Wait a bit here.
         OptotrakDeActivateMarkers();
         optotrak_kill;
-        messagebox_handle = msgbox('\nRecording finished, data saved.'); %This creates an empty messagebox.
+        messagebox_handle = msgbox('Recording finished, data saved.'); %This creates an empty messagebox.
         set(findobj(messagebox_handle,'style','pushbutton'),'Visible','off'); %This gets rid of the OK button
         pause(5);
         delete(messagebox_handle)

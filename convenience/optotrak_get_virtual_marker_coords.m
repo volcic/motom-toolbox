@@ -28,7 +28,7 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
 
     %Is it the correct length?
     if(virtual_marker_entries ~= 6)
-        error('The virtual marker definition must be a vector, with exactly seven entries.')
+        error('The virtual marker definition must be a vector, with exactly six entries.')
     end
 
     %Are we being fed triplets?
