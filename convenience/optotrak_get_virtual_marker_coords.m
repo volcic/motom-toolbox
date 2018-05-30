@@ -60,7 +60,7 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
         %fprintf('Roll: %0.2f*pi Pitch: %0.2f*pi Yaw: %0.2f*pi\n', relative_rotation(1)/pi, relative_rotation(2)/pi, relative_rotation(3)/pi);
         %This can be simplified, and you can boost performance. A lot.
         %We now build three rotation matrices.
-        
+
         rotation_matrix_roll = [
             cos(relative_rotation(1)), -1*sin(relative_rotation(1)), 0;
             sin(relative_rotation(1)), cos(relative_rotation(1)), 0;
@@ -82,10 +82,11 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
 
 
         %which we will use to re-calculate the location of the virtual marker
-        final_rotation_matrix = rotation_matrix_roll * rotation_matrix_pitch * rotation_matrix_yaw;
+        %Note that the matrices are multiplied in reverse order! This was fun to figure out. RTFM :)
+        final_rotation_matrix = rotation_matrix_yaw * rotation_matrix_pitch * rotation_matrix_roll;
 
         %And now, we rotate the virtual marker coordinates
-        % Beware: the coordinates are read out as a column vector, but the function outputs it as a row vector. I could have done this with (matrix_name'), but this way I can see better what's happening.
+        % Beware: the coordinates are read out as a column vector, but the function outputs it as a row vector.
         rotated_definition_offset = final_rotation_matrix * (virtual_marker_definition(1:3))';
 
         %And now, we translate the rotated coordinates.
