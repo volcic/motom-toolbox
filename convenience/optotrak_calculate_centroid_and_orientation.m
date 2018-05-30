@@ -73,16 +73,16 @@ function [translation_array, rotation_array] = optotrak_calculate_centroid_and_o
             rotation_array(i, 1:3) = NaN;
         else
 
-            %Roll is calculated from the is when the angle is calculated from the Z and Y coordinates
-            rotation_array(i, 1) = atan( (marker_coord_array(i, reference_marker, 3) - translation_array(i, 3)) / (marker_coord_array(i, reference_marker, 2) - translation_array(i, 2)) );
+            %Roll is calculated from the is when the angle is calculated from the X and Y coordinates
+            rotation_array(i, 1) = atan( (marker_coord_array(i, reference_marker, 1) - translation_array(i, 1)) / (marker_coord_array(i, reference_marker, 2) - translation_array(i, 2)) );
 
             %Pitch is calculated from the is when the angle is calculated from the X and Z coordinates
             %IMPORTANT: When we are sitting on the Y axis, X seems
             %reversed!
             rotation_array(i, 2) = -1 * atan( (marker_coord_array(i, reference_marker, 1) - translation_array(i, 1)) / (marker_coord_array(i, reference_marker, 3) - translation_array(i, 3)) );
             
-            %Yaw is calculated from the is when the angle is calculated from the X and Y coordinates
-            rotation_array(i, 3) = atan( (marker_coord_array(i, reference_marker, 1) - translation_array(i, 1)) / (marker_coord_array(i, reference_marker, 2) - translation_array(i, 2)) );
+            %Yaw is calculated from the is when the angle is calculated from the X and Z coordinates
+            rotation_array(i, 3) = atan( (marker_coord_array(i, reference_marker, 1) - translation_array(i, 1)) / (marker_coord_array(i, reference_marker, 3) - translation_array(i, 3)) );
 
 
             %Additional safeguard: If any of the rotational coordinates calculated as NaN, make the whole lot NaN.

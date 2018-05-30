@@ -53,30 +53,33 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
     for(i=1:translation_frames)
 
         %We now can calculate the marker coordinates:
-        virtual_marker_coords(i, :) = (virtual_marker_definition(1:3) + translation(i, :));
         %First of all, we need to calculate how much the rigid body rotate since we declared the virtual marker on it.
 
         relative_rotation = virtual_marker_definition(4:6) - rotation(i, :);
+        %This is for debugging the funny angle anomaly.
+        %fprintf('Roll: %0.2f*pi Pitch: %0.2f*pi Yaw: %0.2f*pi\n', relative_rotation(1)/pi, relative_rotation(2)/pi, relative_rotation(3)/pi);
         %This can be simplified, and you can boost performance. A lot.
         %We now build three rotation matrices.
+        
+        rotation_matrix_roll = [
+            cos(relative_rotation(1)), -1*sin(relative_rotation(1)), 0;
+            sin(relative_rotation(1)), cos(relative_rotation(1)), 0;
+            0, 0, 1;
+        ];
+        
+        relative_rotation(2) = -1 * relative_rotation(2);
+        rotation_matrix_pitch = [
+            cos(relative_rotation(2)), 0, sin(relative_rotation(2));
+            0, 1, 0;
+            -1*sin(relative_rotation(2)), 0, cos(relative_rotation(2));
+        ];
+  
+        rotation_matrix_yaw = [
+            1, 0, 0;
+            0, cos(relative_rotation(3)), sin(relative_rotation(3));
+            0, sin(relative_rotation(3)), cos(relative_rotation(3));
+        ];
 
-         rotation_matrix_roll = [
-             1, 0, 0;
-             0, cos(relative_rotation(1)), sin(relative_rotation(1));
-             0, -1*sin(relative_rotation(1)), cos(relative_rotation(1));
-         ];
-
-         rotation_matrix_pitch = [
-             cos(relative_rotation(2)), 0, -1*sin(relative_rotation(2));
-             0, 1, 0;
-             sin(relative_rotation(2)), 0, cos(relative_rotation(2));
-         ];
-
-         rotation_matrix_yaw = [
-             cos(relative_rotation(3)), sin(relative_rotation(3)), 0;
-             -1*sin(relative_rotation(3)), cos(relative_rotation(3)), 0;
-             0, 0, 1;
-         ];
 
         %which we will use to re-calculate the location of the virtual marker
         final_rotation_matrix = rotation_matrix_roll * rotation_matrix_pitch * rotation_matrix_yaw;
