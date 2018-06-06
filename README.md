@@ -30,7 +30,8 @@ $ git clone https://github.com/ha5dzs/motom-toolbox.git
 
 This creates the motom-toolbox directory.
 
-In order to start using the toolbox, you'll need the proprietary files you bought from NDI. These are included in the installation directory.
+In order to start using the toolbox, you'll need the proprietary files you bought from NDI. There are dedicated spaces for the API files in the toolbox directory.
+If you are trying to get the toolbox working on some old/weird hardware and you are running into error messages, don't panic, read the [Damage Control FAQ](../../wiki/damage_control_FAQ)!
 
 # Consult the [wiki](../../wiki) for details!
 
