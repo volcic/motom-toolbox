@@ -6,13 +6,14 @@
 ## ~ allows you to use the NDI Optotrak device programmatically from Matlab.
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
-**Requirements:**
-This toolbox was developed using this configuration. The more you deviate from it, and the more exotic hardware you want to use, the more likely you will run into problems.
+**Requirements:**  
+
+This toolbox was developed using the following configuration. The more you deviate from it, and the more exotic hardware you want to use, the more likely you will run into problems.
 * Successfully installed drivers and the Optotrak API purchased from NDI
 * Matlab R2017a
 * A supported compiler for Matlab:
-    * windows: Visual Studio Community (the free one) 2015, with C++ installed
-    * Debian/Ubuntu users: sudo apt-get install gcc-4.9
+    * Windows: Visual Studio Community (the free one) 2015, with C++ installed
+    * Debian Wheezy users: sudo apt-get install gcc-4.9
     
 64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too. I tested it on Windows 7 and the 32-bit version of Matlab R2015b.
 
