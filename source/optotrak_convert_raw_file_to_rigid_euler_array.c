@@ -112,8 +112,9 @@ void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
 
 
-    mexPrintf("The number of rigid_bodies: %d, markers: %d, frame rate: %f, collection_time: %f. Results %d frames.\n", number_of_rigid_bodies, number_of_markers, frame_rate, collection_time, frames_per_initialisation); //debug
-
+    mexPrintf("The system is initialised with: Number of rigid_bodies: %d, markers: %d, frame rate: %f, collection_time: %f. Results %d frames.\n", number_of_rigid_bodies, number_of_markers, frame_rate, collection_time, frames_per_initialisation); //debug
+    mexEvalString("drawnow");
+    
     if(!number_of_rigid_bodies)
     {
         mexErrMsgIdAndTxt("optotrakToolbox:convert_raw_file_to_position3d_array:OptotrakGetStatus", "There were no rigid bodies defined prior to calling this function.");
@@ -149,9 +150,14 @@ void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
     
     //Now that we know what the file contains, we can do the conversion.
+    mexPrintf("The file contains %d frames, and %d elements, with %d sub-items. Frame rate is %f.\n", number_of_frames, number_of_items, number_of_subitems, frame_frequency); //for debugging.
+    mexEvalString("drawnow");
 
-
-    //mexPrintf("Found %d frames, and %d elements, with %d sub-items.\n", number_of_frames, number_of_items, number_of_subitems); //for debugging.
+    //Additional safeguard. If the system initialisation does not match with the data file, throw an error.
+    if(number_of_frames != frames_per_initialisation)
+    {
+        mexErrMsgIdAndTxt("optotrakToolbox:convert_raw_file_to_rigid_euler_array", "The number of frames in the system initialisation do not match with the number of frames in the data file!");
+    }
     for(i=0; i<number_of_frames; i++)
     {
 
