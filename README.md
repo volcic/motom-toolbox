@@ -7,13 +7,14 @@
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
 **Requirements:**
+This toolbox was developed using this configuration. The more you deviate from it, and the more exotic hardware you want to use, the more likely you will run into problems.
 * Successfully installed drivers and the Optotrak API purchased from NDI
-* Matlab
+* Matlab R2017a
 * A supported compiler for Matlab:
-    * windows: Visual Studio Community, with C++ installed
+    * windows: Visual Studio Community (the free one) 2015, with C++ installed
     * Debian/Ubuntu users: sudo apt-get install gcc-4.9
     
-64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too.
+64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too. I tested it on Windows 7 and the 32-bit version of Matlab R2015b.
 
 Get a release version of the toolbox
 ```
@@ -21,7 +22,7 @@ $ git clone https://github.com/volcic/motom-toolbox.git
 ```
 (...or click 'Clone or download -> Download ZIP')
 
-Alternatively, if you are feeling adventurous, try the development version:
+If you are feeling adventurous, try the development version:
 ```
 $ git clone https://github.com/ha5dzs/motom-toolbox.git
 ```
