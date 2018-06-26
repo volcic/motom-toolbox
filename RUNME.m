@@ -17,12 +17,12 @@ architecture = computer('arch');
 
 switch architecture
     case 'win64'
-        fprintf('You are using Matlab on Windows. ')
+        fprintf('You are using a 64-bit version of Matlab on Windows.\n')
         %The presence of this file determines whether the 32 or 64-bit to use.
         fp = fopen(sprintf('generated_binaries/use_64_bits'), 'w');
         fclose(fp);
     case 'glnxa64'
-        fprintf('you are using Matlab on Linux.')
+        fprintf('you are using Matlab on Linux.\n')
         %The presence of this file determines whether the 32 or 64-bit to use.
         fp = fopen(sprintf('generated_binaries/use_64_bits'), 'w');
         fclose(fp);
@@ -38,18 +38,8 @@ end
 
 %% Now, check if there is a supported compiler.
 
-compiler_info = mex.getCompilerConfigurations('C++', 'selected');
-
-%This is hard-coded to this version. Not sure if this works with the newer
-%version. Change it as/when necessary.
-if( ~strcmp(compiler_info.Name, 'Microsoft Visual C++ 2015 Professional') && ...
-        ~strcmp(compiler_info.Name, 'g++'))
-    fprintf('It seems that your system doesn''t have a supported C++ compiler installed and/or registered in Matlab.\n')
-    fprintf('Type:\n\nmex -setup C++\n to see what you have.\n')
-    fprintf('If running Windows, you need to install Visual Studio Community 2015, WITH C++ SUPPORT ENABLED.\n')
-    fprintf('Linux users should be OK with a current version of gcc and g++,\nand just add your compiler to this statement to get through this error message.\n')
-    error('No supported C++ compiler found.')
-end
+%I have moved this to an external script, so people can add their stuff if necessary.
+compilers; %Check what C-compiler is available for use.
 
 fprintf('Detected compiler is: %s\n', compiler_info.Name)
 
@@ -111,7 +101,7 @@ addpath(sprintf('%s/api_functions', toolbox_path)); %This allows you to convenie
 addpath(sprintf('%s/convenience', toolbox_path)); %This is where some pre-made convenience functions are located.
 addpath(sprintf('%s/generated_binaries', toolbox_path)); %This is only required for the function prototypes
 addpath(sprintf('%s/plotting', toolbox_path)); %Added some plotting scripts
-msgbox('The toolbox has been set up, and it has been added to the path. To make this permanent, click ''yes'' at the next prompt if it pops up.', 'Toolbox setup successful');
+msgbox('The toolbox has been to the Matlab path. To make this permanent, click ''yes'' at the next prompt if it pops up.', 'Toolbox setup successful');
 
 
 
@@ -126,13 +116,16 @@ for(i = 1:length(files_to_compile))
     
     % if we made it this far, the rest of the stuff compiled, and
     % everything is set up for the platform it will run on.
+    
+    %compiler_flags is set in compilers.m, and we always append to the default one, instead of replacing it.
     if(new_or_old)
-        compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS /O2 -Wall" %s -l../bin/oapi64.lib', file_string);
+        compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -l../bin/oapi64.lib', compiler_flags, file_string);
         eval(compiler_string);
     else
-       compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS /O2 -Wall" %s -l../bin/oapi.lib', file_string);
+       compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -l../bin/oapi.lib', compiler_flags, file_string);
         eval(compiler_string);
     end
+    fprintf('Compilation of %s completed successfully.\n', files_to_compile{i})
     pause(0.5); %wait for the compilation process to finish.
 end
 cd(toolbox_path);
@@ -140,8 +133,6 @@ fprintf('Compiling the mex files didn''t fail!\n');
 
 %unload library.
 optotrak_kill;
-
-
 
 %savepath; %Make these permanent.
 fprintf('Toolbox path added, all done!\n')
