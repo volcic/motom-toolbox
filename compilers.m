@@ -75,6 +75,17 @@ if(strcmp(compiler_info.Name, 'Microsoft Visual C++ 2017') && ~compiler_found)
     compiler_flags = '/O2 /Wall'; %Optimise binary for performance, and display everything in the command window.
 end
 
+%% g++
+%This is the standard Linux compiler. However, we need the old version.
+%Unfortunately, the version string stays empty (Ubuntu 18.04, Matlab R2018a)
+if(strcmp(compiler_info.Name, 'g++') && ~compiler_found)
+    %if we got here, we found our compiler.
+    compiler_found = 1;
+    %We need to set which compiler we are using.
+    warning('You are using Linux. Make sure you have an OLD gcc installed, and edit this section of compilers.m accordingly.')
+    compiler_flags = 'GCC=/usr/bin/gcc-6';
+end
+
 %% Make the verdict
 
 if(compiler_found)
