@@ -13,7 +13,6 @@ This toolbox was developed using the following configuration. The more you devia
 * Matlab R2017a
 * A supported compiler for Matlab:
     * Windows: Visual Studio Community (the free one) 2015, with C++ installed
-    * Debian Wheezy users: sudo apt-get install gcc-4.9
     * Ubuntu 18.04 users: sudo apt-get install gcc-6
     
 64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too. I tested it on Windows 7 and the 32-bit version of Matlab R2015b.
