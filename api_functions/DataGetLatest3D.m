@@ -24,11 +24,14 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatest
     DataDest_pointer = libpointer('s_position3dPtr', pDataDest);
     
 
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataGetLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataGetLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataGetLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataGetLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataGetLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
 
     % Get updated data with the pointer

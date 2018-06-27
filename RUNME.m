@@ -89,7 +89,7 @@ else
     end
 end
 % warnings is a string, but you should also see this in the console.
-fprintf('If you see this message, the compiler succeeded and it generated the binaries Matlab needs.\nThis is a good thing.\n')
+fprintf('If you see this message, the compiler succeeded and you can now use loadlibrary.\nThis is a good thing.\n')
 cd ..
 
 %Okay, if we survived for this long, we should be OK for the rest.

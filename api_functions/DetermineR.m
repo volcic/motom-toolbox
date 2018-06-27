@@ -11,12 +11,16 @@ function [ fail, pdtEulerRot, pdtRotMatrix ] = DetermineR( pdtEulerRot, pdtRotMa
     dtEulerRot_pointer = libstruct('QuatRotationStruct', pdtEulerRot);
     %pdtRotMatrix is not a pointer.
 
-    if(new_or_old)
-        calllib('oapi64', 'DetermineR', dtEulerRot_pointer, pdtRotMatrix);
+    if(isunix)
+        calllib('liboapi', 'DetermineR', dtEulerRot_pointer, pdtRotMatrix);
     else
-        calllib('oapi', 'DetermineR', dtEulerRot_pointer, pdtRotMatrix);
+        if(new_or_old)
+            calllib('oapi64', 'DetermineR', dtEulerRot_pointer, pdtRotMatrix);
+        else
+            calllib('oapi', 'DetermineR', dtEulerRot_pointer, pdtRotMatrix);
+        end
     end
-
+    
     % Get updated data with the pointer
     pdtEulerRot = get(dtEulerRot_pointer);
 

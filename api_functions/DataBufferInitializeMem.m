@@ -22,11 +22,16 @@ function [ fail, uDataId, pMemory ] = DataBufferInitializeMem( uDataId, pMemory 
     %Memory_pointer = libpointer('OptotrakRigidStruct', pMemory); %this is for the rigid body stuff only
     %Memory_pointer = libpointer('TransformationStructPtr', pMemory); %This contains both the 3D and the 6D data. Unfortunately Matlab hates nested structures, so I don't think this will work. But it might be good for allocating memory.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataBufferInitializeMem', uDataId, Memory_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataBufferInitializeMem', uDataId, Memory_pointer);
     else
-        fail = calllib('oapi', 'DataBufferInitializeMem', uDataId, Memory_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataBufferInitializeMem', uDataId, Memory_pointer);
+        else
+            fail = calllib('oapi', 'DataBufferInitializeMem', uDataId, Memory_pointer);
+        end
     end
+
 
     % Get updated data with the pointer
     pMemory = get(Memory_pointer, 'Value');

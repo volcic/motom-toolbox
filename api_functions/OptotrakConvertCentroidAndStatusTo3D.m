@@ -16,10 +16,14 @@ function [ fail, pElems3d, pSourceCent, pSourceStatus, pdtDataDest3D ] = Optotra
     SourceStatus_pointer = libpointer('voidPtr', pSourceStatus);
     dtDataDest3D_pointer = libstruct('Position3d', pdtDataDest3D);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakConvertCentroidAndStatusTo3D', Elems3d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3D_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakConvertCentroidAndStatusTo3D', Elems3d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3D_pointer);
     else
-        fail = calllib('oapi', 'OptotrakConvertCentroidAndStatusTo3D', Elems3d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3D_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakConvertCentroidAndStatusTo3D', Elems3d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3D_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakConvertCentroidAndStatusTo3D', Elems3d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3D_pointer);
+        end
     end
 
     % Get updated data with the pointer

@@ -33,10 +33,14 @@ function [ fail, nNodeId, nSubNodeId, pdtNodeInfo ] = OptotrakGetSubNodeInfo( nN
     % Prepare pointer inputs
     dtNodeInfo_pointer = libstruct('OptoNodeInfoStruct', pdtNodeInfo);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetSubNodeInfo', nNodeId, nSubNodeId, dtNodeInfo_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetSubNodeInfo', nNodeId, nSubNodeId, dtNodeInfo_pointer);
     else
-        fail = calllib('oapi', 'OptotrakGetSubNodeInfo', nNodeId, nSubNodeId, dtNodeInfo_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetSubNodeInfo', nNodeId, nSubNodeId, dtNodeInfo_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakGetSubNodeInfo', nNodeId, nSubNodeId, dtNodeInfo_pointer);
+        end
     end
 
     % Get updated data with the pointer

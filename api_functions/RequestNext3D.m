@@ -7,11 +7,14 @@ function [ fail ] = RequestNext3D(  )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'RequestNext3D');
+    if(isunix)
+        fail = calllib('liboapi', 'RequestNext3D');
     else
-        fail = calllib('oapi', 'RequestNext3D');
+        if(new_or_old)
+            fail = calllib('oapi64', 'RequestNext3D');
+        else
+            fail = calllib('oapi', 'RequestNext3D');
+        end
     end
-
 end
 

@@ -7,11 +7,14 @@ function [ fail ] = blank( input_args )
 %   So, 0 for all good, and pretty much anything else for fail.
 
     % Prepare pointer inputs
-
-    if(new_or_old)
-        fail = calllib('oapi64', '');
+    if(isunix)
+        fail = calllib('liboapi', '')
     else
-        fail = calllib('oapi', );
+        if(new_or_old)
+            fail = calllib('oapi64', '');
+        else
+            fail = calllib('oapi', '');
+        end
     end
 
     % Get updated data with the pointer

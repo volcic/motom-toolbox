@@ -17,11 +17,14 @@ function [ fail, dtAlignParams, pfRMSError ] = nOptotrakAlignSystem( dtAlignPara
     % Prepare pointer inputs
     AlignParams_struct = libstruct('AlignParametersStruct', dtAlignParams);
     fRMSError_pointer = libpointer('singlePtr', pfRMSError);
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'nOptotrakAlignSystem', AlignParams_struct, fRMSError_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'nOptotrakAlignSystem', AlignParams_struct, fRMSError_pointer);
     else
-        fail = calllib('oapi', 'nOptotrakAlignSystem', AlignParams_struct, fRMSError_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'nOptotrakAlignSystem', AlignParams_struct, fRMSError_pointer);
+        else
+            fail = calllib('oapi', 'nOptotrakAlignSystem', AlignParams_struct, fRMSError_pointer);
+        end
     end
 
     % Get updated data with the pointer

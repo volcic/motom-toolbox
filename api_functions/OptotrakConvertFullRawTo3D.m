@@ -14,12 +14,15 @@ function [ fail, pElems3d, pDataSourceFullRaw, pdtDataDest3d ] = OptotrakConvert
     DataSourceFullRaw_pointer = libpointer('voidPtr', pDataSourceFullRaw);
     dtDataDest3d_pointer = libstruct('Position3D', pdtDataDest3d);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakConvertFullRawTo3D', Elems3d_pointer, DataSourceFullRaw_pointer, dtDataDest3d_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakConvertFullRawTo3D', Elems3d_pointer, DataSourceFullRaw_pointer, dtDataDest3d_pointer);
     else
-        fail = calllib('oapi', 'OptotrakConvertFullRawTo3D', Elems3d_pointer, DataSourceFullRaw_pointer, dtDataDest3d_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakConvertFullRawTo3D', Elems3d_pointer, DataSourceFullRaw_pointer, dtDataDest3d_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakConvertFullRawTo3D', Elems3d_pointer, DataSourceFullRaw_pointer, dtDataDest3d_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pElems3d = get(Elems3d_pointer, 'Value');
     pDataSourceFullRaw = get(DataSourceFullRaw_pointer, 'Value');

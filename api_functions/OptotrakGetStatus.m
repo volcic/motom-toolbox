@@ -68,10 +68,14 @@ function [ fail, pnNumSensors, pnNumOdaus, pnNumRigidBodies, pnMarkers, pfFrameF
     nFlags_pointer = libpointer('int32Ptr', pnFlags);
 
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetStatus', nNumSensors_pointer, nNumOdaus_pointer, nNumRigidBodies_pointer, nMarkers_pointer, fFrameFrequency_pointer, fMarkerFrequency_pointer, nThreshold_pointer, nMinimumGain_pointer, nStreamData_pointer, fDutyCycle_pointer, fVoltage_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, nFlags_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetStatus', nNumSensors_pointer, nNumOdaus_pointer, nNumRigidBodies_pointer, nMarkers_pointer, fFrameFrequency_pointer, fMarkerFrequency_pointer, nThreshold_pointer, nMinimumGain_pointer, nStreamData_pointer, fDutyCycle_pointer, fVoltage_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, nFlags_pointer);
     else
-        fail = calllib('oapi', 'OptotrakGetStatus', nNumSensors_pointer, nNumOdaus_pointer, nNumRigidBodies_pointer, nMarkers_pointer, fFrameFrequency_pointer, fMarkerFrequency_pointer, nThreshold_pointer, nMinimumGain_pointer, nStreamData_pointer, fDutyCycle_pointer, fVoltage_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, nFlags_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetStatus', nNumSensors_pointer, nNumOdaus_pointer, nNumRigidBodies_pointer, nMarkers_pointer, fFrameFrequency_pointer, fMarkerFrequency_pointer, nThreshold_pointer, nMinimumGain_pointer, nStreamData_pointer, fDutyCycle_pointer, fVoltage_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, nFlags_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakGetStatus', nNumSensors_pointer, nNumOdaus_pointer, nNumRigidBodies_pointer, nMarkers_pointer, fFrameFrequency_pointer, fMarkerFrequency_pointer, nThreshold_pointer, nMinimumGain_pointer, nStreamData_pointer, fDutyCycle_pointer, fVoltage_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, nFlags_pointer);
+        end
     end
 
     % Get updated data with the pointer

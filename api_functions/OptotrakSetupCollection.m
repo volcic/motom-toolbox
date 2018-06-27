@@ -57,11 +57,13 @@ function [ fail, nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinim
 %   So, 0 for all good, and pretty much anything else for fail.
 
     % Prepare pointer inputs
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSetupCollection', nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSetupCollection', nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags);
     else
-        fail = calllib('oapi', 'OptotrakSetupCollection', nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSetupCollection', nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags);
+        else
+            fail = calllib('oapi', 'OptotrakSetupCollection', nMarkers, fFrameFrequency, fMarkerFrequency, nThreshold, nMinimumGain, nStreamData, fDutyCycle, fVoltage, fCollectionTime, fPreTriggerTime, nFlags);
+        end
     end
-
 end

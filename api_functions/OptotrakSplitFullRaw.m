@@ -15,14 +15,18 @@ function [ fail, nMarkers, nSensors, pDataSourceFullRaw, pCentroids, pSensorsSta
     Centroids_pointer = libpointer('voidPtr', pCentroids);
     SensorsStatus_pointer = libpointer('voidPtr', pSensorsStatus);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSplitFullRaw', nMarkers, nSensors, DataSourceFullRaw_pointer, Centroids_pointer, SensorsStatus_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSplitFullRaw', nMarkers, nSensors, DataSourceFullRaw_pointer, Centroids_pointer, SensorsStatus_pointer);
     else
-        fail = calllib('oapi', 'OptotrakSplitFullRaw', nMarkers, nSensors, DataSourceFullRaw_pointer, Centroids_pointer, SensorsStatus_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSplitFullRaw', nMarkers, nSensors, DataSourceFullRaw_pointer, Centroids_pointer, SensorsStatus_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakSplitFullRaw', nMarkers, nSensors, DataSourceFullRaw_pointer, Centroids_pointer, SensorsStatus_pointer);
+        end
     end
 
     % Get updated data with the pointer
-    pDataSourceFullRaw = get(DataSourceFullRaw_pointer), 'Value';
+    pDataSourceFullRaw = get(DataSourceFullRaw_pointer, 'Value');
     pCentroids = get(Centroids_pointer, 'Value');
     pSensorsStatus = get(SensorsStatus_pointer, 'Value');
 

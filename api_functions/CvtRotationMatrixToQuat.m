@@ -12,12 +12,15 @@ function [ fail, pdtQuatRot, pdtRotMatrix ] = CvtRotationMatrixToQuat( pdtQuatRo
     dtQuatRot_pointer = libpointer('QuatRotationStructPtr', pdtQuatRot);
     %pdtRotMatrix is not a pointer.
 
-    if(new_or_old)
-        calllib('oapi64', 'CvtRotationMatrixToQuat', dtQuatRot_pointer, pdtRotMatrix);
+    if(isunix)
+        calllib('liboapi', 'CvtRotationMatrixToQuat', dtQuatRot_pointer, pdtRotMatrix);
     else
-        calllib('oapi', 'CvtRotationMatrixToQuat', dtQuatRot_pointer, pdtRotMatrix);
+        if(new_or_old)
+            calllib('oapi64', 'CvtRotationMatrixToQuat', dtQuatRot_pointer, pdtRotMatrix);
+        else
+            calllib('oapi', 'CvtRotationMatrixToQuat', dtQuatRot_pointer, pdtRotMatrix);
+        end
     end
-
     % Get updated data with the pointer
     pdtQuatRot = get(dtQuatRot_pointer, 'Value');
     % Clean up pointers so Matlab won't crash on repeated use of this function

@@ -17,12 +17,15 @@ function [ fail, nOdauId, puDigitalOut, uUpdateMask ] = OdauSetDigitalOutputs( n
     % Prepare pointer inputs
     uDigitalOut_pointer = libpointer('uint32Ptr', puDigitalOut);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauSetDigitalOutputs', nOdauId, uDigitalOut_pointer, uUpdateMask);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauSetDigitalOutputs', nOdauId, uDigitalOut_pointer, uUpdateMask);
     else
-        fail = calllib('oapi', 'OdauSetDigitalOutputs', nOdauId, uDigitalOut_pointer, uUpdateMask);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauSetDigitalOutputs', nOdauId, uDigitalOut_pointer, uUpdateMask);
+        else
+            fail = calllib('oapi', 'OdauSetDigitalOutputs', nOdauId, uDigitalOut_pointer, uUpdateMask);
+        end
     end
-
     % Get updated data with the pointer
     puDigitalOut = get(uDigitalOut_pointer, 'Value');
 

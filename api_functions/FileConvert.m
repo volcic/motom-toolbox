@@ -17,10 +17,14 @@ function [ fail, pszInputFileName, pszOutputFileName, uFileType ] = FileConvert(
     szInputFileName_pointer = libpointer('cstring', pszInputFileName);
     szOutputFileName_pointer = libpointer('cstring', pszOutputFileName);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileConvert', szInputFileName_pointer, szOutputFileName_pointer, uFileType);
+    if(isunix)
+        fail = calllib('liboapi', 'FileConvert', szInputFileName_pointer, szOutputFileName_pointer, uFileType);
     else
-        fail = calllib('oapi', 'FileConvert', szInputFileName_pointer, szOutputFileName_pointer, uFileType);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileConvert', szInputFileName_pointer, szOutputFileName_pointer, uFileType);
+        else
+            fail = calllib('oapi', 'FileConvert', szInputFileName_pointer, szOutputFileName_pointer, uFileType);
+        end
     end
 
     % Get updated data with the pointer

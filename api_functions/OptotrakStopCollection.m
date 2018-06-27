@@ -5,10 +5,14 @@ function [ fail ] = OptotrakStopCollection(  )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakStopCollection');
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakStopCollection');
     else
-        fail = calllib('oapi', 'OptotrakStopCollection');
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakStopCollection');
+        else
+            fail = calllib('oapi', 'OptotrakStopCollection');
+        end
     end
 
 end

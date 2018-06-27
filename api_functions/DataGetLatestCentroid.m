@@ -23,10 +23,14 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatest
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest_pointer = libpointer('singlePtr', pDataDest); %Centroid is float
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataGetLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataGetLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataGetLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataGetLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataGetLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
 
     % Get updated data with the pointer

@@ -11,12 +11,16 @@ function [ fail, nNumSwitches, pbSwtichData ] = RetrieveSwitchData( nNumSwitches
 
     % Prepare pointer inputs
     bSwtichData_pointer = libpointer('uint8Ptr', pbSwtichData); %This was 'boolean', but according to ndtypes.h it's just char.
-    if(new_or_old)
-        fail = calllib('oapi64', 'RetrieveSwitchData', nNumSwitches, bSwtichData_pointer);
-    else
-        fail = calllib('oapi', 'RetrieveSwitchData', nNumSwitches, bSwtichData_pointer);
-    end
 
+    if(isunix)
+        fail = calllib('liboapi', 'RetrieveSwitchData', nNumSwitches, bSwtichData_pointer);
+    else
+        if(new_or_old)
+            fail = calllib('oapi64', 'RetrieveSwitchData', nNumSwitches, bSwtichData_pointer);
+        else
+            fail = calllib('oapi', 'RetrieveSwitchData', nNumSwitches, bSwtichData_pointer);
+        end
+    end
     % Get updated data with the pointer
     pbSwtichData = get(bSwtichData_pointer, 'Value');
 

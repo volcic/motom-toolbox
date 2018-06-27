@@ -8,12 +8,15 @@ function [ fail, nDeviceHandleId, uTime_ms ] = OptotrakDeviceHandleSetBeeper( nD
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakDeviceHandleSetBeeper', nDeviceHandleId, uTime_ms );
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakDeviceHandleSetBeeper', nDeviceHandleId, uTime_ms );
     else
-        fail = calllib('oapi', 'OptotrakDeviceHandleSetBeeper', nDeviceHandleId, uTime_ms );
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakDeviceHandleSetBeeper', nDeviceHandleId, uTime_ms );
+        else
+            fail = calllib('oapi', 'OptotrakDeviceHandleSetBeeper', nDeviceHandleId, uTime_ms );
+        end
     end
-
 
 end
 

@@ -31,12 +31,15 @@ function [ fail, nRigidBodyId, nStartMarkers, nNumMarkers, pRigidCoordinates, pN
     RigidCoordinates_pointer = libpointer('singlePtr', pRigidCoordinates);
     NormalCoordinates_pointer = libpointer('singlePtr', pNormalCoordinates);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'RigidBodyAdd', nRigidBodyId, nStartMarkers, nNumMarkers, RigidCoordinates_pointer, NormalCoordinates_pointer, nFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'RigidBodyAdd', nRigidBodyId, nStartMarkers, nNumMarkers, RigidCoordinates_pointer, NormalCoordinates_pointer, nFlags);
     else
-        fail = calllib('oapi', 'RigidBodyAdd', nRigidBodyId, nStartMarkers, nNumMarkers, RigidCoordinates_pointer, NormalCoordinates_pointer, nFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'RigidBodyAdd', nRigidBodyId, nStartMarkers, nNumMarkers, RigidCoordinates_pointer, NormalCoordinates_pointer, nFlags);
+        else
+            fail = calllib('oapi', 'RigidBodyAdd', nRigidBodyId, nStartMarkers, nNumMarkers, RigidCoordinates_pointer, NormalCoordinates_pointer, nFlags);
+        end
     end
-
     % Get updated data with the pointer
     pRigidCoordinates = get(RigidCoordinates_pointer, 'Value');
     pNormalCoordinates = get(NormalCoordinates_pointer, 'Value');

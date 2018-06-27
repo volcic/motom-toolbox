@@ -18,12 +18,16 @@ function [ fail, pFlags ] = OptotrakGetProcessingFlags( pFlags )
     % Prepare pointer inputs
     Flags_pointer = libpointer('uint32Ptr', pFlags);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetProcessingFlags', Flags_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetProcessingFlags', Flags_pointer);
     else
-        fail = calllib('oapi', 'OptotrakGetProcessingFlags', Flags_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetProcessingFlags', Flags_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakGetProcessingFlags', Flags_pointer);
+        end
     end
-
+    
     % Get updated data with the pointer
     pFlags = get(Flags_pointer, 'Value');
 

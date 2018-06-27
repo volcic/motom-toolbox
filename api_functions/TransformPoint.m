@@ -16,12 +16,15 @@ function [ fail, pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtT
     dtOriginalPositionPtr_pointer = libpointer('Position3d', pdtOriginalPositionPtr);
     dtTransformedPositionPtr_pointer = libpointer('Position3d', pdtTransformedPositionPtr);
 
-    if(new_or_old)
-        calllib('oapi64', 'TransformPoint', pdtRotationMatrix, dtTranslation_pointer, dtOriginalPositionPtr_pointer, dtTransformedPositionPtr_pointer);
+    if(isunix)
+        calllib('liboapi', 'TransformPoint', pdtRotationMatrix, dtTranslation_pointer, dtOriginalPositionPtr_pointer, dtTransformedPositionPtr_pointer);
     else
-        calllib('oapi', 'TransformPoint', pdtRotationMatrix, dtTranslation_pointer, dtOriginalPositionPtr_pointer, dtTransformedPositionPtr_pointer);
+        if(new_or_old)
+            calllib('oapi64', 'TransformPoint', pdtRotationMatrix, dtTranslation_pointer, dtOriginalPositionPtr_pointer, dtTransformedPositionPtr_pointer);
+        else
+            calllib('oapi', 'TransformPoint', pdtRotationMatrix, dtTranslation_pointer, dtOriginalPositionPtr_pointer, dtTransformedPositionPtr_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pdtTranslation = get(dtTranslation_pointer, 'Value');
     pdtOriginalPositionPtr = get(dtOriginalPositionPtr_pointer, 'Value');
@@ -30,5 +33,6 @@ function [ fail, pdtRotationMatrix, pdtTranslation, pdtOriginalPositionPtr, pdtT
     % Clean up pointers so Matlab won't crash on repeated use of this function
     clear dtTranslation_pointer dtOriginalPositionPtr_pointer dtTransformedPositionPtr_pointer;
 
+    fail = 0;
 end
 

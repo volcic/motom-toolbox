@@ -24,12 +24,15 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLa
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest_pointer = libpointer('voidPtr', pDataDest);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataReceiveLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataReceiveLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataReceiveLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataReceiveLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataReceiveLatestCentroid', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
-
     % Get updated data with the pointer
     puFrameNumber = get(uFrameNumber_pointer, 'Value');
     puElements = get(uElements_pointer, 'Value');

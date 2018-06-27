@@ -18,10 +18,14 @@ function [ fail, pszInputCamFile, nNumMarkers, pdtMeasuredPositions, pdtAlignedP
     szInputCamFile_pointer = libpointer('cstring', pszInputCamFile);
     szAlignedCamFile_pointer = libpointer('cstring', pszAlignedCamFile);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakChangeCameraFOR', szInputCamFile_pointer, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, szAlignedCamFile_pointer, pdt3dErrors, pfRmsError);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakChangeCameraFOR', szInputCamFile_pointer, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, szAlignedCamFile_pointer, pdt3dErrors, pfRmsError);
     else
-        fail = calllib('oapi', 'OptotrakChangeCameraFOR', szInputCamFile_pointer, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, szAlignedCamFile_pointer, pdt3dErrors, pfRmsError);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakChangeCameraFOR', szInputCamFile_pointer, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, szAlignedCamFile_pointer, pdt3dErrors, pfRmsError);
+        else
+            fail = calllib('oapi', 'OptotrakChangeCameraFOR', szInputCamFile_pointer, nNumMarkers, pdtMeasuredPositions, pdtAlignedPositions, szAlignedCamFile_pointer, pdt3dErrors, pfRmsError);
+        end
     end
 
     % Get updated data with the pointer

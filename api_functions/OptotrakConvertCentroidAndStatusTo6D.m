@@ -19,11 +19,14 @@ function [ fail, pElems3d, pElems6d, pSourceCent, pSourceStatus, pdtDataDest3d, 
     dtDataDest3d_pointer = libstruct('Position3D', pdtDataDest3d);
     dtDataDest6d_pointer = libstruct('OptotrakRigidStrct', pdtDataDest6d);
 
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakConvertCentroidAndStatusTo6D', Elems3d_pointer, Elems6d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3d_pointer, dtDataDest6d_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakConvertCentroidAndStatusTo6D', Elems3d_pointer, Elems6d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3d_pointer, dtDataDest6d_pointer);
     else
-        fail = calllib('oapi', 'OptotrakConvertCentroidAndStatusTo6D', Elems3d_pointer, Elems6d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3d_pointer, dtDataDest6d_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakConvertCentroidAndStatusTo6D', Elems3d_pointer, Elems6d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3d_pointer, dtDataDest6d_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakConvertCentroidAndStatusTo6D', Elems3d_pointer, Elems6d_pointer, SourceCent_pointer, SourceStatus_pointer, dtDataDest3d_pointer, dtDataDest6d_pointer);
+        end
     end
 
     % Get updated data with the pointer

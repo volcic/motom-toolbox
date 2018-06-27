@@ -13,10 +13,14 @@ function [ fail, puSpoolStatus ] = DataBufferSpoolData( puSpoolStatus )
     % Prepare pointer inputs
     uSpoolStatus_pointer = libpointer('uint32Ptr', puSpoolStatus);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataBufferSpoolData', uSpoolStatus_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataBufferSpoolData', uSpoolStatus_pointer);
     else
-        fail = calllib('oapi', 'DataBufferSpoolData', uSpoolStatus_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataBufferSpoolData', uSpoolStatus_pointer);
+        else
+            fail = calllib('oapi', 'DataBufferSpoolData', uSpoolStatus_pointer);
+        end
     end
 
     % Get updated data with the pointer

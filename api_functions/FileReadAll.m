@@ -18,12 +18,15 @@ function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataDestFloat, pDataDe
     DataDestInt_pointer = libpointer('voidPtr', pDataDestInt);
     DataDestDouble_pointer = libpointer('voidPtr', pDataDestDouble);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDestFloat_pointer, DataDestChar_pointer, DataDestInt_pointer, DataDestDouble_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'FileReadAll', uFileId, lnStartFrame, uNumberofFrames, DataDestFloat_pointer, DataDestChar_pointer, DataDestInt_pointer, DataDestDouble_pointer);
     else
-        fail = calllib('oapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDestFloat_pointer, DataDestChar_pointer, DataDestInt_pointer, DataDestDouble_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileReadAll', uFileId, lnStartFrame, uNumberofFrames, DataDestFloat_pointer, DataDestChar_pointer, DataDestInt_pointer, DataDestDouble_pointer);
+        else
+            fail = calllib('oapi', 'FileReadAll', uFileId, lnStartFrame, uNumberofFrames, DataDestFloat_pointer, DataDestChar_pointer, DataDestInt_pointer, DataDestDouble_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pDataDestFloat = get(DataDestFloat_pointer, 'Value');
     pDataDestChar = get(DataDestChar_pointer, 'Value');

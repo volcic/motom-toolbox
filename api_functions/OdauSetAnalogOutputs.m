@@ -22,10 +22,14 @@ function [ fail, nOdauId, pfVoltage1, pfVoltage2, uChangeMask ] = OdauSetAnalogO
     fVoltage1_pointer = libpointer('singlePtr', pfVoltage1);
     fVoltage2_pointer = libpointer('singlePtr', pfVoltage2);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauSetAnalogOutputs', fVoltage1_pointer, fVoltage2_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauSetAnalogOutputs', fVoltage1_pointer, fVoltage2_pointer);
     else
-        fail = calllib('oapi', 'OdauSetAnalogOutputs', fVoltage1_pointer, fVoltage2_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauSetAnalogOutputs', fVoltage1_pointer, fVoltage2_pointer);
+        else
+            fail = calllib('oapi', 'OdauSetAnalogOutputs', fVoltage1_pointer, fVoltage2_pointer);
+        end
     end
 
     % Get updated data with the pointer

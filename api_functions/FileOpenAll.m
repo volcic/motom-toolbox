@@ -34,10 +34,15 @@ function [ fail, pszFileName, uFileId, uFileMode, pnItems, pnSubItems, pnCharSub
     fFrequency_pointer = libpointer('singlePtr', pfFrequency);
     szComments_pointer = libpointer('cstring', pszComments);
     FileHeader_pointer = libpointer('voidPtrPtr', pFileHeader);
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileOpen', szFileName_pointer, uFileId, uFileMode, nItems_pointer, nSubItems_pointer, nCharSubItems_pointer, nIntSubItems_pointer, nDoubleSubItems_pointer, lnFrames_pointer, fFrequency_pointer, szComments_pointer, FileHeader_pointer);
+
+    if(isunix)
+        fail = calllib('liboapi', 'FileOpenAll', szFileName_pointer, uFileId, uFileMode, nItems_pointer, nSubItems_pointer, lnFrames_pointer, fFrequency_pointer, szComments_pointer, FileHeader_pointer);
     else
-        fail = calllib('oapi', 'FileOpen', szFileName_pointer, uFileId, uFileMode, nItems_pointer, nSubItems_pointer, lnFrames_pointer, fFrequency_pointer, szComments_pointer, FileHeader_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileOpenAll', szFileName_pointer, uFileId, uFileMode, nItems_pointer, nSubItems_pointer, nCharSubItems_pointer, nIntSubItems_pointer, nDoubleSubItems_pointer, lnFrames_pointer, fFrequency_pointer, szComments_pointer, FileHeader_pointer);
+        else
+            fail = calllib('oapi', 'FileOpenAll', szFileName_pointer, uFileId, uFileMode, nItems_pointer, nSubItems_pointer, lnFrames_pointer, fFrequency_pointer, szComments_pointer, FileHeader_pointer);
+        end
     end
 
     % Get updated data with the pointer

@@ -19,12 +19,15 @@ function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrcFloat, pDataSrc
     DataSrcInt_pointer = libpointer('voidPtr', pDataSrcInt);
     DataSrcDouble_pointer = libpointer('voidPtr', pDataSrcDouble);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataSrcFloat_pointer, DataSrcChar_pointer, DataSrcInt_pointer, DataSrcDouble_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'FileWriteAll', uFileId, lnStartFrame, uNumberofFrames, DataSrcFloat_pointer, DataSrcChar_pointer, DataSrcInt_pointer, DataSrcDouble_pointer);
     else
-        fail = calllib('oapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataSrcFloat_pointer, DataSrcChar_pointer, DataSrcInt_pointer, DataSrcDouble_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileWriteAll', uFileId, lnStartFrame, uNumberofFrames, DataSrcFloat_pointer, DataSrcChar_pointer, DataSrcInt_pointer, DataSrcDouble_pointer);
+        else
+            fail = calllib('oapi', 'FileWriteAll', uFileId, lnStartFrame, uNumberofFrames, DataSrcFloat_pointer, DataSrcChar_pointer, DataSrcInt_pointer, DataSrcDouble_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pDataSrcFloat = get(DataSrcFloat_pointer, 'Value');
     pDataSrcChar = get(DataSrcChar_pointer, 'Value');

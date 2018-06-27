@@ -9,10 +9,14 @@ function [ fail, pszCamFile ] = OptotrakLoadCameraParameters( pszCamFile )
     % Prepare pointer inputs
     szCamFile_pointer = libpointer('cstring', pszCamFile);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakLoadCameraParameters', szCamFile_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakLoadCameraParameters', szCamFile_pointer);
     else
-        fail = calllib('oapi', 'OptotrakLoadCameraParameters', szCamFile_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakLoadCameraParameters', szCamFile_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakLoadCameraParameters', szCamFile_pointer);
+        end
     end
 
     % Get updated data with the pointer

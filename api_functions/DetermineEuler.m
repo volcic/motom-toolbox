@@ -11,12 +11,15 @@ function [ fail, pdtRotMatrix, pdtEulerRot ] = DetermineEuler( pdtRotMatrix, pdt
     %pdtRotMatrix is not a pointer.
     dtEulerRot_poiner = libpointer('structure', pdtEulerRot);
 
-    if(new_or_old)
-        calllib('oapi64', 'DetermineEuler', pdtRotMatrix, dtEulerRot_poiner);
+    if(isunix)
+        calllib('liboapi', 'DetermineEuler', pdtRotMatrix, dtEulerRot_poiner);
     else
-        calllib('oapi', 'DetermineEuler', pdtRotMatrix, dtEulerRot_poiner););
+        if(new_or_old)
+            calllib('oapi64', 'DetermineEuler', pdtRotMatrix, dtEulerRot_poiner);
+        else
+            calllib('oapi', 'DetermineEuler', pdtRotMatrix, dtEulerRot_poiner);
+        end
     end
-
     % Get updated data with the pointer
     pdtEulerRot = get(dtEulerRot_poiner, 'Value');
 

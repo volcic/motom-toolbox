@@ -13,10 +13,14 @@ function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataDest ] = FileRead(
     % Prepare pointer inputs
     DataDest_pointer = libpointer('voidPtr', pDataDest);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDest_pointer);
     else
-        fail = calllib('oapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataDest_pointer);
+        end
     end
 
     % Get updated data with the pointer

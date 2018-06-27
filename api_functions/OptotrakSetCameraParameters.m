@@ -17,11 +17,14 @@ function [ fail, nMarkerType, nWaveLength, nModelType ] = OptotrakSetCameraParam
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSetCameraParameters', nMarkerType, nWaveLength, nModelType);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSetCameraParameters', nMarkerType, nWaveLength, nModelType);
     else
-        fail = calllib('oapi', 'OptotrakSetCameraParameters', nMarkerType, nWaveLength, nModelType);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSetCameraParameters', nMarkerType, nWaveLength, nModelType);
+        else
+            fail = calllib('oapi', 'OptotrakSetCameraParameters', nMarkerType, nWaveLength, nModelType);
+        end
     end
-
 end
 

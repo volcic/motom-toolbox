@@ -26,11 +26,14 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest6d, pDataDest3d ] 
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest6d_pointer = libstruct('OptotrakRigidStruct', pDataDest6d);
     DataDest3d_pointer = libpointer('Position3d', pDataDest3d);
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataReceiveLatestTransforms2', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest6d_pointer, DataDest3d_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataReceiveLatestTransforms2', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest6d_pointer, DataDest3d_pointer);
     else
-        fail = calllib('oapi', 'DataReceiveLatestTransforms2', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest6d_pointer, DataDest3d_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataReceiveLatestTransforms2', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest6d_pointer, DataDest3d_pointer);
+        else
+            fail = calllib('oapi', 'DataReceiveLatestTransforms2', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest6d_pointer, DataDest3d_pointer);
+        end
     end
 
     % Get updated data with the pointer

@@ -11,12 +11,15 @@ function [ fail, nDeviceHandleId, pnProperties ] = OptotrakDeviceHandleGetNumber
     % Prepare pointer inputs
     nProperties_pointer = libpointer('int32', pnProperties);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakDeviceHandleGetNumberProperties', nDeviceHandleId, nProperties_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakDeviceHandleGetNumberProperties', nDeviceHandleId, nProperties_pointer);
     else
-        fail = calllib('oapi', 'OptotrakDeviceHandleGetNumberProperties', nDeviceHandleId, nProperties_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakDeviceHandleGetNumberProperties', nDeviceHandleId, nProperties_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakDeviceHandleGetNumberProperties', nDeviceHandleId, nProperties_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pnProperties = get(nProperties_pointer, 'Value');
 

@@ -5,10 +5,14 @@ function [ fail ] = DataBufferAbortSpooling(  )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataBufferAbortSpooling');
+    if(isunix)
+        fail = calllib('liboapi', 'DataBufferAbortSpooling');
     else
-        fail = calllib('oapi', 'DataBufferAbortSpooling');
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataBufferAbortSpooling');
+        else
+            fail = calllib('oapi', 'DataBufferAbortSpooling');
+        end
     end
 
 

@@ -38,11 +38,14 @@ function [ fail, nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScan
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauSetupCollection', nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauSetupCollection', nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags);
     else
-        fail = calllib('oapi', 'OdauSetupCollection', nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauSetupCollection', nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags);
+        else
+            fail = calllib('oapi', 'OdauSetupCollection', nOdauId, nChannels, nGain, nDigitalMode, fFrameFrequency, fScanFrequency, nStreamData, fCollectionTime, fPreTriggerTime, uFlags);
+        end
     end
-
 end
 

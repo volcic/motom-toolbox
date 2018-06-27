@@ -15,12 +15,16 @@ function [uDataId, pszFileName] = DataBufferInitializeFile(uDataId, pszFileName)
     % Prepare pointer inputs
     szFileName_pointer = libpointer('cstring', pszFileName);
 
-    if(new_or_old())
-        [pszFileName] = calllib('oapi64', 'DataBufferInitializeFile', uDataId, szFileName_pointer);
+    if(isunix)
+        [pszFileName] = calllib('liboapi', 'DataBufferInitializeFile', uDataId, szFileName_pointer);
     else
-        [pszFileName] = calllib('oapi', 'DataBufferInitializeFile', uDataId, szFileName_pointer);
+        if(new_or_old())
+            [pszFileName] = calllib('oapi64', 'DataBufferInitializeFile', uDataId, szFileName_pointer);
+        else
+            [pszFileName] = calllib('oapi', 'DataBufferInitializeFile', uDataId, szFileName_pointer);
+        end
     end
-
+    
     % Get updated data with the pointer
     pszFileName = get(szFileName_pointer, 'Value');
 

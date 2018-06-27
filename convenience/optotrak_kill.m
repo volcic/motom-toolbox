@@ -10,11 +10,14 @@ function [ fail ] = optotrak_kill(  )
     OptotrakStopCollection();
     TransputerShutdownSystem();
 
-    if(new_or_old)
-        unloadlibrary('oapi64');
+    if(isunix)
+        unloadlibrary('liboapi');
     else
-        unloadlibrary('oapi');
-    end
+        if(new_or_old)
+            unloadlibrary('oapi64');
+        else
+            unloadlibrary('oapi');
+        end
 
 
 end

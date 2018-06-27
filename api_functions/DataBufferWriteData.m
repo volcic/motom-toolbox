@@ -30,10 +30,14 @@ function [ fail, puRealTimeData, puSpoolComplete, puSpoolStatus, pulFramesBuffer
     uSpoolStatus_pointer = libpointer('uint32Ptr', uint32(puSpoolStatus));
     ulFramesBuffered_pointer = libpointer('ulongPtr', int32(pulFramesBuffered));
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataBufferWriteData', uRealTimeData_pointer, uSpoolComplete_pointer, uSpoolStatus_pointer, ulFramesBuffered_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataBufferWriteData', uRealTimeData_pointer, uSpoolComplete_pointer, uSpoolStatus_pointer, ulFramesBuffered_pointer);
     else
-        fail = calllib('oapi', 'DataBufferWriteData', uRealTimeData_pointer, uSpoolComplete_pointer, uSpoolStatus_pointer, ulFramesBuffered_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataBufferWriteData', uRealTimeData_pointer, uSpoolComplete_pointer, uSpoolStatus_pointer, ulFramesBuffered_pointer);
+        else
+            fail = calllib('oapi', 'DataBufferWriteData', uRealTimeData_pointer, uSpoolComplete_pointer, uSpoolStatus_pointer, ulFramesBuffered_pointer);
+        end
     end
 
     % Get updated data with the pointer

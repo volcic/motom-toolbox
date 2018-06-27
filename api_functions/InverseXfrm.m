@@ -11,10 +11,14 @@ function [ fail, pdtXfrm, pdtInverseXfrm ] = InverseXfrm( pdtXfrm, pdtInverseXfr
     dtXfrm_pointer = libpointer('structure', pdtXfrm);
     dtInverseXfrm_pointer = libpointer('structure', pdtInverseXfrm);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'InverseXfrm', dtXfrm_pointer, dtInverseXfrm_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'InverseXfrm', dtXfrm_pointer, dtInverseXfrm_pointer);
     else
-        fail = calllib('oapi', 'InverseXfrm', dtXfrm_pointer, dtInverseXfrm_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'InverseXfrm', dtXfrm_pointer, dtInverseXfrm_pointer);
+        else
+            fail = calllib('oapi', 'InverseXfrm', dtXfrm_pointer, dtInverseXfrm_pointer);
+        end
     end
 
     % Get updated data with the pointer

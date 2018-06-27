@@ -11,10 +11,14 @@ function [ fail, pdtQuatRot, pdtRotMatrix ] = CvtQuatToRotationMatrix( pdtQuatRo
     dtQuatRot_pointer = libpointer('QuatRotationStructPtr', pdtQuatRot);
     %pdtRotMatrix is not a pointer.
 
-    if(new_or_old)
-        calllib('oapi64', 'CvtQuatToRotationMatrix', dtQuatRot_pointer, pdtRotMatrix);
+    if(isunix)
+        calllib('liboapi', 'CvtQuatToRotationMatrix', dtQuatRot_pointer, pdtRotMatrix);
     else
-        calllib('oapi', 'CvtQuatToRotationMatrix', dtQuatRot_pointer, pdtRotMatrix);
+        if(new_or_old)
+            calllib('oapi64', 'CvtQuatToRotationMatrix', dtQuatRot_pointer, pdtRotMatrix);
+        else
+            calllib('oapi', 'CvtQuatToRotationMatrix', dtQuatRot_pointer, pdtRotMatrix);
+        end
     end
 
     % Get updated data with the pointer

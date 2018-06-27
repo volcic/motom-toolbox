@@ -9,12 +9,15 @@ function [ fail, pszCollectFile ] = OdauSaveCollectionToFile( pszCollectFile )
     % Prepare pointer inputs
     szCollectFile_pointer = libpointer('cstring', pszCollectFile);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauSaveCollectionToFile', szCollectFile_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauSaveCollectionToFile', szCollectFile_pointer);
     else
-        fail = calllib('oapi', 'OdauSaveCollectionToFile', szCollectFile_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauSaveCollectionToFile', szCollectFile_pointer);
+        else
+            fail = calllib('oapi', 'OdauSaveCollectionToFile', szCollectFile_pointer);
+        end
     end
-
 
     % Get updated data with the pointer
     pszCollectFile = get(szCollectFile_pointer, 'Value');

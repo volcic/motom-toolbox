@@ -48,13 +48,15 @@ function [ fail, nOdauId, pnChannels, pnGain, pnDigitalMode, pfFrameFrequency, p
     uCollFlags_pointer = libpointer('uint32Ptr', puCollFlags);
     nFlags_pointer = libpointer('int32Ptr', pnFlags);
 
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauGetStatus', nOdauId, nChannels_pointer, nGain_pointer, nDigitalMode_pointer, fFrameFrequency_pointer, fScanFrequency_pointer, nStreamData_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, uCollFlags_pointer, nFlags_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauGetStatus', nOdauId, nChannels_pointer, nGain_pointer, nDigitalMode_pointer, fFrameFrequency_pointer, fScanFrequency_pointer, nStreamData_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, uCollFlags_pointer, nFlags_pointer);
     else
-        fail = calllib('oapi', 'OdauGetStatus', nOdauId, nChannels_pointer, nGain_pointer, nDigitalMode_pointer, fFrameFrequency_pointer, fScanFrequency_pointer, nStreamData_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, uCollFlags_pointer, nFlags_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauGetStatus', nOdauId, nChannels_pointer, nGain_pointer, nDigitalMode_pointer, fFrameFrequency_pointer, fScanFrequency_pointer, nStreamData_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, uCollFlags_pointer, nFlags_pointer);
+        else
+            fail = calllib('oapi', 'OdauGetStatus', nOdauId, nChannels_pointer, nGain_pointer, nDigitalMode_pointer, fFrameFrequency_pointer, fScanFrequency_pointer, nStreamData_pointer, fCollectionTime_pointer, fPreTriggerTime_pointer, uCollFlags_pointer, nFlags_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pnChannels = get(nChannels_pointer, 'Value');
     pnGain = get(nGain_pointer, 'Value');

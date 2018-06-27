@@ -11,12 +11,15 @@ function [ fail, szErrorString, nBufferSize ] = OptotrakGetErrorString( szErrorS
     % Prepare pointer inputs
     szErrorString_pointer = libpointer('cstring', szErrorString);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetErrorString', szErrorString_pointer, nBufferSize);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetErrorString', szErrorString_pointer, nBufferSize);
     else
-        fail = calllib('oapi', 'OptotrakGetErrorString', szErrorString_pointer, nBufferSize);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetErrorString', szErrorString_pointer, nBufferSize);
+        else
+            fail = calllib('oapi', 'OptotrakGetErrorString', szErrorString_pointer, nBufferSize);
+        end
     end
-
     % Get updated data with the pointer
     szErrorString = get(szErrorString_pointer, 'Value');
 

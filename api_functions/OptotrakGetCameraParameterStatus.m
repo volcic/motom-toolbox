@@ -18,10 +18,14 @@ function [ fail, pnCurrentMarkerType, pnCurrentMarkerWaveLength, pnCurrentModelT
     nCurrentModelType_pointer = libpointer('int32Ptr', pnCurrentModelType);
     szStatus_pointer = libpointer('cstring', szStatus);
     
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetCameraParameterStatus', nCurrentMarkerType_pointer, nCurrentMarkerWaveLength_pointer, nCurrentModelType_pointer, szStatus_pointer, nStatusLength);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetCameraParameterStatus', nCurrentMarkerType_pointer, nCurrentMarkerWaveLength_pointer, nCurrentModelType_pointer, szStatus_pointer, nStatusLength);
     else
-        fail = calllib('oapi', 'OptotrakGetCameraParameterStatus', nCurrentMarkerType_pointer, nCurrentMarkerWaveLength_pointer, nCurrentModelType_pointer, szStatus_pointer, nStatusLength);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetCameraParameterStatus', nCurrentMarkerType_pointer, nCurrentMarkerWaveLength_pointer, nCurrentModelType_pointer, szStatus_pointer, nStatusLength);
+        else
+            fail = calllib('oapi', 'OptotrakGetCameraParameterStatus', nCurrentMarkerType_pointer, nCurrentMarkerWaveLength_pointer, nCurrentModelType_pointer, szStatus_pointer, nStatusLength);
+        end
     end
 
     % Get updated data with the pointer

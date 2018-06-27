@@ -24,10 +24,14 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetLatest
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest_pointer = libpointer('TransformationStructPtr', pDataDest); % this probably won't work, because Matlab hates nested structures.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataGetLatestTransforms', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataGetLatestTransforms', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataGetLatestTransforms', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataGetLatestTransforms', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataGetLatestTransforms', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
 
     % Get updated data with the pointer

@@ -15,10 +15,14 @@ function [ fail, nDeviceHandleId, grdtProperties, nProperties ] = OptotrakDevice
     %grdtProperties_structure = libstruct('DeviceHandleProperty', grdtProperties);
     %grdtProperties_pointer = libpointer('voidPtr', grdtProperties_structure);
     
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakDeviceHandleGetProperties', nDeviceHandleId, grdtProperties_pointer, nProperties);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakDeviceHandleGetProperties', nDeviceHandleId, grdtProperties_pointer, nProperties);
     else
-        fail = calllib('oapi', 'OptotrakDeviceHandleGetProperties', nDeviceHandleId, grdtProperties_pointer, nProperties);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakDeviceHandleGetProperties', nDeviceHandleId, grdtProperties_pointer, nProperties);
+        else
+            fail = calllib('oapi', 'OptotrakDeviceHandleGetProperties', nDeviceHandleId, grdtProperties_pointer, nProperties);
+        end
     end
 
     % Get updated data with the pointer

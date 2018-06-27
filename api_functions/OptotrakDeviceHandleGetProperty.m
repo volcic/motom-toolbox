@@ -68,12 +68,16 @@ function [ fail, nDeviceHandlerId, pdtProperty, uPropertyId ] = OptotrakDeviceHa
 
     % Prepare pointer inputs
     dtProperty_pointer = libstruct('DeviceHandleProperty', pdtProperty);
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakDeviceHandleGetProperty', nDeviceHandlerId, dtProperty_pointer, uPropertyId);
-    else
-        fail = calllib('oapi', 'OptotrakDeviceHandleGetProperty', nDeviceHandlerId, dtProperty_pointer, uPropertyId);
-    end
 
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakDeviceHandleGetProperty', nDeviceHandlerId, dtProperty_pointer, uPropertyId);
+    else
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakDeviceHandleGetProperty', nDeviceHandlerId, dtProperty_pointer, uPropertyId);
+        else
+            fail = calllib('oapi', 'OptotrakDeviceHandleGetProperty', nDeviceHandlerId, dtProperty_pointer, uPropertyId);
+        end
+    end
     % Get updated data with the pointer
     pdtProperty = get(dtProperty_pointer);
 

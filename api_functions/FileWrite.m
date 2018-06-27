@@ -13,10 +13,14 @@ function [ fail, uFileId, lnStartFrame, uNumberofFrames, pDataSrc ] = FileWrite(
     % Prepare pointer inputs
     DataSrc_pointer = libpointer('voidPtr', pDataSrc);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataSrc_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'FileWrite', uFileId, lnStartFrame, uNumberofFrames, DataSrc_pointer);
     else
-        fail = calllib('oapi', 'FileRead', uFileId, lnStartFrame, uNumberofFrames, DataSrc_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileWrite', uFileId, lnStartFrame, uNumberofFrames, DataSrc_pointer);
+        else
+            fail = calllib('oapi', 'FileWrite', uFileId, lnStartFrame, uNumberofFrames, DataSrc_pointer);
+        end
     end
 
     % Get updated data with the pointer

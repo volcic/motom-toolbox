@@ -9,12 +9,15 @@ function [ fail, pszCollectFile ] = OptotrakSaveCollectionToFile( pszCollectFile
     % Prepare pointer inputs
     szCollectFile_pointer = libpointer('cstring', pszCollectFile);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSaveCollectionToFile', szCollectFile_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSaveCollectionToFile', szCollectFile_pointer);
     else
-        fail = calllib('oapi', 'OptotrakSaveCollectionToFile', szCollectFile_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSaveCollectionToFile', szCollectFile_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakSaveCollectionToFile', szCollectFile_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pszCollectFile = get(szCollectFile_pointer, 'Value');
 

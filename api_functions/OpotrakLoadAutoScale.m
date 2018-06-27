@@ -8,11 +8,15 @@ function [ fail, pszAutoScaleFile ] = OptotrakLoadAutoScale( pszAutoScaleFile )
 
     % Prepare pointer inputs
     szAutoScaleFile_pointer = libpointer('cstring', pszAutoScaleFile);
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakLoadAutoScale', szAutoScaleFile_pointer);
+    
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakLoadAutoScale', szAutoScaleFile_pointer);
     else
-        fail = calllib('oapi', 'OptotrakLoadAutoScale', szAutoScaleFile_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakLoadAutoScale', szAutoScaleFile_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakLoadAutoScale', szAutoScaleFile_pointer);
+        end
     end
 
     % Get updated data with the pointer

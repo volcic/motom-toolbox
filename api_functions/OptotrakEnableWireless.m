@@ -7,11 +7,13 @@ function [ fail, nDevice, bEnable ] = OptotrakEnableWireless( nDevice, bEnable )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakEnableWireless', nDevice, bEnable);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakEnableWireless', nDevice, bEnable);
     else
-        fail = calllib('oapi', 'OptotrakEnableWireless', nDevice, bEnable);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakEnableWireless', nDevice, bEnable);
+        else
+            fail = calllib('oapi', 'OptotrakEnableWireless', nDevice, bEnable);
+        end
     end
-
 end
-

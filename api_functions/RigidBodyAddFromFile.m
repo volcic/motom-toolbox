@@ -28,13 +28,15 @@ function [ fail, nRigidBodyId, nStartMarker, pszRigFile, nFlags ] = RigidBodyAdd
     % Prepare pointer inputs
     szRigFile_pointer = libpointer('cstring', pszRigFile);
     
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'RigidBodyAddFromFile', nRigidBodyId, nStartMarker, szRigFile_pointer, nFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'RigidBodyAddFromFile', nRigidBodyId, nStartMarker, szRigFile_pointer, nFlags);
     else
-        fail = calllib('oapi', 'RigidBodyAddFromFile', nRigidBodyId, nStartMarker, szRigFile_pointer, nFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'RigidBodyAddFromFile', nRigidBodyId, nStartMarker, szRigFile_pointer, nFlags);
+        else
+            fail = calllib('oapi', 'RigidBodyAddFromFile', nRigidBodyId, nStartMarker, szRigFile_pointer, nFlags);
+        end
     end
-
     % Get updated data with the pointer
     pszRigFile = get(szRigFile_pointer, 'Value');
 

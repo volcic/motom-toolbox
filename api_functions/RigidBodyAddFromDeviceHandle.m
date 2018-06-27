@@ -23,11 +23,14 @@ function [ fail, nDeviceHandle, nFlags ] = RigidBodyAddFromDeviceHandle( nDevice
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'RigidBodyAddFromDeviceHandle', nDeviceHandle, nFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'RigidBodyAddFromDeviceHandle', nDeviceHandle, nFlags);
     else
-        fail = calllib('oapi', 'RigidBodyAddFromDeviceHandle', nDeviceHandle, nFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'RigidBodyAddFromDeviceHandle', nDeviceHandle, nFlags);
+        else
+            fail = calllib('oapi', 'RigidBodyAddFromDeviceHandle', nDeviceHandle, nFlags);
+        end
     end
-
 end
 

@@ -17,11 +17,14 @@ function [ fail, uFlags ] = OptotrakSetProcessingFlags( uFlags )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSetProcessingFlags', uFlags);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSetProcessingFlags', uFlags);
     else
-        fail = calllib('oapi64', 'OptotrakSetProcessingFlags', uFlags);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSetProcessingFlags', uFlags);
+        else
+            fail = calllib('oapi', 'OptotrakSetProcessingFlags', uFlags);
+        end
     end
-
 end
 

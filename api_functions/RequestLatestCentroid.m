@@ -7,11 +7,14 @@ function [ fail ] = RequestLatestCentroid(  )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'RequestLatestCentroid');
+    if(isunix)
+        fail = calllib('liboapi', 'RequestLatestCentroid');
     else
-        fail = calllib('oapi', 'RequestLatestCentroid');
+        if(new_or_old)
+            fail = calllib('oapi64', 'RequestLatestCentroid');
+        else
+            fail = calllib('oapi', 'RequestLatestCentroid');
+        end
     end
-
 end
 

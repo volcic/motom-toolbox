@@ -23,12 +23,15 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataGetNext3D
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest_pointer = libpointer('s_position3dPtr', pDataDest);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataGetNext3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataGetNext3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataGetNext3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataGetNext3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataGetNext3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
-
     % Get updated data with the pointer
     puFrameNumber = get(uFrameNumber_pointer, 'Value');
     puElements = get(uElements_pointer, 'Value');

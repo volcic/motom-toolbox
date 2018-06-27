@@ -16,11 +16,14 @@ function [ fail, nOdauId, uTimer, uMode, ulVal ] = OdauSetTimer( nOdauId, uTimer
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OdauSetTimer', nOdauId, uTimer, uMode, ulVal);
+    if(isunix)
+        fail = calllib('liboapi', 'OdauSetTimer', nOdauId, uTimer, uMode, ulVal);
     else
-        fail = calllib('oapi', 'OdauSetTimer', nOdauId, uTimer, uMode, ulVal);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OdauSetTimer', nOdauId, uTimer, uMode, ulVal);
+        else
+            fail = calllib('oapi', 'OdauSetTimer', nOdauId, uTimer, uMode, ulVal);
+        end
     end
-
 end
 

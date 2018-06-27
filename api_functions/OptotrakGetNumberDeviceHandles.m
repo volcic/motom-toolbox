@@ -10,10 +10,14 @@ function [ fail, pnDeviceHandles ] = OptotrakGetNumberDeviceHandles( pnDeviceHan
     % Prepare pointer inputs
     nDeviceHandles_pointer = libpointer('int32Ptr', pnDeviceHandles);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetNumberDeviceHandles', nDeviceHandles_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetNumberDeviceHandles', nDeviceHandles_pointer);
     else
-        fail = calllib('oapi', 'OptotrakGetNumberDeviceHandles', nDeviceHandles_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetNumberDeviceHandles', nDeviceHandles_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakGetNumberDeviceHandles', nDeviceHandles_pointer);
+        end
     end
 
     % Get updated data with the pointer

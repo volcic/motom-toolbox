@@ -5,11 +5,14 @@ function [ fail ] = OptotrakSaveAutoScale( )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakSaveAutoScale');
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakSaveAutoScale');
     else
-        fail = calllib('oapi', 'OptotrakSaveAutoScale');
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakSaveAutoScale');
+        else
+            fail = calllib('oapi', 'OptotrakSaveAutoScale');
+        end
     end
-
 end
 

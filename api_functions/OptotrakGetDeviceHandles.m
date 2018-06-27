@@ -20,10 +20,14 @@ function [ fail, grdtDeviceHandles, nDeviceHandles, puFlags ] = OptotrakGetDevic
     rdtDeviceHandles_pointer = libpointer('DeviceHandlePtr', grdtDeviceHandles);
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'OptotrakGetDeviceHandles', rdtDeviceHandles_pointer, nDeviceHandles, uFlags_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'OptotrakGetDeviceHandles', rdtDeviceHandles_pointer, nDeviceHandles, uFlags_pointer);
     else
-        fail = calllib('oapi', 'OptotrakGetDeviceHandles', rdtDeviceHandles_pointer, nDeviceHandles, uFlags_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'OptotrakGetDeviceHandles', rdtDeviceHandles_pointer, nDeviceHandles, uFlags_pointer);
+        else
+            fail = calllib('oapi', 'OptotrakGetDeviceHandles', rdtDeviceHandles_pointer, nDeviceHandles, uFlags_pointer);
+        end
     end
 
     % Get updated data with the pointer

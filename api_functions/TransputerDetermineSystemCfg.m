@@ -9,10 +9,14 @@ function [fail, pszInputLogFile] = TransputerDetermineSystemCfg(pszInputLogFile)
     % Prepare pointer inputs
     szInputLogFile_pointer = libpointer('cstring', pszInputLogFile);
 
-    if(new_or_old())
-        fail = calllib('oapi64', 'TransputerDetermineSystemCfg', szInputLogFile_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'TransputerDetermineSystemCfg', szInputLogFile_pointer);
     else
-        fail = calllib('oapi', 'TransputerDetermineSystemCfg', szInputLogFile_pointer);
+        if(new_or_old())
+            fail = calllib('oapi64', 'TransputerDetermineSystemCfg', szInputLogFile_pointer);
+        else
+            fail = calllib('oapi', 'TransputerDetermineSystemCfg', szInputLogFile_pointer);
+        end
     end
 
     % Get updated data with the pointer

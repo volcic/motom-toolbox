@@ -8,12 +8,13 @@ function [ fail ] = optotrak_startup()
         %if we got here, then most probably the object files are missing.
         error('The Optotrak API function prototype file is missing or not in the path. Please run RUNME.m first to generate the necessary files')
     end
-    if(~(libisloaded('oapi64') || libisloaded('oapi')))
+
+    if(~(libisloaded('liboapi') || libisloaded('oapi64') || libisloaded('oapi')))
         %if the library is not loaded, load it.
         if(isunix)
-            if(~libisloaded('oapi64'))
+            if(~libisloaded('liboapi'))
                 %load the library
-                loadlibrary('oapi64.lib', @api_prototypes)
+                loadlibrary('liboapi.so', @api_prototypes)
             end
         else
             if(new_or_old)

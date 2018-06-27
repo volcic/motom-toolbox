@@ -13,10 +13,14 @@ function [ fail, puElements, pDataDest6D, pDataDest3D ] = OptotrakConvertTransfo
     DataDest6D_pointer = libstruct('OptotrakRigidStruct', pDataDest6D);
     DataDest3D_pointer = libstruct('Position3D', pDataDest3D);
 
-    if(new_or_old)
-        fail = callib('oapi64', 'OptotrakConvertTransforms', uElements_pointer, DataDest6D_pointer, DataDest3D_pointer);
+    if(isunix)
+        fail = callib('liboapi', 'OptotrakConvertTransforms', uElements_pointer, DataDest6D_pointer, DataDest3D_pointer);
     else
-        fail = callib('oapi', 'OptotrakConvertTransforms', uElements_pointer, DataDest6D_pointer, DataDest3D_pointer);
+        if(new_or_old)
+            fail = callib('oapi64', 'OptotrakConvertTransforms', uElements_pointer, DataDest6D_pointer, DataDest3D_pointer);
+        else
+            fail = callib('oapi', 'OptotrakConvertTransforms', uElements_pointer, DataDest6D_pointer, DataDest3D_pointer);
+        end
     end
 
     % Get updated data with the pointer

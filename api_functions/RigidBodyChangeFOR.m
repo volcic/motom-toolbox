@@ -9,11 +9,13 @@ function [ fail, nRigidBodyId, nRotationMethod ] = RigidBodyChangeFOR( nRigidBod
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'RigidBodyChangeFOR', nRigidBodyId, nRotationMethod);
+    if(isunix)
+        fail = calllib('liboapi', 'RigidBodyChangeFOR', nRigidBodyId, nRotationMethod);
     else
-        fail = calllib('oapi', 'RigidBodyChangeFOR', nRigidBodyId, nRotationMetho);
+        if(new_or_old)
+            fail = calllib('oapi64', 'RigidBodyChangeFOR', nRigidBodyId, nRotationMethod);
+        else
+            fail = calllib('oapi', 'RigidBodyChangeFOR', nRigidBodyId, nRotationMethod);
+        end
     end
-
 end
-

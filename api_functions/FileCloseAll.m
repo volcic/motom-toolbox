@@ -7,12 +7,14 @@ function [ fail, uFileId ] = FileCloseAll( uFileId )
 %   fail is the return value of the function. The API docs don't go into details on what this does.
 %   So, 0 for all good, and pretty much anything else for fail.
 
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'FileCloseAll', uFileId);
+    if(isunix)
+        fail = calllib('liboapi', 'FileCloseAll', uFileId);
     else
-        fail = calllib('oapi', 'FileCloseAll', uFileId);
+        if(new_or_old)
+            fail = calllib('oapi64', 'FileCloseAll', uFileId);
+        else
+            fail = calllib('oapi', 'FileCloseAll', uFileId);
+        end
     end
-
 end
 

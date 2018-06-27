@@ -7,9 +7,9 @@ if(exist('api_prototypes.m', 'file') ~= 2)
 end
 
 if(isunix)
-    if(~libisloaded('oapi64'))
+    if(~libisloaded('liboapi'))
         %load the library
-        loadlibrary('oapi64.lib', @api_prototypes)
+        loadlibrary('liboapi.so', @api_prototypes)
     end
 else
     if(new_or_old)

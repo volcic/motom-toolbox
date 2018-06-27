@@ -27,10 +27,14 @@ function [ fail, dtRegisterParms, pfRMSError ] = nOptotrakRegisterSystem( dtRegi
     RegisterParms_struct = libstruct('RegisterParmsStruct', dtRegisterParms);
     fRMSError_pointer = libpointer('singlePtr', pfRMSError);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'nOptotrakRegisterSystem', RegisterParms_struct, fRMSError_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'nOptotrakRegisterSystem', RegisterParms_struct, fRMSError_pointer);
     else
-        fail = calllib('oapi', 'nOptotrakRegisterSystem', RegisterParms_struct, fRMSError_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'nOptotrakRegisterSystem', RegisterParms_struct, fRMSError_pointer);
+        else
+            fail = calllib('oapi', 'nOptotrakRegisterSystem', RegisterParms_struct, fRMSError_pointer);
+        end
     end
 
     % Get updated data with the pointer

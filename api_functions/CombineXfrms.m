@@ -11,11 +11,16 @@ function [fail, pdtXfrm1, pdtXfrm2, pdtNewXfrm] = CombineXfrms(pdtXfrm1, pdtXfrm
     dtXfrm1_pointer = libstruct('transformation', pdtXfrm1);
     dtXfrm2_pointer = libstruct('transformation', pdtXfrm2);
     dtNewXfrm_pointer = libstruct('transformation', pdtNewXfrm);
-
-    if(new_or_old())
-        calllib('oapi64', 'CombineXfrms', dtXfrm1_pointer, dtXfrm2_pointer, dtNewXfrm_pointer);
+ 
+    if(isunix)
+        fail = calllib('liboapi', 'CombineXfrms', dtXfrm1_pointer, dtXfrm2_pointer, dtNewXfrm_pointer);
     else
-        calllib('oapi', 'CombineXfrms', dtXfrm1_pointer, dtXfrm2_pointer, dtNewXfrm_pointer);
+    
+        if(new_or_old())
+            calllib('oapi64', 'CombineXfrms', dtXfrm1_pointer, dtXfrm2_pointer, dtNewXfrm_pointer);
+        else
+            calllib('oapi', 'CombineXfrms', dtXfrm1_pointer, dtXfrm2_pointer, dtNewXfrm_pointer);
+        end
     end
 
     % Get updated data with the pointer

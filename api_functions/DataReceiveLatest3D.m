@@ -23,11 +23,14 @@ function [ fail, puFrameNumber, puElements, puFlags, pDataDest ] = DataReceiveLa
     uElements_pointer = libpointer('uint32Ptr', puElements);
     uFlags_pointer = libpointer('uint32Ptr', puFlags);
     DataDest_pointer = libpointer('s_position3dPtr', pDataDest);
-
-    if(new_or_old)
-        fail = calllib('oapi64', 'DataReceiveLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'DataReceiveLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
     else
-        fail = calllib('oapi', 'DataReceiveLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'DataReceiveLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        else
+            fail = calllib('oapi', 'DataReceiveLatest3D', uFrameNumber_pointer, uElements_pointer, uFlags_pointer, DataDest_pointer);
+        end
     end
 
     % Get updated data with the pointer

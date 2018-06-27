@@ -12,12 +12,15 @@ function [ fail, pszNifFile ] = TransputerLoadSystem( pszNifFile )
     % Prepare pointer inputs
     szNifFile_pointer = libpointer('cstring', pszNifFile);
 
-    if(new_or_old)
-        fail = calllib('oapi64', 'TransputerLoadSystem', szNifFile_pointer);
+    if(isunix)
+        fail = calllib('liboapi', 'TransputerLoadSystem', szNifFile_pointer);
     else
-        fail = calllib('oapi', 'TransputerLoadSystem', szNifFile_pointer);
+        if(new_or_old)
+            fail = calllib('oapi64', 'TransputerLoadSystem', szNifFile_pointer);
+        else
+            fail = calllib('oapi', 'TransputerLoadSystem', szNifFile_pointer);
+        end
     end
-
     % Get updated data with the pointer
     pszNifFile = get(szNifFile_pointer, 'Value');
 

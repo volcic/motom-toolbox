@@ -13,11 +13,14 @@ function [ fail ] = TransputerShutdownSystem()
 %system.
 
 %There are no arguments for this.
-    if(new_or_old)
-        fail = calllib('oapi64', 'TransputerShutdownSystem');
+    if(isunix)
+        fail = calllib('liboapi', 'TransputerShutdownSystem');
     else
-        fail = calllib('oapi', 'TransputerShutdownSystem');
+        if(new_or_old)
+            fail = calllib('oapi64', 'TransputerShutdownSystem');
+        else
+            fail = calllib('oapi', 'TransputerShutdownSystem');
+        end
     end
-
 end
 

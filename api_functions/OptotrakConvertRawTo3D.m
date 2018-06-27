@@ -14,10 +14,14 @@ function [ fail, puElements, pSensorReadings, pdt3DPositions ] = OptotrakConvert
     SensorReadings_pointer = libpointer('voidPtr', pSensorReadings);
     dt3DPositions_pointer = libstruct('Position3D', pdt3DPositions);
 
-    if(new_or_old)
-        fail = callib('oapi64', 'OptotrakConvertRawTo3D', uElements_pointer, SensorReadings_pointer, dt3DPositions_pointer);
+    if(isunix)
+        fail = callib('liboapi', 'OptotrakConvertRawTo3D', uElements_pointer, SensorReadings_pointer, dt3DPositions_pointer);
     else
-        fail = callib('oapi', 'OptotrakConvertRawTo3D', uElements_pointer, SensorReadings_pointer, dt3DPositions_pointer);
+        if(new_or_old)
+            fail = callib('oapi64', 'OptotrakConvertRawTo3D', uElements_pointer, SensorReadings_pointer, dt3DPositions_pointer);
+        else
+            fail = callib('oapi', 'OptotrakConvertRawTo3D', uElements_pointer, SensorReadings_pointer, dt3DPositions_pointer);
+        end
     end
 
     % Get updated data with the pointer
