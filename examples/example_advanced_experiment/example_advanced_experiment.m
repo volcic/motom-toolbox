@@ -94,7 +94,7 @@ for(i = 1:number_of_trials)
         %Within this loop, you can handle real-time data. 
         tic; %measure time as well.
         
-        %If this loop executes slower slower than the frame rate, use this:
+        %If this loop executes slower than the frame rate, use this:
         [fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer, :), ~ ] = DataGetLatest3D_as_array;
         %If this loop executes faster than the frame rate, use this:
         %[fail, real_time_data.(sprintf('trial_%d', i)).framecounter(trial_frame_pointer), real_time_data.(sprintf('trial_%d', i)).positions(trial_frame_pointer, :), ~ ] = DataGetNext3D_as_array;

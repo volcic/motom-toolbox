@@ -39,7 +39,13 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
 1. Copy 'oapi64.dll', 'oapi64.lib', 'oapi.dll' and 'oapi.lib' to the 'bin' directory.
 2. Copy 'ndhost.h', 'ndoapi.h', 'ndopto.h', and 'ndtypes.h' to the 'source' directory.
 3. Edit the freshly copied header files so the compiler would use the local copies:  
-`#include <header_file.h>` -> `#include "header_file.h"` where you see the includes for the header files listed above
+The simplest way to do this is to use 'Find and Replace' in a text editor, to change:
+Replace `#include <ndtypes.h>` with -> `#include "ndtypes.h"`  
+
+Replace `#include <ndpack.h>` with -> `#include "ndpack.h"`  
+
+Replace `#include <ndhost.h>` with -> `#include "ndhost.h"`  
+
 4. Add this to the top of 'ndopto.h':
 
 ```
@@ -47,6 +53,7 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
     #include "ndpack.h"
     #include "ndhost.h"
 ```
+
 
 5. Execute 'RUNME.m' in Matlab, and follow the instructions.  
 

@@ -6,9 +6,9 @@
 %storing data this way:
 % 1., Raw data requires the least amount of processing to save
 % 2., The extracted positions can change with the camera file you are
-%     upoloading while converting the raw data
+%     uploading while converting the raw data
 % 3., You can process everything later, including your rigid body
-%     transforms or defintions
+%     transforms or definitions
 
 clear all;
 clc;

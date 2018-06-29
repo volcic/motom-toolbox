@@ -5,6 +5,10 @@ function [ text_flags ] = optotrak_device_flag_decoder( flag_number_as_decimal )
 %   -> flag_number_as_decimal is a number which will get decomposed.
 %   text_flags is a cell array, with the text stuff added.
     
+    if(verLessThan('matlab', '8.1'))
+        warning('You seem to use a Matlab version older than R2013a. Flag decoding will not work properly.')
+    end
+    
     text_flags{1, 1} = 'Detected flags are:';
     
     %this function is literally just a ton of IF statements.
