@@ -13,6 +13,7 @@
 *.mex
 *.mexw64
 *.mexw32
+*.mexa64
 *.manifest
 *.exp
 *.obj

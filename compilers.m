@@ -83,7 +83,7 @@ if(strcmp(compiler_info.Name, 'g++') && ~compiler_found)
     compiler_found = 1;
     %We need to set which compiler we are using.
     warning('You are using Linux. Make sure you have an OLD gcc installed, and edit this section of compilers.m accordingly.')
-    compiler_flags = 'GCC=/usr/bin/gcc-6';
+    compiler_flags = "GCC='/usr/bin/gcc-6'";
 end
 
 %% Make the verdict

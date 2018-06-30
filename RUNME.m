@@ -117,7 +117,8 @@ for(i = 1:length(files_to_compile))
     % everything is set up for the platform it will run on.
     if(isunix)
         %Linux needs a different treatment.
-        compiler_string = sprintf('mex -v %s %s, -l ../bin/liboapi.so', compiler_flags, file_string)
+        compiler_string = sprintf('mex -v %s CC_3RD_PARTY_LIBS=''../bin/liboapi.so'' %s', compiler_flags, file_string)
+        eval(compiler_string);
 
     else 
         %compiler_flags is set in compilers.m, and we always append to the default one, instead of replacing it.
