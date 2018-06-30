@@ -83,7 +83,9 @@ if(strcmp(compiler_info.Name, 'g++') && ~compiler_found)
     compiler_found = 1;
     %We need to set which compiler we are using.
     warning('You are using Linux. Make sure you have an OLD gcc installed, and edit this section of compilers.m accordingly.')
-    compiler_flags = "GCC='/usr/bin/gcc-6'";
+    %This assumes you are using Ubuntu 18.04, with gcc6 installed. Change
+    %this line accrodingly for your distro. This is going to be a pain.
+    compiler_flags = "GCC='/usr/bin/gcc-6' CPPLIBS='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' LINKLIBS='-L""/usr/local/MATLAB/R2018a/bin/glnxa64"" -lmx -lmex -lmat -lm -loapi'";
 end
 
 %% Make the verdict
