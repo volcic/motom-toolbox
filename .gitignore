@@ -27,5 +27,8 @@ generated_binaries/api_prototypes.m
 octave-workspace
 *.octave
 
+# Visual Studio Code stuff
+.vscode/
+
 # The file that tells the system which library to use
 use_64_bits
