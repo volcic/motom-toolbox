@@ -39,7 +39,8 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
 1. Copy 'oapi64.dll', 'oapi64.lib', 'oapi.dll' and 'oapi.lib' to the 'bin' directory.
 2. Copy 'ndhost.h', 'ndoapi.h', 'ndopto.h', and 'ndtypes.h' to the 'source' directory.
 3. Edit the freshly copied header files so the compiler would use the local copies:  
-The simplest way to do this is to use 'Find and Replace' in a text editor, to change:
+The simplest way to do this is to use 'Find and Replace' in a text editor, to change:  
+
 Replace `#include <ndtypes.h>` with -> `#include "ndtypes.h"`  
 
 Replace `#include <ndpack.h>` with -> `#include "ndpack.h"`  
