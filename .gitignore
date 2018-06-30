@@ -12,6 +12,7 @@
 # Compiled matlab binaries and Matlab-generated stuff
 *.mex
 *.mexw64
+*.mexw32
 *.manifest
 *.exp
 *.obj
