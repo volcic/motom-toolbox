@@ -41,11 +41,11 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
 3. Edit the freshly copied header files so the compiler would use the local copies:  
 The simplest way to do this is to use 'Find and Replace' in a text editor, to change:  
 
-Replace `#include <ndtypes.h>` with -> `#include "ndtypes.h"`  
+Replace every `#include <ndtypes.h>` with -> `#include "ndtypes.h"`  
 
-Replace `#include <ndpack.h>` with -> `#include "ndpack.h"`  
+Replace every `#include <ndpack.h>` with -> `#include "ndpack.h"`  
 
-Replace `#include <ndhost.h>` with -> `#include "ndhost.h"`  
+Replace every `#include <ndhost.h>` with -> `#include "ndhost.h"`  
 
 4. Add this to the top of 'ndopto.h':
 
