@@ -75,7 +75,7 @@ cd generated_binaries;
 % This step shouldn't fail. If it does, you'll need to look at the
 % compiler's output of the file concerned.
 if(isunix)
-    [~, warnings] = loadlibrary('../bin/liboapi.so', '../source/ndopto.h', 'addheader', '../source/ndtypes.h', 'addheader', '../source/ndhost.h', 'addheader', '../source/ndpack.h', 'mfilename','api_prototypes');
+    [~, warnings] = loadlibrary('/usr/lib/liboapi.so', '../source/ndopto.h', 'addheader', '../source/ndtypes.h', 'addheader', '../source/ndhost.h', 'addheader', '../source/ndpack.h', 'mfilename','api_prototypes');
 else
     %Windows can also have a 32-bit version, which we have to worry about
     %If you want to see the compiler warning output, remove the semicolon
