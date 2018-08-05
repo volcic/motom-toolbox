@@ -61,3 +61,12 @@ Replace every `#include <ndhost.h>` with -> `#include "ndhost.h"`
 During compilation and library loading, there will be some warnings about some variable types, these are safe to ignore.
 Once the script is finished, you will have all the functions described in the API manual available in Matlab.
 There are commonly used scripts in the 'convenience' directory, and some examples are included too.
+
+# Like it? Use it? Cite it!
+There is an open access paper available about the toolbox. If you are using this software in your research project, please cite it as follows:  
+***
+
+Derzsi, Z., & Volcic, R. (2018). MOTOM toolbox: MOtion Tracking via Optotrak and Matlab. _Journal of neuroscience methods._  
+***
+
+You should find this paper with almost every search engine.
