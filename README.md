@@ -9,13 +9,14 @@ Works on Windows (and Linux, but not thoroughly tested), now you can configure y
 **Requirements:**  
 
 This toolbox was developed using the following configuration. The more you deviate from it, and the more exotic hardware you want to use, the more likely you will run into problems.
-* Successfully installed drivers and the Optotrak API purchased from NDI
+* Successfully installed the Optotrak drivers and software
+* Obtained a recent (3.14 or newer) version of the Optotrak API from NDI
 * Matlab R2017a
 * A supported compiler for Matlab:
     * Windows: Visual Studio Community (the free one) 2015, with C++ installed
     * Ubuntu 18.04 users: sudo apt-get install gcc-6
     
-64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too. I tested it on Windows 7 and the 32-bit version of Matlab R2015b.
+64-bit systems running Windows are recommended, but most functions should work with 32-bit systems too. I tested it on Windows 7 and the 32-bit version of Matlab R2015b, and Ubuntu MATE 18.04 LTS using Matlab R2018a.
 
 Get a release version of the toolbox
 ```
