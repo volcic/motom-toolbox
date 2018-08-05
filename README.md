@@ -70,4 +70,4 @@ There is an open access paper available about the toolbox. If you are using this
 Derzsi, Z., & Volcic, R. (2018). MOTOM toolbox: MOtion Tracking via Optotrak and Matlab. _Journal of neuroscience methods._  
 ***
 
-You should find this paper with almost every search engine.
+You should find this paper with almost every search engine. Thank you!
