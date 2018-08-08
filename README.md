@@ -67,7 +67,9 @@ There are commonly used scripts in the 'convenience' directory, and some example
 There is an open access paper available about the toolbox. If you are using this software in your research project, please cite it as follows:  
 ***
 
-Derzsi, Z., & Volcic, R. (2018). MOTOM toolbox: MOtion Tracking via Optotrak and Matlab. _Journal of neuroscience methods._  
-***
+Derzsi, Z., & Volcic, R. (2018). MOTOM toolbox: MOtion Tracking via Optotrak and Matlab. _Journal of neuroscience methods, 308,_ 129-134.  
 
-You should find this paper with almost every search engine. Thank you!
+DOI: [https://doi.org/10.1016/j.jneumeth.2018.07.007](https://doi.org/10.1016/j.jneumeth.2018.07.007)  
+
+***
+Thank you!
