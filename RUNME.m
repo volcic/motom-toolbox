@@ -145,7 +145,14 @@ for(i = 1:length(files_to_compile))
             compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -l../bin/oapi64.lib', compiler_flags, file_string);
             eval(compiler_string);
         else
-           compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -l../bin/oapi.lib', compiler_flags, file_string);
+            if(verLessThan('Matlab', '8.6'))
+                %For 32-bit Matlab R2015a or earlier, the compiler string is totally different. I tested this with R2015a and VS2013.
+                compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -L..\\bin -loapi %s', compiler_flags, ['-I"', toolbox_path, '\source"'], file_string  );
+            else
+                % For R2015b, and I have tested this with VS2015.
+                compiler_string = sprintf('mex -v COMPFLAGS="$COMPFLAGS %s" %s -l../bin/oapi.lib', compiler_flags, file_string);
+            end
+            % compile!
             eval(compiler_string);
         end
     end
