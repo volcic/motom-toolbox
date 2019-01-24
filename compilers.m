@@ -104,13 +104,14 @@ end
 %This is the standard Linux compiler. However, we need the old version.
 %Unfortunately, the version string stays empty (Ubuntu 18.04, Matlab R2018a)
 if(strcmp(compiler_info.Name, 'g++') && ~compiler_found)
-    %if we got here, we found our compiler.
+    %if we got here, we found our compiler, but it's too generic to be the correct one
     compiler_found = 1;
     %We need to set which compiler we are using.
-    warning('You are using Linux. Make sure you have an OLD gcc installed, and edit this section of compilers.m accordingly.')
-    %This assumes you are using Ubuntu 18.04, with gcc6 installed. Change
-    %this line accrodingly for your distro. This is going to be a pain.
-    compiler_flags = "GCC='/usr/bin/gcc-6' CPPLIBS='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' LINKLIBS='-L""/usr/local/MATLAB/R2018a/bin/glnxa64"" -lmx -lmex -lmat -lm -loapi'";
+    error('You are using Linux. Make sure you have an OLD gcc installed, and edit this section of compilers.m accordingly. Just comment out this line when finished. Sorry for the pain!)
+    %This assumes you are using Ubuntu 18.04, with gcc6 installed. Change this line accrodingly for your distro. This is going to be a pain.
+    %compiler_flags = "GCC='/usr/bin/gcc-6' CPPLIBS='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' LINKLIBS='-L""/usr/local/MATLAB/R2018a/bin/glnxa64"" -lmx -lmex -lmat -lm -loapi'";
+    % For older systems, it should be something like:
+    %compiler_flags = "GCC='/usr/bin/gcc' CPPLIBS='/usr/lib/libstdc++.so' LINKLIBS='-L""/usr/local/MATLAB/<your version here>/bin/"" -lmx -lmex -lmat -lm -loapi'";
 end
 
 %% Make the verdict
