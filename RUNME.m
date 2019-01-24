@@ -45,12 +45,28 @@ fprintf('Detected compiler is: %s\n', compiler_info.Name)
 %% Check if the library and header file are there.
 %You need to get these files from NDI by purchasing the API. Also, you need
 %to modify the header files, consult the documentation for this.
-header_file_list = {'ndhost.h', 'ndopto.h', 'ndpack.h', 'ndtypes.h'};
-binary_file_list = {'oapi64.dll', 'oapi.dll', 'oapi64.lib', 'oapi.lib'};
+
+% Separate the file list for platforms
+if(isunix)
+    header_file_list = {'ndhost.h', 'ndopto.h', 'ndpack.h', 'ndtypes.h'};
+    binary_file_list = {'oapi64.lib', 'oapi.lib'}; % We just need the lib files for Linux.
+    
+else
+    if(strcmp(architecture, 'win32'))
+        % We are building on 32-bits. Don't look for the 64-bit files. This makes sure old APIs are working too.
+        header_file_list = {'ndhost.h', 'ndopto.h', 'ndpack.h', 'ndtypes.h'};
+        binary_file_list = {'oapi.dll', 'oapi.lib'};
+    else
+        % 64-bit system: go full-monty.
+        header_file_list = {'ndhost.h', 'ndopto.h', 'ndpack.h', 'ndtypes.h'};
+        binary_file_list = {'oapi64.dll', 'oapi.dll', 'oapi64.lib', 'oapi.lib'};
+    end
+
+end
 
 fprintf('Checking for NDI''s API files...\n');
-%Again, hard-coded, we need to check for four files.
-for(i = 1:4)
+% Headers.
+for(i = 1:length(header_file_list))
     %This bit checks the header files
     if(exist(sprintf('source/%s', header_file_list{i}), 'file') == 2)
         fprintf('%s found.\n', header_file_list{i})
@@ -58,9 +74,12 @@ for(i = 1:4)
         fprintf('Missing file! -> source/%s\n', header_file_list{i})
         error('There is a missing header file. Make sure you copy them to the source directory!')
     end
-    
-    %...and this bit checks the binaries.
-    if(exist(sprintf('bin/%s', binary_file_list{i}), 'file') == 2)
+end
+
+% Binaries.
+for(i = 1:length(binary_file_list))
+     %...and this bit checks the binaries.
+    if(exist(sprintf('bin/%s', binary_file_list{i}), 'file') == 2 || exist(sprintf('bin\\%s', binary_file_list{i}), 'file') == 3)
         fprintf('%s found.\n', binary_file_list{i})
     else
         fprintf('Missing file! -> bin/%s\n', binary_file_list{i})
