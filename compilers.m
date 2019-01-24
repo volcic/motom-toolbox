@@ -25,6 +25,31 @@ if(strcmp(compiler_info.Name, 'ADD YOUR COMPILER NAME HERE') && ~compiler_found)
     end
 end
 
+%% Microsoft Windows SDK 7.1 (C++)
+% You need the version .NET framework 4.0 and not the later ones to install this compiler
+if(strcmp(compiler_info.Name, 'Microsoft Windows SDK 7.1 (C++)') && ~compiler_found)
+    %Maybe only certain versions of your compiler is usable. Perhaps you will need to do a version check
+    %Note that the version number is also stored as a string.
+    if(strcmp(compiler_info.Version, '7.1'))
+        %Note that we always APPEND to the compiler flags. The default flags are set in the $COMPFLAGS environment
+        %variable and is used by Matlab's mex command.
+        compiler_flags = '-largeArrayDims'; %You may not need to add any extra compiler flags, but if you do, add them here.
+        error('This compiler has been reported not to work with the C-code included in the toolbox. If you feel lucky, you can still use it, by simply commenting out this error message in compilers.m.')
+        compiler_found = 1;
+    end
+end
+
+%% Microsoft Visual Studio 2013
+if(strcmp(compiler_info.Name, 'Microsoft Visual C++ 2013 Professional') && ~compiler_found)
+    %Maybe only certain versions of your compiler is usable. Perhaps you will need to do a version check
+    %Note that the version number is also stored as a string.
+    if(strcmp(compiler_info.Version, '12.0'))
+        %Note that we always APPEND to the compiler flags. The default flags are set in the $COMPFLAGS environment
+        %variable and is used by Matlab's mex command.
+        compiler_flags = '/O2 /Wall'; %You may not need to add any extra compiler flags, but if you do, add them here.
+         compiler_found = 1;
+    end
+end
 
 %% Microsoft Visual C++ 2015 Professional
 %This is the compiler I used during development.

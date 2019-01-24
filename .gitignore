@@ -32,5 +32,9 @@ octave-workspace
 # Visual Studio Code stuff
 .vscode/
 
+# Effintosh-related stuff
+.DS_Store
+.DS_Store/
+
 # The file that tells the system which library to use
 use_64_bits
