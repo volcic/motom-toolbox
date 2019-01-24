@@ -33,7 +33,7 @@ if(strcmp(compiler_info.Name, 'Microsoft Windows SDK 7.1 (C++)') && ~compiler_fo
     if(strcmp(compiler_info.Version, '7.1'))
         %Note that we always APPEND to the compiler flags. The default flags are set in the $COMPFLAGS environment
         %variable and is used by Matlab's mex command.
-        compiler_flags = '-largeArrayDims'; %You may not need to add any extra compiler flags, but if you do, add them here.
+        compiler_flags = ''; %You may not need to add any extra compiler flags, but if you do, add them here.
         error('This compiler has been reported not to work with the C-code included in the toolbox. If you feel lucky, you can still use it, by simply commenting out this error message in compilers.m.')
         compiler_found = 1;
     end
