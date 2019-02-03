@@ -1,13 +1,24 @@
-function [ ] = optotrak_indicate_marker_positions( position3d_as_array )
+function [ ] = optotrak_indicate_marker_positions( position3d_as_array, varargin)
 %OPTOTRAK_INDICATE_MARKER_POSITIONS This function plots the location of the
 %markers it's been fed. If several frames' worth of data is being sent,
 %then it will do a line plot for each marker.
 % IMPORTANT: It will update the first figure.
 % Input arguments are:
 %   -> position3d_as_array is an m-by-(N*3) matrix, for N markers and m frames.
+%   -> [figure title] is an optional argument, a string for the figure title
 % Returns:
 % Nothing.
 
+    if(length(varargin) > 1)
+        error('This function can only handle one extra optional argument.')
+    end
+    
+    if(length(varargin) == 1 && ischar(varargin{1}))
+        %% We got a string as a title, so use it!
+        title_string = varargin{1};
+    else
+        title_string = 'Marker positions';
+    end
 
     [no_of_frames, no_of_coords] = size(position3d_as_array);
 
@@ -30,7 +41,7 @@ function [ ] = optotrak_indicate_marker_positions( position3d_as_array )
 
     %big fonts too.
     set(gca, 'FontSize', 25)
-    title('Marker positions')
+    title(title_string)
     xlabel('X axis [mm]')
     ylabel('Y axis [mm]')
     zlabel('Z axis [mm]')
@@ -88,4 +99,3 @@ function [ ] = optotrak_indicate_marker_positions( position3d_as_array )
     
     drawnow();
 end
-
