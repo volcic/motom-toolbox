@@ -34,7 +34,7 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
     
         %Are we being fed triplets?
         if( (translation_entries ~= 3) || (rotation_entries ~= 3) )
-            error('Please execute this funciton on a single rigid body.')
+            error('Please execute this function on a single rigid body.')
         end
     
         %Is the rigid body data OK?
@@ -44,70 +44,67 @@ function [virtual_marker_coords] = optotrak_get_virtual_marker_coords(virtual_ma
         
         %preallocate variables used to store/manipulate data in the loop.
         virtual_marker_coords = zeros(translation_frames, 3);
-        %Generate rotation matrices. We will calculate stuff inside here.
-        % rotation_matrix_roll = zeros(3, 3);
-        % rotation_matrix_pitch = zeros(3, 3);
-        % rotation_matrix_yaw = zeros(3, 3);
-        % final_rotation_matrix = zeros(3, 3);
+       
+        % This is the rotation the rigid body did since the definition of the virtual marker.
+        relative_rotation = repmat(virtual_marker_definition(4:6), translation_frames, 1) - rotation;
         
-      
-        
-    
+
         %Okay, now we can work.
         for(i=1:translation_frames)
-    
-            %We now can calculate the marker coordinates:
-            %First of all, we need to calculate how much the rigid body rotate since we declared the virtual marker on it.
-    
-            relative_rotation = virtual_marker_definition(4:6) - rotation(i, :);
-            %This is for debugging the funny angle anomaly.
-            %fprintf('Roll: %0.2f*pi Pitch: %0.2f*pi Yaw: %0.2f*pi\n', relative_rotation(1)/pi, relative_rotation(2)/pi, relative_rotation(3)/pi);
-            
-            yaw = relative_rotation(3); % the rotation along the X axis, according to NDI's convention
-            pitch = relative_rotation(2); % The rotation along the Y axis, according to NDI's convention.
-            roll = relative_rotation(1); % The rotation along the Z axis, according to NDI's convention.
-            
-            
+            yaw = relative_rotation(i, 3); % the rotation along the X axis, according to NDI's convention
+            pitch = relative_rotation(i, 2); % The rotation along the Y axis, according to NDI's convention.
+            roll = relative_rotation(i, 1); % The rotation along the Z axis, according to NDI's convention.
+
             %This can be simplified, and you can boost performance. A lot.
             %We now build three rotation matrices.
-            
+
             rotation_matrix_roll = [
                 cos(roll), -1*sin(roll), 0;
                 sin(roll), cos(roll), 0;
                 0, 0, 1;
             ];
-            
+
             rotation_matrix_pitch = [
                 cos(pitch), 0, sin(pitch);
                 0, 1, 0;
                 -1*sin(pitch), 0, cos(pitch);
             ];
-      
+
             rotation_matrix_yaw = [
                 1, 0, 0;
                 0, cos(yaw), -1*sin(yaw);
                 0, sin(yaw), cos(yaw);
             ];
-    
+
+
             % Let's check what's wrong. Uncommenting these will bypass the
             % rotation in question, without the matrix operation being
             % affected.
             %rotation_matrix_roll = eye(3);
             %rotation_matrix_pitch = eye(3);
             %rotation_matrix_yaw = eye(3);
-    
-    
+
+
             %which we will use to re-calculate the location of the virtual marker
             %Note that the matrices are multiplied in reverse order! This was fun to figure out. RTFM :)
-            final_rotation_matrix = rotation_matrix_yaw * rotation_matrix_pitch * rotation_matrix_roll;
-    
-            %And now, we rotate the virtual marker coordinates
+            % RTFM #2: If you want to transform a point attached to a rigid body, do the inverse of the rotation matrix.
+            final_rotation_matrix = inv(rotation_matrix_yaw * rotation_matrix_pitch * rotation_matrix_roll);
             % Beware: the coordinates are read out as a column vector, but the function outputs it as a row vector.
             rotated_definition_offset = final_rotation_matrix * (virtual_marker_definition(1:3))';
-    
+            
             %And now, we translate the rotated coordinates.
             virtual_marker_coords(i, :) = rotated_definition_offset' + translation(i, :);
-    
-        end
-    
+            
+            % Print some diagnostic information
+            % This is for debugging the funny angle anomaly.
+%             fprintf('R:(%0.2f + %0.2f)=%0.2f deg; P:(%0.2f - %0.2f)=%0.2f deg; Y:(%0.2f - %0.2f)=%0.2f deg. ', ...
+%             virtual_marker_definition(4)/pi*180, rotation(i, 1)/pi*180, roll/pi*180, ...
+%             virtual_marker_definition(5)/pi*180, rotation(i, 2)/pi*180, pitch/pi*180, ...
+%             virtual_marker_definition(6)/pi*180, rotation(i, 3)/pi*180, yaw/pi*180);
+%             fprintf('Rotated coordinates are: %0.1f, %0.1f, %0.1f.\n', rotated_definition_offset(1), rotated_definition_offset(2), rotated_definition_offset(3));           
+           
+
+
+
+        end    
     end
