@@ -1,5 +1,5 @@
-function [ ] = optotrak_indicate_marker_positions( position3d_as_array, varargin)
-%OPTOTRAK_INDICATE_MARKER_POSITIONS This function plots the location of the
+function [ ] = optotrak_plot_marker_positions( position3d_as_array, varargin)
+%OPTOTRAK_PLOT_MARKER_POSITIONS This function plots the location of the
 %markers it's been fed. If several frames' worth of data is being sent,
 %then it will do a line plot for each marker.
 % IMPORTANT: It will update the first figure.
