@@ -6,6 +6,12 @@
 ## ~ allows you to use the NDI Optotrak device programmatically from Matlab.
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
+## What's new?
+- 29/05/2019: Added a new method of creating virtual markers using a custom-generated rigid body file
+- 10/02/2019: Corrected the rotation matrices with the virtual marker. Added warnings about correctly making rigid bodies
+- 24/01/2019: Now it compiles on older 32-bit Matlab versions too.
+
+
 **Requirements:**  
 
 This toolbox was developed using the following configuration. The more you deviate from it, and the more exotic hardware you want to use, the more likely you will run into problems.
