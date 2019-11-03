@@ -8,6 +8,7 @@ Works on Windows (and Linux, but not thoroughly tested), now you can configure y
 
 ## What's new?
 
+- 03/11/2019: `optotrak_align_my_system` now works with multiple cameras with OAPI 3.15
 - 01/11/2019: Updated the rigid body creation example
 - 29/05/2019: Added a new method of creating virtual markers using a custom-generated rigid body file
 - 10/02/2019: Corrected the rotation matrices with the virtual marker. Added warnings about correctly making rigid bodies
