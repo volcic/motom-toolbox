@@ -23,7 +23,7 @@ alignment_rigid_body_file = 'ndi_cube.rig';
 
 camera_file = 'standard'; %Change this to your camera file
 config_file = 'config_file.ini';
-error('Edit ''config_file.ini'' to tailor it to your needs and then comment this error message out.')
+%error('Before using this example ''config_file.ini'' to tailor it to your set-up and then comment this error message out.')
 
 optotrak_startup;
 optotrak_set_up_system(camera_file, config_file);
@@ -84,12 +84,10 @@ csvwrite('recorded_marker_coordinates.csv', buffered_position3d_array);
 
 %Calculate mean marker coordinate values
 mean_coordinate_values = nanmean(buffered_position3d_array, 1);
-
-origin_marker = 1; %this will have the coordinates of [0, 0, 0] for the given marker, and all other coordinates will be translated accordingly.
+% The origin of the local coordinate system will be the centroid. You can set pretty much any coordinate as well.
+origin_coordinate = optotrak_calculate_centroid_and_orientation(mean_coordinate_values);
 tracking_tolerance = 2; %This is in millimetres
-normal_vectors = zeros(1, length(mean_coordinate_values)); %Forget about the normal vectors.
-minimum_visible_markers = 3; %This is the absolute minimum. Increase this to enforce stricter transforms.
 
-optotrak_generate_rigid_body_file(mean_coordinate_values, origin_marker, 'internally_generated_rigid_body_file.rig', tracking_tolerance, normal_vectors, minimum_visible_markers);
+optotrak_generate_rigid_body_file(mean_coordinate_values, origin_coordinate, 'internally_generated_rigid_body_file.rig', tracking_tolerance);
 
 fprintf('Done.\n''recorded_marker_coordinates.csv'' contains the marker coordinates\n''internally_generated_rigid_body_file.rig'' contains the rigid body definition.\nTest it before using it!\n')
