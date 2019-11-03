@@ -52,36 +52,36 @@ void mexFunction( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     char *logfile_name = mxArrayToString(prhs[4]);
 
     //Declare the structure for the function. But we only want this to exist here.
-    RegisterParms alignment_structure;
+    RegisterParms registration_structure;
     //debug.
     //mexPrintf("Alignment structure created.\n");
     //mexEvalString("drawnow;");
 
     //now fill the structure in. But since the string were copied using pointers, I have to copy them using strcpy.
-    strcpy(alignment_structure.szRawDataFile, path_to_recording);
-    strcpy(alignment_structure.szRigidBodyFile, path_to_rigid_body);
-    strcpy(alignment_structure.szInputCamFile, old_camera_file_name);
-    strcpy(alignment_structure.szOutputCamFile, new_camera_file_name);
-    strcpy(alignment_structure.szLogFileName, logfile_name);
+    strcpy(registration_structure.szRawDataFile, path_to_recording);
+    strcpy(registration_structure.szRigidBodyFile, path_to_rigid_body);
+    strcpy(registration_structure.szInputCamFile, old_camera_file_name);
+    strcpy(registration_structure.szOutputCamFile, new_camera_file_name);
+    strcpy(registration_structure.szLogFileName, logfile_name);
 
-    alignment_structure.fXfrmMaxError = 1; //This is in millimetres.
-    alignment_structure.fXfrm3dRmsError = 0.5; //This is also in millimetres.
+    registration_structure.fXfrmMaxError = (float) 1; //This is in millimetres.
+    registration_structure.fXfrm3dRmsError = (float) 1; //This is also in millimetres.
     //Spreads tolerance is zero
-    alignment_structure.fSpread1 = 0;
-    alignment_structure.fSpread2 = 0;
-    alignment_structure.fSpread3 = 0;
+    registration_structure.fSpread1 = (float) 0;
+    registration_structure.fSpread2 = (float) 0;
+    registration_structure.fSpread3 = (float) 0;
+    // I guess this is a bit too liberal, but, meh.
+    registration_structure.nMinNumberOfXfrms = 3; //We need at least 3 good transforms.
 
-    alignment_structure.nMinNumberOfXfrms = 100; //We need at least 100 good transforms.
-
-    alignment_structure.nLogFileLevel = 2; // This is the most talkative
-    alignment_structure.bVerbose = 1; // Yes please.
-    alignment_structure.bCheckCalibration = 0; // Create a new camera file.
+    registration_structure.nLogFileLevel = 2; // This is the most talkative
+    registration_structure.bVerbose = 1; // Yes please.
+    registration_structure.bCheckCalibration = 0; // Create a new camera file.
     //Now, we can execute the function.
     
     //This is for debug. Normally you won't need to print this.
-    mexPrintf("Registration structure fields are:\n\tszRawDataFile: %s\n\tszRigidBodyFile: %s\n\tszInputCamFile: %s\n\tszOutputCamFile: %s\n\tszLogFileName: %s\nNow calling nOptotrakRegisterSystem()\n", alignment_structure.szRawDataFile, alignment_structure.szRigidBodyFile, alignment_structure.szInputCamFile, alignment_structure.szOutputCamFile, alignment_structure.szLogFileName);
+    mexPrintf("Registration structure fields are:\n\tszRawDataFile: %s\n\tszRigidBodyFile: %s\n\tszInputCamFile: %s\n\tszOutputCamFile: %s\n\tszLogFileName: %s\nNow calling nOptotrakRegisterSystem()\n", registration_structure.szRawDataFile, registration_structure.szRigidBodyFile, registration_structure.szInputCamFile, registration_structure.szOutputCamFile, registration_structure.szLogFileName);
     mexEvalString("drawnow;"); //This outputs the mexPrintf immediately.
-    fail = nOptotrakRegisterSystem(alignment_structure, &tolerance);
+    fail = nOptotrakRegisterSystem(registration_structure, &tolerance);
 
 
     plhs[0] = mxCreateDoubleScalar(fail); //define return value type, and toss it to return.
