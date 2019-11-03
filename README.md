@@ -7,6 +7,7 @@
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
 ## What's new?
+- 01/11/2019: Updated the rigid body creation example
 - 29/05/2019: Added a new method of creating virtual markers using a custom-generated rigid body file
 - 10/02/2019: Corrected the rotation matrices with the virtual marker. Added warnings about correctly making rigid bodies
 - 24/01/2019: Now it compiles on older 32-bit Matlab versions too.
