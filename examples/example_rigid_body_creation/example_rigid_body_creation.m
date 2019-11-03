@@ -23,7 +23,7 @@ alignment_rigid_body_file = 'ndi_cube.rig';
 
 camera_file = 'standard'; %Change this to your camera file
 config_file = 'config_file.ini';
-%error('Before using this example ''config_file.ini'' to tailor it to your set-up and then comment this error message out.')
+error('Before using this example ''config_file.ini'' to tailor it to your set-up and then comment this error message out.')
 
 optotrak_startup;
 optotrak_set_up_system(camera_file, config_file);
