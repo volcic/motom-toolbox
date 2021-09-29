@@ -20,7 +20,7 @@ if(strcmp(compiler_info.Name, 'ADD YOUR COMPILER NAME HERE') && ~compiler_found)
         %Note that we always APPEND to the compiler flags. The default flags are set in the $COMPFLAGS environment
         %variable and is used by Matlab's mex command.
         compiler_flags = ''; %You may not need to add any extra compiler flags, but if you do, add them here.
-        
+
         compiler_found = 1;
     end
 end
@@ -94,6 +94,15 @@ end
 %% Microsoft Visual C++ 2017
 %This is bundled with Visual Studio Community 2017, when you install C++ desktop development stuff.
 if(strcmp(compiler_info.Name, 'Microsoft Visual C++ 2017') && ~compiler_found)
+    %if we got here, we have found our compiler.
+    compiler_found = 1;
+    %For each compiler and each version, different compiler flags are needed.
+    compiler_flags = '/O2 /Wall'; %Optimise binary for performance, and display everything in the command window.
+end
+
+%% Microsoft Visual C++ 2019
+%This is bundled with Visual Studio Community 2019, when you install C++ desktop development stuff.
+if(strcmp(compiler_info.Name, 'Microsoft Visual C++ 2019') && ~compiler_found)
     %if we got here, we have found our compiler.
     compiler_found = 1;
     %For each compiler and each version, different compiler flags are needed.
