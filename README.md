@@ -7,6 +7,7 @@
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
 ## What's new?
+- 29/03/2022: Added a simple (6 lines of code) [example](/tree/master/examples/example_marker_visibility_test) for testing marker visibility
 - 29/09/2021: Added Visual Studio 2019 as a supported compiler
 - ??/??/2020: OAPI 3.16 compatibility (2020 was a bit of a blur)
 - 03/11/2019: `optotrak_align_my_system` now works with multiple cameras with OAPI 3.15
@@ -45,6 +46,14 @@ In order to start using the toolbox, you'll need the proprietary files you bough
 If you are trying to get the toolbox working on some old/weird hardware and you are running into error messages, **don't panic**, read the [Damage Control FAQ](../../wiki/Damage-Control-FAQ)!
 
 # Consult the [wiki](../../wiki) for details!
+### Documentation, in particular:
+
+- Some additional [documentation for the Optotrak API functions are here](../../wiki/API-functions-in-Matlab)
+- The custom [convenience scripts and wrapper functions that makes life easier are here](../../wiki/Convenience-scripts-and-wrapper-functions)
+- For advanced users, there is info about [rigid bodies](../../wiki/Rigid-bodies) and [virtual markers](../../wiki/Virtual-markers)
+- Lamentation about the wonders of [coordinate system alignment](../../wiki/https://github.com/ha5dzs/motom-toolbox/wiki/Calibration) (aka 'calibration')
+- There are some [examples](/tree/master/examples) where you can see how it is all put together
+
 
 ...or, if you really just want to dive in, and once you got the Optotrak API files:
 1. Copy 'oapi64.dll', 'oapi64.lib', 'oapi.dll' and 'oapi.lib' to the 'bin' directory.
