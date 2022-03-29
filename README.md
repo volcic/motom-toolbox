@@ -7,7 +7,7 @@
 Works on Windows (and Linux, but not thoroughly tested), now you can configure your hardware and collect data!
 
 ## What's new?
-- 29/03/2022: Added a simple (6 lines of code) [example](/tree/master/examples/example_marker_visibility_test) for testing marker visibility
+- 29/03/2022: Added a simple (6 lines of code) example for testing marker visibility
 - 29/09/2021: Added Visual Studio 2019 as a supported compiler
 - ??/??/2020: OAPI 3.16 compatibility (2020 was a bit of a blur)
 - 03/11/2019: `optotrak_align_my_system` now works with multiple cameras with OAPI 3.15
@@ -52,7 +52,7 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
 - The custom [convenience scripts and wrapper functions that makes life easier are here](../../wiki/Convenience-scripts-and-wrapper-functions)
 - For advanced users, there is info about [rigid bodies](../../wiki/Rigid-bodies) and [virtual markers](../../wiki/Virtual-markers)
 - Lamentation about the wonders of [coordinate system alignment](../../wiki/https://github.com/ha5dzs/motom-toolbox/wiki/Calibration) (aka 'calibration')
-- There are some [examples](/tree/master/examples) where you can see how it is all put together
+- There are some examples in a separate directory where you can see how it is all put together.
 
 
 ...or, if you really just want to dive in, and once you got the Optotrak API files:

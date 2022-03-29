@@ -1,5 +1,5 @@
 ***
-# [Examples](../tree/master/examples)
+# The examples directory
 All examples use their own .ini config files, which is found in each directory. There is also a collection of config files in the `example_config_files` directory.
 
 ***
