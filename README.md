@@ -51,7 +51,7 @@ If you are trying to get the toolbox working on some old/weird hardware and you 
 - Some additional [documentation for the Optotrak API functions are here](../../wiki/API-functions-in-Matlab)
 - The custom [convenience scripts and wrapper functions that makes life easier are here](../../wiki/Convenience-scripts-and-wrapper-functions)
 - For advanced users, there is info about [rigid bodies](../../wiki/Rigid-bodies) and [virtual markers](../../wiki/Virtual-markers)
-- Lamentation about the wonders of [coordinate system alignment](../../wiki/https://github.com/ha5dzs/motom-toolbox/wiki/Calibration) (aka 'calibration')
+- Lamentation about the wonders of [coordinate system alignment](../../wiki/Calibration) (aka 'calibration')
 - There are some examples in a separate directory where you can see how it is all put together.
 
 
